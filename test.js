@@ -1,2 +1,2 @@
-if (confirm('Godkänn partystart'))
-	alert('Låt partyt starta för faaen!');
+ï»¿if (confirm('GodkÃ¤nn partystart'))
+	alert('LÃ¥t partyt starta fÃ¶r faaen!');
