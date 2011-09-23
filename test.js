@@ -1,1 +1,1 @@
-alert('Låt partyt starta!');
+alert('Låt partyt starta för faaen!');
