@@ -1,2 +1,2 @@
-﻿if (confirm('Godkänn partystart?'))
-	alert('Låt partyt starta för faaen!');
+﻿if (confirm('godkende festt?'))
+	alert('Lad festen begynde for fanden!');
