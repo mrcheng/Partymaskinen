@@ -1,2 +1,2 @@
-﻿if (confirm('godkende fest?'))
+﻿if (confirm('godkende fest!!!!?'))
 	alert('Lad festen begynde for fanden!');
