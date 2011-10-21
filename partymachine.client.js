@@ -532,7 +532,7 @@
 
 		for (var plugin = 0; plugin < _plugins.length; plugin++) {
 			var displayPlugin = _plugins[plugin];
-			var pluginHtmlTemplate = displayPlugin.Name;
+			var pluginHtmlTemplate = '<div class="plugin">' + displayPlugin.Name + '</div>';
 			$("#partyMachine-plugins").append(pluginHtmlTemplate);
 		}
 
