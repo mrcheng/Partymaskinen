@@ -5,11 +5,11 @@ body{width:100%;font: 100% Verdana, Arial, Helvetica, sans-serif;text-align:cent
 
 /*PARTICIPANTS*/
 .participant{background-image:url(img/contenderframe.png);width:157px;height:188px;margin:-190px auto;}
-.participant strong{font-size:20px;position:relative;top:5px;}
+.participant strong{font-size:20px;position:relative;top:5px;font-weight:normal;}
 .participant img{width:127px;height:102px;margin-top:10px;}
 
 /*PLUGINS*/
-.plugin-frame{width:640px;height:305px;margin:0 auto;margin-top:180px;}
+.plugin-frame{width:640px;height:305px;margin:0 auto;margin-top:180px;margin-bottom:50px;}
 .plugin{background-image:url(img/pluginframe.png);width:128px;height:128px;float:left;margin:0 15px 30px 15px;}
 .plugin img{margin-top:20px;width:108px;height:108px;position:relative;margin-top:10px;}
 .plugin p{color:white;margin-top:15px;}
@@ -17,6 +17,10 @@ body{width:100%;font: 100% Verdana, Arial, Helvetica, sans-serif;text-align:cent
 
 /*TODO: switch to css generated border*/
 /*.plugin-selected img{width:228px:height:228px;border:3px solid #c9ff33;border-radius:3px;}*/
-
 /*Glossy plugin overlay*/
 /*.plugin-glare{background-image:url(img/lobbyGfx-pluginglare.png);width:120px;height:32px;}*/
+
+/*MUSIC*/
+.music-info{font-size:30px;color:#c9ff33;}
+.music-info .title{font-weight:bold;}
+.music-submitted-by{font-size:15px;}
