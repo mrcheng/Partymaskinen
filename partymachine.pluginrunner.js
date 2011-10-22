@@ -1,9 +1,10 @@
 ﻿(function (pluginRunner, $, undefined) {
 
 	var _plugins = [];
+	var _soundplayer;
 
-	pluginRunner.stub = function() {
-		pluginRunner.getPlugins = function() {
+	pluginRunner.stub = function () {
+		pluginRunner.getPlugins = function () {
 
 			var freshPlugins = [];
 
@@ -27,12 +28,18 @@
 	};
 
 	pluginRunner.startPlugin = function (pluginIndex) {
-
+		
+		if (typeof _soundplayer !== "undefined") {
+			_soundplayer.playEvent("pluginHighlight");
+		}
+		
 		var selectedPlugin = plugins[pluginIndex];
 		alert(selectedPlugin.Name);
 	};
 
-	pluginRunner.start = function () {
+	pluginRunner.start = function (soundplayer) {
+
+		_soundplayer = soundplayer;
 
 		_plugins = this.getPlugins();
 
@@ -50,6 +57,11 @@
 	};
 
 	pluginRunner.highlightPlugin = function (pluginIndex) {
+		
+		if (typeof _soundplayer !== "undefined") {
+			_soundplayer.playEvent("pluginHighlight");
+		}
+		
 		var highlightPlugin = _plugins[pluginIndex];
 
 		$("#partyMachine .plugin").removeClass("plugin-selected");

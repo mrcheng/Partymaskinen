@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, pluginRunner, participants, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, participants, soundplayer, $, undefined) {
 
 	var _contexts = {
 		atPluginSelection: 0,
@@ -43,7 +43,7 @@
 			};
 
 			p.gameController.gamepadPressed = function (left, up, right, down) {
-
+				
 				var plugins = pluginRunner.getPlugins();
 
 				if (_state.context !== _contexts.atPluginSelection) {
@@ -92,8 +92,8 @@
 
 		participants.start();
 		_participants = participants.getParticipants();
-		
-		pluginRunner.start();
+
+		pluginRunner.start(soundplayer);
 
 		controllers.start(_participants);
 		
@@ -139,6 +139,7 @@
 	window.partyMachineControllers,
 	window.partyMachinePluginRunner,
 	window.partyMachineParticipants,
+	window.partyMachineSound,
 	jQuery
 	)
 );
