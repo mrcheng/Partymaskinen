@@ -10,5 +10,5 @@ body{width:100%;font: 100% Verdana, Arial, Helvetica, sans-serif;text-align:cent
 .plugin-frame{width:640px;height:305px;margin:0 auto;margin-top:180px;}
 .plugin{background-image:url(img/pluginframe.png);width:128px;height:128px;float:left;margin:0 15px 30px 15px;}
 .plugin p{color:white;margin-top:130px;}
-#select{background-image:url(img/pluginselect.png);width:128px;height:128px;position:relative;}
+.plugin-selected {background-image:url(img/pluginselect.png);width:128px;height:128px;position:relative;}
 /*.plugin-glare{background-image:url(img/lobbyGfx-pluginglare.png);width:120px;height:32px;}*/

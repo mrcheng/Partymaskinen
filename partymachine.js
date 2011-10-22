@@ -7,14 +7,14 @@
 	};
 
 	var _state = {
-		context : _contexts.atPluginSelection,
+		context: _contexts.atPluginSelection,
 		currentlySelectedPlugin: 0
 	};
-	
+
 	var _participants = [];
 	var _plugins = [];
 	var _previousParticipant = -1;
-	
+
 	function isHostAvailable() {
 		return false;
 	}
@@ -57,7 +57,7 @@
 			freshParticipants.push({ Name: 'Vico', ImageUrl: 'img/participant_example.png' });
 			freshParticipants.push({ Name: 'Shahin', ImageUrl: 'img/participant_example.png' });
 			freshParticipants.push({ Name: 'Jesse', ImageUrl: 'img/participant_example.png' });
-			
+
 		}
 
 		return freshParticipants;
@@ -70,60 +70,66 @@
 
 		return nextParticipant;
 	}
-	
+
 	function choosePlugin(pluginIndex) {
 		var selectedPlugin = _plugins[pluginIndex];
 
 		alert(selectedPlugin.Name);
 	}
-	
+
 	function highlightSelectedPlugin(pluginIndex) {
 		var highlightPlugin = _plugins[pluginIndex];
 
-		alert(highlightPlugin.Name);
+		$("#partyMachine .plugin").removeClass("plugin-selected");
+
+		var pluginDomElem = $("#partyMachine .plugin").get(pluginIndex);
+
+		if (pluginDomElem) {
+			$(pluginDomElem).addClass("plugin-selected");
+			console.log("highlighting plugin: " + highlightPlugin.Name);
+		}
+
 	}
 
 	function atPluginSelect() {
-		
-		for (var participant = 0; participant < _participants.length; participant++) 
-		{
+
+		for (var participant = 0; participant < _participants.length; participant++) {
 
 			var p = _participants[participant];
-			
-			if (typeof p === "undefined" || p == null) 
-			{
+
+			if (typeof p === "undefined" || p == null) {
 				continue;
 			}
-			
+
 			p.gameController.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
-				
+
 				if (_state.context !== _contexts.atPluginSelection) {
 					return false;
-				} 
-				
+				}
+
 				if (_plugins.length === 0) {
 					return false;
 				}
 
 				choosePlugin(_state.currentlySelectedPlugin);
 			};
-			
-			p.gameController.gamepadPressed = function (left, up, right, down) { 
-			
+
+			p.gameController.gamepadPressed = function (left, up, right, down) {
+
 				if (_state.context !== _contexts.atPluginSelection) {
 					return false;
-				} 
-				
+				}
+
 				if (_plugins.length === 0) {
 					return false;
 				}
-				
+
 				if (right) {
 					if (_state.currentlySelectedPlugin + 1 >= _plugins.length) {
 						_state.currentlySelectedPlugin = 0;
 					}
 					else {
-						_state.currentlySelectedPlugin += 1; 
+						_state.currentlySelectedPlugin += 1;
 					}
 				}
 				else if (left) {
@@ -139,13 +145,13 @@
 				}
 
 				highlightSelectedPlugin(_state.currentlySelectedPlugin);
-				
+
 			};
-			
+
 		}
 
 	}
-	
+
 	partyMachine.start = function () {
 
 		_participants = getParticipants();
@@ -153,7 +159,7 @@
 
 		var nextParticipant = getNextParticipant();
 
-		var participantHtmlTemplate = '<img src="' + nextParticipant.ImageUrl + '"></img><strong>' + nextParticipant.Name  + '</strong>';
+		var participantHtmlTemplate = '<img src="' + nextParticipant.ImageUrl + '"></img><strong>' + nextParticipant.Name + '</strong>';
 
 		$("#partyMachine-participant").append(participantHtmlTemplate);
 
@@ -166,7 +172,7 @@
 		if (_plugins.length > 0) {
 			highlightSelectedPlugin(0);
 		}
-		
+
 		controllers.start(isHostAvailable, _participants);
 
 		partyMachine.assignGameControllers(
@@ -179,31 +185,31 @@
 			_participants[5],
 			_participants[6]
 		);
-		
+
 	},
-	
+
 	partyMachine.assignGameControllers = function (
-		gameControllersAssigned, 
-		participant1, 
-		participant2, 
-		participant3, 
-		participant4, 
-		participant5, 
-		participant6, 
+		gameControllersAssigned,
+		participant1,
+		participant2,
+		participant3,
+		participant4,
+		participant5,
+		participant6,
 		participant7
 	) {
-		
+
 		controllers.assignGameControllers(
-			gameControllersAssigned, 
-			participant1, 
-			participant2, 
-			participant3, 
-			participant4, 
-			participant5, 
-			participant6, 
+			gameControllersAssigned,
+			participant1,
+			participant2,
+			participant3,
+			participant4,
+			participant5,
+			participant6,
 			participant7
 		);
-		
+
 	}
 
 } (window.partyMachine = window.partyMachine || {}, window.partyMachineControllers, jQuery));
