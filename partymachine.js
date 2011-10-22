@@ -25,14 +25,14 @@
 		var freshPlugins = [];
 
 		if (!isHostAvailable()) {
-			freshPlugins.push({ Name: "plugin1", Url : "plugin1.js", ImageUrl :"plugin1.png" });
-			freshPlugins.push({ Name: "plugin2", Url: "plugin2.js", ImageUrl: "plugin2.png" });
-			freshPlugins.push({ Name: "plugin3", Url: "plugin3.js", ImageUrl: "plugin3.png" });
-			freshPlugins.push({ Name: "plugin4", Url: "plugin4.js", ImageUrl: "plugin4.png" });
-			freshPlugins.push({ Name: "plugin5", Url: "plugin5.js", ImageUrl: "plugin5.png" });
-			freshPlugins.push({ Name: "plugin6", Url: "plugin6.js", ImageUrl: "plugin6.png" });
-			freshPlugins.push({ Name: "plugin7", Url: "plugin7.js", ImageUrl: "plugin7.png" });
-			freshPlugins.push({ Name: "plugin8", Url: "plugin8.js", ImageUrl: "plugin8.png" });
+			freshPlugins.push({ Name: "plugin1", Url: "plugin1.js", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ Name: "plugin2", Url: "plugin2.js", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ Name: "plugin3", Url: "plugin3.js", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ Name: "plugin4", Url: "plugin4.js", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ Name: "plugin5", Url: "plugin5.js", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ Name: "plugin6", Url: "plugin6.js", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ Name: "plugin7", Url: "plugin7.js", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ Name: "plugin8", Url: "plugin8.js", ImageUrl: "img/plugin-icon-axample.png" });
 		}
 
 		return freshPlugins;
@@ -44,19 +44,19 @@
 
 		if (!isHostAvailable()) {
 
-			freshParticipants.push({ Name: 'Pub', ImageUrl: 'Resources/Images/christhumb.png' });
-			freshParticipants.push({ Name: 'Randy', ImageUrl : 'Resources/Images/cliffordthumb.png' });
-			freshParticipants.push({ Name: 'Magnecyl', ImageUrl : 'Resources/Images/danielthumb.png' });
-			freshParticipants.push({ Name: 'Geggin', ImageUrl : 'Resources/Images/gegginthumb.png' });
-			freshParticipants.push({ Name: 'Mejje', ImageUrl : 'Resources/Images/jockethumb.png' });
-			freshParticipants.push({ Name: 'Joel', ImageUrl : 'Resources/Images/joelthumb.png' });
-			freshParticipants.push({ Name: 'Fold', ImageUrl : 'Resources/Images/jonasthumb.png' });
-			freshParticipants.push({ Name: 'Blaizer', ImageUrl : 'Resources/Images/ollethumb.png' });
-			freshParticipants.push({ Name: 'Deamo', ImageUrl : 'Resources/Images/stellanthumb.png' });
-			freshParticipants.push({ Name: 'Wipeout', ImageUrl : 'Resources/Images/svardthumb.png' });
-			freshParticipants.push({ Name: 'Vico', ImageUrl : 'Resources/Images/jimmythumb.png' });
-			freshParticipants.push({ Name: 'Shahin', ImageUrl : 'Resources/Images/shahinthumb.png' });
-			freshParticipants.push({ Name: 'Jesse', ImageUrl : 'Resources/Images/erikthumb.png' });
+			freshParticipants.push({ Name: 'Pub', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Randy', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Magnecyl', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Geggin', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Mejje', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Joel', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Fold', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Blaizer', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Deamo', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Wipeout', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Vico', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Shahin', ImageUrl: 'img/participant_example.png' });
+			freshParticipants.push({ Name: 'Jesse', ImageUrl: 'img/participant_example.png' });
 			
 		}
 
@@ -153,13 +153,13 @@
 
 		var nextParticipant = getNextParticipant();
 
-		var participantHtmlTemplate = "<strong>" + nextParticipant.Name + "</strong>";
+		var participantHtmlTemplate = '<img src="' + nextParticipant.ImageUrl + '"></img><strong>' + nextParticipant.Name  + '</strong>';
 
 		$("#partyMachine-participant").append(participantHtmlTemplate);
 
 		for (var plugin = 0; plugin < _plugins.length; plugin++) {
 			var displayPlugin = _plugins[plugin];
-			var pluginHtmlTemplate = '<div class="plugin">' + displayPlugin.Name + '</div>';
+			var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.ImageUrl + '"></img>' + displayPlugin.Name + '</div>';
 			$("#partyMachine-plugins").append(pluginHtmlTemplate);
 		}
 
