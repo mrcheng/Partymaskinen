@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, pluginRunner, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, participants, $, undefined) {
 
 	var _contexts = {
 		atPluginSelection: 0,
@@ -13,43 +13,8 @@
 
 	var _participants = [];
 
-	var _previousParticipant = -1;
-
 	function isHostAvailable() {
 		return false;
-	}
-
-	function getParticipants() {
-
-		var freshParticipants = [];
-
-		if (!isHostAvailable()) {
-
-			freshParticipants.push({ Name: 'Pub', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Randy', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Magnecyl', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Geggin', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Mejje', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Joel', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Fold', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Blaizer', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Deamo', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Wipeout', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Vico', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Shahin', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Jesse', ImageUrl: 'img/participant_example.png' });
-
-		}
-
-		return freshParticipants;
-	}
-
-	function getNextParticipant() {
-		_previousParticipant++;
-
-		var nextParticipant = _participants[_previousParticipant];
-
-		return nextParticipant;
 	}
 
 	function atPluginSelect() {
@@ -119,23 +84,19 @@
 
 	partyMachine.start = function () {
 
-		_participants = getParticipants();
-
-		var nextParticipant = getNextParticipant();
-
-		var participantHtmlTemplate = '<img src="' + nextParticipant.ImageUrl + '"></img><strong>' + nextParticipant.Name + '</strong>';
-
-		$("#partyMachine-participant").append(participantHtmlTemplate);
-
 		if (!isHostAvailable()) {
 			pluginRunner.stub();
 			controllers.stub();
+			participants.stub();
 		}
 
+		participants.start();
+		_participants = participants.getParticipants();
+		
 		pluginRunner.start();
 
 		controllers.start(_participants);
-
+		
 		partyMachine.assignGameControllers(
 			atPluginSelect,
 			_participants[0],
@@ -173,4 +134,11 @@
 
 	}
 
-} (window.partyMachine = window.partyMachine || {}, window.partyMachineControllers, window.partyMachinePluginRunner, jQuery));
+} (
+	window.partyMachine = window.partyMachine || {},
+	window.partyMachineControllers,
+	window.partyMachinePluginRunner,
+	window.partyMachineParticipants,
+	jQuery
+	)
+);
