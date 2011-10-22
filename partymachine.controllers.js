@@ -24,8 +24,6 @@
 	_joy2ButtonADown = false,
     _joy2ButtonBDown = false;
 
-	var _isHostAvailable;
-
 	function virtualGameController(e, keyDown) {
 		if (e.keyCode == 37
 			|| e.keyCode == 38
@@ -301,19 +299,19 @@
 		}
 	}
 
-	controllers.start = function (isHostAvailable, participants) {
-		_isHostAvailable = isHostAvailable;
+	controllers.stub = function () {
+		window.addEventListener('keydown', function (e) {
+			virtualGameController(e, true);
+		}, true);
 
-		if (!_isHostAvailable()) {
-			window.addEventListener('keydown', function (e) {
-				virtualGameController(e, true);
-			}, true);
-
-			window.addEventListener('keyup', function (e) {
-				virtualGameController(e, false);
-			}, true);
-		}
-
+		window.addEventListener('keyup', function (e) {
+			virtualGameController(e, false);
+		}, true);
+		
+	},
+	
+	controllers.start = function (participants) {
+	
 		for (var i = 0; i < participants.length; i++) {
 
 			participants[i].gameController =

@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, $, undefined) {
 
 	var _contexts = {
 		atPluginSelection: 0,
@@ -12,30 +12,11 @@
 	};
 
 	var _participants = [];
-	var _plugins = [];
+
 	var _previousParticipant = -1;
 
 	function isHostAvailable() {
 		return false;
-	}
-
-	function getPlugins() {
-
-
-		var freshPlugins = [];
-
-		if (!isHostAvailable()) {
-			freshPlugins.push({ Name: "plugin1", Url: "plugin1.js", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin2", Url: "plugin2.js", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin3", Url: "plugin3.js", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin4", Url: "plugin4.js", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin5", Url: "plugin5.js", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin6", Url: "plugin6.js", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin7", Url: "plugin7.js", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin8", Url: "plugin8.js", ImageUrl: "img/plugin-icon-axample.png" });
-		}
-
-		return freshPlugins;
 	}
 
 	function getParticipants() {
@@ -71,26 +52,6 @@
 		return nextParticipant;
 	}
 
-	function choosePlugin(pluginIndex) {
-		var selectedPlugin = _plugins[pluginIndex];
-
-		alert(selectedPlugin.Name);
-	}
-
-	function highlightSelectedPlugin(pluginIndex) {
-		var highlightPlugin = _plugins[pluginIndex];
-
-		$("#partyMachine .plugin").removeClass("plugin-selected");
-
-		var pluginDomElem = $("#partyMachine .plugin").get(pluginIndex);
-
-		if (pluginDomElem) {
-			$(pluginDomElem).addClass("plugin-selected");
-			console.log("highlighting plugin: " + highlightPlugin.Name);
-		}
-
-	}
-
 	function atPluginSelect() {
 
 		for (var participant = 0; participant < _participants.length; participant++) {
@@ -103,29 +64,33 @@
 
 			p.gameController.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
 
+				var plugins = pluginRunner.getPlugins();
+
 				if (_state.context !== _contexts.atPluginSelection) {
 					return false;
 				}
 
-				if (_plugins.length === 0) {
+				if (plugins.length === 0) {
 					return false;
 				}
 
-				choosePlugin(_state.currentlySelectedPlugin);
+				pluginRunner.startPlugin(_state.currentlySelectedPlugin);
 			};
 
 			p.gameController.gamepadPressed = function (left, up, right, down) {
 
+				var plugins = pluginRunner.getPlugins();
+
 				if (_state.context !== _contexts.atPluginSelection) {
 					return false;
 				}
 
-				if (_plugins.length === 0) {
+				if (plugins.length === 0) {
 					return false;
 				}
 
 				if (right) {
-					if (_state.currentlySelectedPlugin + 1 >= _plugins.length) {
+					if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
 						_state.currentlySelectedPlugin = 0;
 					}
 					else {
@@ -134,7 +99,7 @@
 				}
 				else if (left) {
 					if (_state.currentlySelectedPlugin <= 0) {
-						_state.currentlySelectedPlugin = _plugins.length - 1;
+						_state.currentlySelectedPlugin = plugins.length - 1;
 					}
 					else {
 						_state.currentlySelectedPlugin -= 1;
@@ -144,7 +109,7 @@
 					return false;
 				}
 
-				highlightSelectedPlugin(_state.currentlySelectedPlugin);
+				pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
 
 			};
 
@@ -155,7 +120,6 @@
 	partyMachine.start = function () {
 
 		_participants = getParticipants();
-		_plugins = getPlugins();
 
 		var nextParticipant = getNextParticipant();
 
@@ -163,17 +127,14 @@
 
 		$("#partyMachine-participant").append(participantHtmlTemplate);
 
-		for (var plugin = 0; plugin < _plugins.length; plugin++) {
-			var displayPlugin = _plugins[plugin];
-			var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.ImageUrl + '"></img><p>' + displayPlugin.Name + '</p></div>';
-			$("#partyMachine-plugins").append(pluginHtmlTemplate);
+		if (!isHostAvailable()) {
+			pluginRunner.stub();
+			controllers.stub();
 		}
 
-		if (_plugins.length > 0) {
-			highlightSelectedPlugin(0);
-		}
+		pluginRunner.start();
 
-		controllers.start(isHostAvailable, _participants);
+		controllers.start(_participants);
 
 		partyMachine.assignGameControllers(
 			atPluginSelect,
@@ -212,4 +173,4 @@
 
 	}
 
-} (window.partyMachine = window.partyMachine || {}, window.partyMachineControllers, jQuery));
+} (window.partyMachine = window.partyMachine || {}, window.partyMachineControllers, window.partyMachinePluginRunner, jQuery));
