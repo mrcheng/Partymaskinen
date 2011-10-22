@@ -1,13 +1,15 @@
 html{background-color:#3573de;margin:0;}
 body{width:100%;font: 100% Verdana, Arial, Helvetica, sans-serif;text-align:center;margin: 0;padding: 0;text-align: center;color: #111;}
+/*.clear{clear:both;}*/
 
 #logo{background-image:url(img/PM-logo.png);width:913px;height:316px;margin:0 auto;}
 
-.participant{background-image:url(img/contenderframe.png);width:157px;height:188px;position:absolute;top:100px;margin:0 0 0 45%;}
+.participant{background-image:url(img/contenderframe.png);width:157px;height:188px;margin:-190px auto;}
 .participant strong{font-size:20px;position:relative;top:120px;}
 .participant-thumbnail{}
 
-.plugin-frame{border:0px solid black;position:absolute;top:300px;left:25%;width:700px;height:200px;}
-.plugin{background-image:url(img/pluginframe.png);width:128px;height:128px;float:left;}
+.plugin-frame{width:640px;height:305px;margin:0 auto;margin-top:180px;}
+.plugin{background-image:url(img/pluginframe.png);width:128px;height:128px;float:left;margin:0 15px 30px 15px;}
+.plugin p{color:white;margin-top:130px;}
 /*.select{background-image:url(img/pluginselect.png);width:128px;height:128px;float:left;}*/
 /*.plugin-glare{background-image:url(img/lobbyGfx-pluginglare.png);width:120px;height:32px;}*/
