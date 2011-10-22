@@ -5,7 +5,7 @@ body{width:100%;font: 100% Verdana, Arial, Helvetica, sans-serif;text-align:cent
 
 .participant{background-image:url(img/contenderframe.png);width:157px;height:188px;margin:-190px auto;}
 .participant strong{font-size:20px;position:relative;top:120px;}
-.participant-thumbnail{}
+.participant img{width:127px;height:102px;margin-top:10px;}
 
 .plugin-frame{width:640px;height:305px;margin:0 auto;margin-top:180px;}
 .plugin{background-image:url(img/pluginframe.png);width:128px;height:128px;float:left;margin:0 15px 30px 15px;}
