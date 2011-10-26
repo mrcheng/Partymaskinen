@@ -53,3 +53,9 @@ body{font-family: 'ITCAvantGardeGothicStdBdCn';}
     font-weight: normal;
     font-style: normal;
 }
+
+/*SETTINGS*/
+#settings{display:none;position:absolute;top:0px;height:100%;width:300px;background-color:#000;opacity:0.9;padding:0 20px 10px 20px;z-index:100000;}
+.btn-settings{position:absolute;top:10px;left:10px;display:block;}
+#settings h1, h2{color:#fff;}
+/*#settings form{text-align:left;color:#fff;}*/
