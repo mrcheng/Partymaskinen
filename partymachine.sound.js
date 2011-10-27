@@ -14,12 +14,12 @@
 		
 		if (eventName === "pluginHighlight") {
 			audioElement = document.createElement('audio');
-			audioElement.setAttribute('src', 'sounds/lobbySfx-newcontender.mp3');
+			audioElement.setAttribute('src', 'sounds/lobbySfx-pluginselect.mp3');
 			audioElement.play();
 		}
 		else if (eventName === "newParticipantDueToTimeout") {
 			audioElement = document.createElement('audio');
-			audioElement.setAttribute('src', 'sounds/lobbySfx-pluginselect.mp3');
+			audioElement.setAttribute('src', 'sounds/lobbySfx-newcontender.mp3');
 			audioElement.play();
 		}
 		

@@ -1,12 +1,13 @@
 $(document).ready(function() {
-	//Fade in
+	//Fades in the whole page on dom ready
 	$('#logo, .participant, .music-info, .plugin-frame').animate({
     	opacity: 1,
 		}, 500, function() {
-			//fade in done
+			//Fires when fade in is done
 	});
-	//Settings
-	document.getElementById('open-settings').addEventListener('click', showSettings);
+
+	shortcut.add("esc", showSettings);
+	//Opens the settings panel using 'esc' key
 	function showSettings(){
 		$('#settings').toggle({
 			}, 500, function() {
