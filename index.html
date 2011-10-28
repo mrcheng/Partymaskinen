@@ -3,14 +3,13 @@
 <head>
 	<title>Partymaskinen</title>
 	<link href="partymaskinen.css" media="screen" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="inlineplayer.css" />
 	<script src="jquery-1.5.1.js" type="text/javascript"></script>
 	<script src="partymachine.participants.js" type="text/javascript"></script>
 	<script src="partymachine.controllers.js" type="text/javascript"></script>
 	<script src="partymachine.pluginrunner.js" type="text/javascript"></script>
 	<script src="partymachine.sound.js" type="text/javascript"></script>
-	<script src="soundmanager2-nodebug-jsmin.js" type="text/javascript"></script>
-	<script src="inlineplayer.js" type="text/javascript"></script>
+	<script src="soundmanager2.js" type="text/javascript"></script>
+	<script src="partyplayer.js" type="text/javascript"></script>
 	<script src="partymachine.js" type="text/javascript"></script>
     <script src="goodies.js" type="text/javascript"></script>
     <script src="shortcut.js" type="text/javascript"></script>
@@ -25,6 +24,7 @@
 
 <body>
 	<script src="PartyBackground.js" type="text/javascript"></script>
+    <!--<div id="sm2-container"></div>-->   <!-- Flashblock container -->
     <header id="logo"></header>
     <div id="settings">
     	<h2>Inställningar</h2>
@@ -42,18 +42,12 @@
         <div class="plugin-frame">
 			<div id="partyMachine-plugins"></div>
 		</div>
-		<!--<footer>
+		<footer>
 			<span class="track-info">
-				<span class="track-title">Moi Lolita</span>
-				- Alizée 
+				<span class="track-title"></span>
 				<span class="track-submitted-by">(Mr. Mejje)</span>
 			</span>
-		</footer>-->
-        <ul class="graphic">
-        	<!--<li><a href="http://dl.dropbox.com/u/10854052/Music/01_Lfobia_%28Subsider_Remix%29-pMn_INT.mp3">Lfobia</a></li>-->
-        	<li><a href="http://dl.dropbox.com/u/10854052/Music/02%20morgan%20geist%20-%20the%20shore.mp3">Morgan Geist</a></li>
-        	<li><a href="http://dl.dropbox.com/u/10854052/Music/Colony.mp3">Colony</a></li>
-		</ul>
+		</footer>
 	</div>
 </body>
 </html>

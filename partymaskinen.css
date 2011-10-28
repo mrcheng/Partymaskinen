@@ -27,9 +27,12 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 /*.plugin-selected img{width:228px:height:228px;border:3px solid #c9ff33;border-radius:3px;}*/
 
 /*MUSIC*/
-/*.track-info{font-size:25px;color:#c9ff33;}
+.track-info{font-size:25px;color:#c9ff33;}
 .track-info .title{font-weight:bold;}
-.track-submitted-by{font-size:15px;}*/
+.track-submitted-by{font-size:15px;}
+#soundmanager-debug {
+ /* SM2 debug container (optional, makes debug more useable) */
+ position:absolute;position:fixed;*position:absolute;bottom:10px;right:10px;width:50em;height:18em;overflow:auto;background:#fff;margin:1em;padding:1em;border:1px solid #999;font-family:"lucida console",verdana,tahoma,"sans serif";font-size:x-small;line-height:1.5em;opacity:0.9;filter:alpha(opacity=90);}
 
 /*FONTS*/
 @font-face {
@@ -61,12 +64,3 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 .settings-menu{margin: 0 auto;margin-top:90px;width:900px;}
 ul{list-style-type:none;color:#c9ff33;font-size:50px;}
 li {float:left;margin-right:25px;margin-left:25px;}
-
-#soundmanager-debug {
- /* SM2 debug container (optional, makes debug more useable) */
- position:absolute;position:fixed;*position:absolute;bottom:10px;right:10px;width:50em;height:18em;overflow:auto;background:#fff;margin:1em;padding:1em;border:1px solid #999;font-family:"lucida console",verdana,tahoma,"sans serif";font-size:x-small;line-height:1.5em;opacity:0.9;filter:alpha(opacity=90);
-}
-
-body {
- font:75% normal verdana,arial,tahoma,"sans serif";
-}
