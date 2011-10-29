@@ -11,7 +11,7 @@ soundManager.url = 'http://dl.dropbox.com/u/10854052/';//SWF URL
 // custom page player configuration
 
 var PP_CONFIG = {
-  autoStart: true,      // begin playing first sound when page loads
+  autoStart: false,      // begin playing first sound when page loads
   playNext: true,        // stop after one sound, or play through list until end
   useThrottling: false,  // try to rate-limit potentially-expensive calls (eg. dragging position around)</span>
   usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values) - nor noticable on CPU
@@ -21,17 +21,11 @@ var PP_CONFIG = {
   useMovieStar: true     // Flash 9.0r115+ only: Support for a subset of MPEG4 formats.
 }
 
-soundManager.onready(function(){
-	var pluginSelectSnd = soundManager.createSound({
-		id: 'pluginSound',
-		url: 'http://dl.dropbox.com/u/10854052/lobbySfx-pluginselect.mp3',
-		autoLoad: true,
-  		autoPlay: false,
-		stream: true,
-	});
-	pluginSelectSnd.play();
-});
 // Optional: ontimeout() callback for handling start-up failure
 soundManager.ontimeout(function(){
-	alert('wtf!?');
+	alert('probably a flash security error');
+});
+
+soundManager.onfinish(function(){
+	//remove song and replace with next <li>
 });

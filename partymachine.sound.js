@@ -11,16 +11,30 @@
 
 	snd.playEvent = function (eventName) {
 		var audioElement;
-		
 		if (eventName === "pluginHighlight") {
-			audioElement = document.createElement('audio');
-			audioElement.setAttribute('src', 'sounds/lobbySfx-pluginselect.mp3');
-			audioElement.play();
+			soundManager.onready(function(){
+			var pluginSelectSnd = soundManager.createSound({
+				id: 'pluginSound',
+				url: 'http://dl.dropbox.com/u/10854052/lobbySfx-pluginselect.mp3',//temporary URL
+				autoStart: false,
+				autoLoad: true,
+				autoPlay: false,
+				//stream: true,
+			});
+			pluginSelectSnd.play();
+			});
 		}
 		else if (eventName === "newParticipantDueToTimeout") {
-			audioElement = document.createElement('audio');
-			audioElement.setAttribute('src', 'sounds/lobbySfx-newcontender.mp3');
-			audioElement.play();
+			soundManager.onready(function(){
+			var newContenderSnd = soundManager.createSound({
+				id: 'newContenderSound',
+				url: 'http://dl.dropbox.com/u/10854052/lobbySfx-newcontender.mp3',//temporary URL
+				autoLoad: true,
+				autoPlay: false,
+				//stream: true,
+			});
+			newContenderSnd.play();
+			});
 		}
 		
 	};
