@@ -25,7 +25,7 @@ function PagePlayer() {
     useEQData: false,       // [Flash 9 only]: enable sound EQ (frequency spectrum data) - WARNING: Also CPU-intensive.
     fillGraph: false,       // [Flash 9 only]: draw full lines instead of only top (peak) spectrum points
     useMovieStar: true,     // [Flash 9 only]: Support for MPEG4 audio formats
-    allowRightClick: true,  // let users right-click MP3 links ("save as...", etc.) or discourage (can't prevent.)
+    allowRightClick: false,  // let users right-click MP3 links ("save as...", etc.) or discourage (can't prevent.)
     useThrottling: true,    // try to rate-limit potentially-expensive calls (eg. dragging position around)
     autoStart: false,       // begin playing first sound when page loads
     playNext: true,         // stop after one sound, or play through list until end

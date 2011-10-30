@@ -17,9 +17,8 @@
 				id: 'pluginSound',
 				url: 'http://dl.dropbox.com/u/10854052/lobbySfx-pluginselect.mp3',//temporary URL
 				autoStart: false,
-				autoLoad: true,
-				autoPlay: false,
-				//stream: true,
+				multiShot: true,//High performance mode
+   				//autoLoad: true
 			});
 			pluginSelectSnd.play();
 			});
