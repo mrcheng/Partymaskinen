@@ -6,7 +6,7 @@ soundManager.preferFlash = true; // for visualization effects
 soundManager.useHighPerformance = true; // keep flash on screen, boost performance
 soundManager.wmode = 'transparent'; // transparent SWF, if possible
 soundManager.useFastPolling = true; // increased JS callback frequency
-soundManager.url = 'http://dl.dropbox.com/u/10854052/';//SWF URL
+soundManager.url = 'http://dl.dropbox.com/u/10854052/xdomain/';//SWF URL
 
 // custom page player configuration
 
