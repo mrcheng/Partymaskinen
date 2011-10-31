@@ -1,12 +1,13 @@
 // Partyplayer
 
 soundManager.flashVersion = 9;
-soundManager.debugMode = true;
+soundManager.debugMode = false;
 soundManager.preferFlash = true; // for visualization effects
 soundManager.useHighPerformance = true; // keep flash on screen, boost performance
 soundManager.wmode = 'transparent'; // transparent SWF, if possible
 soundManager.useFastPolling = true; // increased JS callback frequency
-soundManager.url = 'http://dl.dropbox.com/u/10854052/xdomain/';//SWF URL
+soundManager.url = 'swf/soundmanager2_flash_xdomain/';//SWF URL
+//soundManager.url = 'http://dl.dropbox.com/u/10854052/xdomain/';//SWF URL
 
 // custom page player configuration
 
@@ -20,6 +21,14 @@ var PP_CONFIG = {
   useFavIcon: false,     // try to apply peakData to address bar (Firefox + Opera) - performance note: appears to make Firefox 3 do some temporary, heavy disk access/swapping/garbage collection at first(?) - may be too heavy on CPU
   useMovieStar: true     // Flash 9.0r115+ only: Support for a subset of MPEG4 formats.
 }
+
+soundManager.onready(function() {
+	//soundManager.createSound({
+// 		id:'music',
+// 		url:'http://dl.dropbox.com/u/10854052/Music/01_Lfobia_%28Subsider_Remix%29-pMn_INT.mp3'
+//	});
+//	soundManager.play('music');
+});
 
 // Optional: ontimeout() callback for handling start-up failure
 soundManager.ontimeout(function(){
