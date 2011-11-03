@@ -15,7 +15,7 @@
 			soundManager.onready(function(){
 			var pluginSelectSnd = soundManager.createSound({
 				id: 'pluginSound',
-				url: 'http://dl.dropbox.com/u/10854052/lobbySfx-pluginselect.mp3',//temporary URL
+				url: 'sounds/lobbySfx-pluginselect.mp3',//temporary URL
 				autoStart: false,
 				multiShot: true,//High performance mode
    				//autoLoad: true
@@ -27,7 +27,7 @@
 			soundManager.onready(function(){
 			var newContenderSnd = soundManager.createSound({
 				id: 'newContenderSound',
-				url: 'http://dl.dropbox.com/u/10854052/lobbySfx-newcontender.mp3',//temporary URL
+				url: 'sounds/lobbySfx-newcontender.mp3',//temporary URL
 				autoLoad: true,
 				autoPlay: false,
 				//stream: true,
