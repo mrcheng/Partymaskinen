@@ -58,3 +58,6 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 /*SETTINGS*/
 #settings{display:none;position:fixed;top:310px;height:350px;width:100%;background-color:#002C46;opacity:0.9;z-index:100000;}
 #settings h2{color:#fff;}
+
+/*PROGRESSBAR*/
+#progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
