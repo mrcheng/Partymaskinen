@@ -58,6 +58,11 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 /*SETTINGS*/
 #settings{display:none;position:fixed;top:310px;height:350px;width:100%;background-color:#002C46;opacity:0.9;z-index:100000;}
 #settings h2{color:#fff;}
+#settings ul{list-style:none;margin:0 auto;width:800px;margin-top:40px;}
+#settings li{float:left;margin:0 10px 0 50px;color:white;font-size:20px;}
+#settings li img{width:108px;height:108px;margin-top:10px;}
+.setting-selected{background-image:url(img/settingselect.png);width:128px;height:128px;position:relative;margin-top:-20px;}
+/*.setting-image{background-image:url(img/settings-icon1.png);width:108px;height:108px;}*/
 
 /*PROGRESSBAR*/
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
