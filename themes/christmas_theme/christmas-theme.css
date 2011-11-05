@@ -1,11 +1,10 @@
 /* The partymachine default theme by TSC, Mejje and 8< */
 /*BACKGROUND*/
-html{background-color:#3573de;width:100%;height:100%;/*background-image:url();*/}/*add image if you want*/
+html{background-color:green;width:100%;height:100%;/*background-image:url();*/}/*add image if you want*/
 /*LOGO*/
-#logo{background-image:url(img/PM-logo.png);width:913px;height:316px;margin:0 auto;}
+#logo{/*background-image:url(img/PM-logo.png);width:913px;height:316px;margin:0 auto;*/}
 /*PLUGIN FONT-COLOR*/
 .plugin p{color:#fff;}
-.plugin-selected img{border:2px solid #c9ff33;}/*plugin selected color*/
 /*SETTINGS*/
 #settings{background-color:#002C46;}
 #settings h2{color:#fff;}/*Settings headline*/
