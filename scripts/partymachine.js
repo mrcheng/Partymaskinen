@@ -70,6 +70,22 @@
 						_state.currentlySelectedPlugin -= 1;
 					}
 				}
+				else if (up) {
+					if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
+						_state.currentlySelectedPlugin = plugins.length - 1;
+					}
+					else {
+						_state.currentlySelectedPlugin -= 4;
+					}
+				}
+				else if (down) {
+					if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
+						_state.currentlySelectedPlugin = plugins.length - 1;
+					}
+					else {
+						_state.currentlySelectedPlugin += 4;
+					}
+				}
 				else {
 					pluginRunner.startPlugin(_state.currentlySelectedPlugin);
 					return true;
