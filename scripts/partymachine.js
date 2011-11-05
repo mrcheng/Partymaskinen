@@ -111,7 +111,7 @@
 		_participants = participants.getParticipants();
 
 		pluginRunner.start(soundplayer);
-
+		
 		controllers.start(_participants);
 
 		partyMachine.assignGameControllers(
@@ -125,6 +125,8 @@
 			_participants[6]
 		);
 
+		soundplayer.start();
+		
 		//		// Setup a callback to handle the dispatched MessageEvent event. In cases where
 		//		// window.postMessage is supported, the passed event will have .data, .origin and
 		//		// .source properties. Otherwise, this will only have the .data property.
@@ -136,7 +138,7 @@
 				pluginRunner.adjustPlugin(data);
 			}
 			else if (data.event === "getParticipants") {
-				
+
 				var msg = { event: "participants", "participants": _participants };
 				var currentPlugin = pluginRunner.getPlugin();
 
