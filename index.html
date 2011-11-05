@@ -34,7 +34,7 @@
 
 <body>
 	<!--<script src="themes/default_theme/scripts/PartyBackground.js" type="text/javascript"></script>-->
-    <header id="logo"></header>
+    <div id="logo"></div>
     <div id="settings">
     	<h2>Inställningar</h2>
         <ul>
@@ -45,8 +45,10 @@
 		</ul>
 	</div>
 	<!--<canvas id="progressbar" width="500" height="70">Your browser does not have support for canvas.</canvas>-->
-	<div id="partyMachine">
-		<div class="participant" id="partyMachine-participant"></div>
+	<!--<div id="partyMachine">-->
+        <div class="participant-container">
+            <div class="participant" id="partyMachine-participant"></div>
+        </div>
         <div class="plugin-frame">
 			<div id="partyMachine-plugins"></div>
 		</div>
