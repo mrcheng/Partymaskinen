@@ -10,15 +10,15 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 #logo, .participant, .plugin-frame, .music-info{opacity:0.0;}
 
 /*PARTICIPANTS*/
-.participant-container{width:100%;position:relative;top:30%;}
+.participant-container{width:100%;top:15%;position:fixed;}
 .participant{background-image:url(../img/contenderframe.png);width:157px;height:188px;position:relative;margin:0 auto;}
 
 .participant strong{font-size:20px;position:relative;top:4px;}
 .participant img{width:127px;height:102px;margin-top:10px;}
 
 /*PLUGINS*/
-.plugin-frame{width:100%;position:relative;top:30%;}
-.plugin{background-image:url(../img/pluginframe.png);width:128px;height:128px;float:left;margin:1px 15px 40px 15px;}
+.plugin-container{width:50%;position:fixed;top:40%;padding-left:25%;padding-right:25%;}
+.plugin{background-image:url(../img/pluginframe.png);width:128px;height:128px;float:left;margin:0 auto;margin:0 2% 6% 2%;}
 .plugin img{margin-top:20px;width:108px;height:108px;position:relative;margin-top:10px;}
 .plugin p{margin-top:15px;font-size:20px;}
 .plugin-selected p{color:#c9ff33;}
@@ -27,11 +27,12 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 .plugin-selected img{border-radius:3px;padding:10px;margin-top:-1px;margin-left:-2px;margin-bottom:-13px;}
 
 /*PARTYPLAYER*/
-.party-player{}
+.party-player-container{width:100%;bottom:0%;position:fixed;}
+.party-player{position:relative;margin:0 auto;width:50%;}
 #sm2movie{height:1px;}
-#sm2-container{height:1px;margin-top:-20px;}
-.created-by{font-size:18px;margin-top:-3px;}
-.next-song{font-size:18px;margin-top:-3px;margin-left:5px;}
+#sm2-container{height:1px;}
+.created-by{font-size:14px;margin-top:-3px;}
+.next-song{font-size:14px;margin-top:-3px;margin-left:5px;}
 
 /*FONTS*/
 @font-face {
