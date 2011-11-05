@@ -28,9 +28,8 @@ header{width:100%;height:315px;}
 .party-player{}
 #sm2movie{height:1px;}
 #sm2-container{height:1px;margin-top:-20px;}
-.party-player strong{color:#c9ff33;}
-.created-by{font-size:18px;color:#c9ff33;margin-top:-3px;}
-.next-song{font-size:18px;color:white;margin-top:-3px;margin-left:5px;}
+.created-by{font-size:18px;margin-top:-3px;}
+.next-song{font-size:18px;margin-top:-3px;margin-left:5px;}
 
 /*FONTS*/
 @font-face {

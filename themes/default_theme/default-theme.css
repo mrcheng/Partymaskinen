@@ -1,5 +1,4 @@
 /* The partymachine default theme by TSC, Mejje and 8< */
-
 /*BACKGROUND*/
 html{background-color:#3573de;width:100%;height:100%;/*background-image:url();*/}/*add image if you want*/
 /*LOGO*/
@@ -11,4 +10,18 @@ html{background-color:#3573de;width:100%;height:100%;/*background-image:url();*/
 #settings h2{color:#fff;}/*Settings headline*/
 #settings li{color:#fff;}/*Setting name*/
 /*PARTYPLAYER*/
-.party-player{width:600px;margin:0 auto;}/*width:800px;margin:0 auto; (default style)*/
+.party-player{width:650px;margin:0 auto;}/*width:800px;margin:0 auto; (default style)*/
+	/*playing*/
+ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#69c;}/*Partyplayer is playing*/
+ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#58b;}/*playing time & vu boxes*/
+	/*paused*/
+ul.playlist li.sm2_paused{background-color:red;opacity:0.7;}/*Partyplayer is paused*/
+ul.playlist li.sm2_paused .timing,ul.playlist.use-peak li.sm2_paused .peak{background-color:red; border-color:#ccc;}/*paused time & vu boxes*/
+	/*meter*/
+ul.playlist li .controls .statusbar .loading{background-color:#eee}/*Loading meter*/
+ul.playlist li .peak .l,ul.playlist li .peak .r{background:#fff;border:1px solid #fff;}/*VU meter color*/
+	/*fonts*/
+.created-by{color:#c9ff33;}/*created by name color*/
+.next-song{color:white;}/*next song name color*/
+	/*counter*/
+ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing a{color:#c9ff33;}/*counter color*/
