@@ -9,16 +9,16 @@ header{width:100%;height:315px;}
 #logo, .participant, .plugin-frame, .music-info{opacity:0.0;}
 
 /*PARTICIPANTS*/
-.participant{background-image:url(img/contenderframe.png);width:157px;height:188px;margin:-180px auto;}
+.participant{background-image:url(../img/contenderframe.png);width:157px;height:188px;margin:-180px auto;}
 .participant strong{font-size:20px;position:relative;top:4px;}
 .participant img{width:127px;height:102px;margin-top:10px;}
 
 /*PLUGINS*/
 .plugin-frame{width:640px;height:305px;margin:0 auto;margin-top:180px;margin-bottom:50px;}
-.plugin{background-image:url(img/pluginframe.png);width:128px;height:128px;float:left;margin:0 15px 40px 15px;}
+.plugin{background-image:url(../img/pluginframe.png);width:128px;height:128px;float:left;margin:0 15px 40px 15px;}
 .plugin img{margin-top:20px;width:108px;height:108px;position:relative;margin-top:10px;}
 .plugin p{color:white;margin-top:15px;font-size:20px;}
-.plugin-selected{background-image:url(img/pluginselect.png);width:128px;height:128px;position:relative;}
+.plugin-selected{background-image:url(../img/pluginselect.png);width:128px;height:128px;position:relative;}
 .plugin-selected p{color:#c9ff33;}
 /*.plugin-glare{background-image:url(img/lobbyGfx-pluginglare.png);width:120px;height:32px;float:left;margin:-118px 0 0 3px;}*/
 /*TODO: switch to css generated border*/
@@ -35,22 +35,22 @@ header{width:100%;height:315px;}
 /*FONTS*/
 @font-face {
     font-family: 'ITCAvantGardeGothicStdBkCn';
-    src: url('fonts/itcavantgardestd-bkcn-webfont.eot');
-    src: url('fonts/itcavantgardestd-bkcn-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/itcavantgardestd-bkcn-webfont.woff') format('woff'),
-         url('fonts/itcavantgardestd-bkcn-webfont.ttf') format('truetype'),
-         url('fonts/itcavantgardestd-bkcn-webfont.svg#ITCAvantGardeGothicStdBkCn') format('svg');
+    src: url('../fonts/itcavantgardestd-bkcn-webfont.eot');
+    src: url('../fonts/itcavantgardestd-bkcn-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/itcavantgardestd-bkcn-webfont.woff') format('woff'),
+         url('../fonts/itcavantgardestd-bkcn-webfont.ttf') format('truetype'),
+         url('../fonts/itcavantgardestd-bkcn-webfont.svg#ITCAvantGardeGothicStdBkCn') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'ITCAvantGardeGothicStdBdCn';
-    src: url('fonts/itcavantgardestd-boldcn-webfont.eot');
-    src: url('fonts/itcavantgardestd-boldcn-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/itcavantgardestd-boldcn-webfont.woff') format('woff'),
-         url('fonts/itcavantgardestd-boldcn-webfont.ttf') format('truetype'),
-         url('fonts/itcavantgardestd-boldcn-webfont.svg#ITCAvantGardeGothicStdBdCn') format('svg');
+    src: url('../fonts/itcavantgardestd-boldcn-webfont.eot');
+    src: url('../fonts/itcavantgardestd-boldcn-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/itcavantgardestd-boldcn-webfont.woff') format('woff'),
+         url('../fonts/itcavantgardestd-boldcn-webfont.ttf') format('truetype'),
+         url('../fonts/itcavantgardestd-boldcn-webfont.svg#ITCAvantGardeGothicStdBdCn') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -61,7 +61,7 @@ header{width:100%;height:315px;}
 #settings ul{list-style:none;margin:0 auto;width:800px;margin-top:40px;}
 #settings li{float:left;margin:0 10px 0 50px;color:white;font-size:20px;}
 #settings li img{width:108px;height:108px;margin-top:10px;}
-.setting-selected{background-image:url(img/settingselect.png);width:128px;height:128px;position:relative;margin-top:-20px;}
+.setting-selected{background-image:url(../img/settingselect.png);width:128px;height:128px;position:relative;margin-top:-20px;}
 /*.setting-image{background-image:url(img/settings-icon1.png);width:108px;height:108px;}*/
 
 /*PROGRESSBAR*/
