@@ -4,5 +4,11 @@
 html{background-color:#3573de;width:100%;height:100%;/*background-image:url();*/}/*add image if you want*/
 /*LOGO*/
 #logo{background-image:url(img/PM-logo.png);width:913px;height:316px;margin:0 auto;}
+/*PLUGIN FONT-COLOR*/
+.plugin p{color:#fff;}
 /*SETTINGS*/
 #settings{background-color:#002C46;}
+#settings h2{color:#fff;}/*Settings headline*/
+#settings li{color:#fff;}/*Setting name*/
+/*PARTYPLAYER*/
+.party-player{width:600px;margin:0 auto;}/*width:800px;margin:0 auto; (default style)*/
