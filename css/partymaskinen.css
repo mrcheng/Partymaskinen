@@ -17,7 +17,7 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 .participant img{width:127px;height:102px;margin-top:10px;}
 
 /*PLUGINS*/
-.plugin-container{width:50%;position:fixed;top:40%;padding-left:25%;padding-right:25%;}
+.plugin-container{width:50%;position:fixed;top:40%;padding-left:25%;padding-right:25%;max-width:47%;}
 .plugin{background-image:url(../img/pluginframe.png);width:128px;height:128px;float:left;margin:0 auto;margin:0 2% 6% 2%;}
 .plugin img{margin-top:20px;width:108px;height:108px;position:relative;margin-top:10px;}
 .plugin p{margin-top:15px;font-size:20px;}
