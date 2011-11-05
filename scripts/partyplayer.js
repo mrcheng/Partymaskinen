@@ -35,6 +35,6 @@ soundManager.ontimeout(function(){
 	alert('probably a flash security error');
 });
 
-soundManager.onfinish(function(){
-	//remove song and replace with next <li>
-});
+//soundManager.onfinish(function(){
+//	alert('HEY! ON FINISH!');
+//});

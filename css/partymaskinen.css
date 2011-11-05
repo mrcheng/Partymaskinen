@@ -1,27 +1,30 @@
 /* THE PARTYMACHINE DEFAULT THEME*/
-html{margin:0;}
-body{width:100%;text-align:center;margin:0;padding:0;text-align:center;color:#111;}
+html{margin:0;height:100%;}
+body{height:100%;text-align:center;margin:0;padding:0;text-align:center;color:#111;}
+
 body{font-family: 'ITCAvantGardeGothicStdBkCn';}
 strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
-header{width:100%;height:315px;}
+.header{width:100%;}
 
 /*FADE IN*/
 #logo, .participant, .plugin-frame, .music-info{opacity:0.0;}
 
 /*PARTICIPANTS*/
-.participant{background-image:url(../img/contenderframe.png);width:157px;height:188px;margin:-180px auto;}
+.participant-container{width:100%;position:relative;top:25%;}
+.participant{background-image:url(../img/contenderframe.png);width:157px;height:188px;position:relative;margin:0 auto;}
+
 .participant strong{font-size:20px;position:relative;top:4px;}
 .participant img{width:127px;height:102px;margin-top:10px;}
 
 /*PLUGINS*/
 .plugin-frame{width:640px;height:305px;margin:0 auto;margin-top:180px;margin-bottom:50px;}
-.plugin{background-image:url(../img/pluginframe.png);width:128px;height:128px;float:left;margin:0 15px 40px 15px;}
+.plugin{background-image:url(../img/pluginframe.png);width:128px;height:128px;float:left;margin:1px 15px 40px 15px;}
 .plugin img{margin-top:20px;width:108px;height:108px;position:relative;margin-top:10px;}
 .plugin p{margin-top:15px;font-size:20px;}
 .plugin-selected p{color:#c9ff33;}
 /*TODO: GLOSSY OVERLAY:*/
 /*.plugin-glare{background-image:url(img/lobbyGfx-pluginglare.png);width:120px;height:32px;float:left;margin:-118px 0 0 3px;}*/
-.plugin-selected img{border-radius:3px;padding:10px;margin-top:-2px;margin-left:-2px;margin-bottom:-12px;}
+.plugin-selected img{border-radius:3px;padding:10px;margin-top:-1px;margin-left:-2px;margin-bottom:-13px;}
 
 /*PARTYPLAYER*/
 .party-player{}
@@ -59,8 +62,7 @@ header{width:100%;height:315px;}
 #settings ul{list-style:none;margin:0 auto;width:800px;margin-top:40px;}
 #settings li{float:left;margin:0 10px 0 50px;font-size:20px;}
 #settings li img{width:108px;height:108px;margin-top:10px;}
-/*.setting-selected{background-image:url(../img/settingselect.png);width:128px;height:128px;position:relative;margin-top:-20px;}*/
-.setting-selected{width:128px;height:128px;position:relative;border-radius:3px;margin-top:-20px;}
+.setting-selected{border:2px solid #c9ff33;width:128px;height:128px;position:relative;border-radius:3px;margin-top:-20px;}
 
 /*PROGRESSBAR*/
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
