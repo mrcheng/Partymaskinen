@@ -43,7 +43,7 @@
 			};
 
 			p.gameController.gamepadPressed = function (left, up, right, down) {
-				
+
 				var plugins = pluginRunner.getPlugins();
 
 				if (_state.context !== _contexts.atPluginSelection) {
@@ -71,7 +71,8 @@
 					}
 				}
 				else {
-					return false;
+					pluginRunner.startPlugin(_state.currentlySelectedPlugin);
+					return true;
 				}
 
 				pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
@@ -96,7 +97,7 @@
 		pluginRunner.start(soundplayer);
 
 		controllers.start(_participants);
-		
+
 		partyMachine.assignGameControllers(
 			atPluginSelect,
 			_participants[0],
@@ -108,6 +109,29 @@
 			_participants[6]
 		);
 
+		//		// Setup a callback to handle the dispatched MessageEvent event. In cases where
+		//		// window.postMessage is supported, the passed event will have .data, .origin and
+		//		// .source properties. Otherwise, this will only have the .data property.
+		$.receiveMessage(function (e) {
+
+			var data = JSON.parse(e.data);
+
+			if (data.event === "iframe_resize") {
+				pluginRunner.adjustPlugin(data);
+			}
+			else if (data.event === "getParticipants") {
+				
+				var msg = { event: "participants", "participants": _participants };
+				var currentPlugin = pluginRunner.getPlugin();
+
+				// $.postMessage(JSON.stringify(msg), currentPlugin.src, currentPlugin.contentWindow);
+
+				$.postMessage(JSON.stringify(msg), '*', currentPlugin.contentWindow);
+			}
+			else {
+				alert("daaa" + data.event);
+			}
+		});
 	},
 
 	partyMachine.assignGameControllers = function (

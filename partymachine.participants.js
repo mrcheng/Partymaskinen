@@ -45,6 +45,7 @@
 
 	participants.start = function () {
 
+
 		_participants = this.getParticipants();
 
 		var nextParticipant = this.getNextParticipant();
@@ -52,6 +53,7 @@
 		var participantHtmlTemplate = '<img src="' + nextParticipant.ImageUrl + '"></img><strong>' + nextParticipant.Name + '</strong>';
 
 		$("#partyMachine-participant").append(participantHtmlTemplate);
+		
 
 	};
 
