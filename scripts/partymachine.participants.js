@@ -4,59 +4,66 @@
 
 	var _previousParticipant = -1;
 
-
-	var participantsUrl = 'http://partymaskinen.se/party.json';
+	var _participantsUrl;
 
 	participants.stub = function () {
+
+		_participants.length = 0;
+
+		_participants.push({ name: 'Pub', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Randy', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Magnecyl', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Geggin', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Mejje', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Joel', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Fold', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Blaizer', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Deamo', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Wipeout', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Vico', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Shahin', imageUrl: 'img/participant_example.png' });
+		_participants.push({ name: 'Jesse', imageUrl: 'img/participant_example.png' });
+
 		participants.getParticipants = function () {
-
-			var freshParticipants = [];
-
-			freshParticipants.push({ Name: 'Pub', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Randy', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Magnecyl', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Geggin', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Mejje', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Joel', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Fold', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Blaizer', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Deamo', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Wipeout', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Vico', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Shahin', ImageUrl: 'img/participant_example.png' });
-			freshParticipants.push({ Name: 'Jesse', ImageUrl: 'img/participant_example.png' });
-
-			return freshParticipants;
+			return _participants;
 		};
+
 	};
 
 
 	participants.getNextParticipant = function () {
+		var nextParticipant;
+
 		_previousParticipant++;
 
-		var nextParticipant = _participants[_previousParticipant];
+		if (_previousParticipant >= _participants.length - 1) {
+			nextParticipant = _participants[0];
+		}
+		else {
+			nextParticipant = _participants[_previousParticipant];
+		}
 
 		return nextParticipant;
 	};
 
 
 	participants.getParticipants = function () {
-		
+
 		$.ajax({
-			url: participantsUrl,
+			url: _participantsUrl + "?callback=?",
 			jsonp: true,
 			dataType: 'jsonp',
-			jsonpCallback: "jsonpCallback",
 			success: function (data) {
 
 				if (data.participants) {
 
 					if (data.participants.length > 0) {
 
+						_participants.length = 0;
+
 						$.each(data.participants, function (key, m) {
 							_participants.push(m);
 						});
-
 
 						var nextParticipant = partyMachineParticipants.getNextParticipant();
 
@@ -74,8 +81,11 @@
 		return _participants;
 	};
 
-	participants.start = function () {
+	participants.start = function (feedUrl, initialParticipants) {
 
+		_participantsUrl = feedUrl;
+
+		_participants = initialParticipants || [];
 
 	};
 
