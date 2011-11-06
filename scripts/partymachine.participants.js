@@ -4,6 +4,9 @@
 
 	var _previousParticipant = -1;
 
+
+	var participantsUrl = 'http://partymaskinen.se/party.json';
+
 	participants.stub = function () {
 		participants.getParticipants = function () {
 
@@ -38,22 +41,41 @@
 
 
 	participants.getParticipants = function () {
-		// TODO: Implement
-		var freshParticipants = [];
-		return freshParticipants;
+		
+		$.ajax({
+			url: participantsUrl,
+			jsonp: true,
+			dataType: 'jsonp',
+			jsonpCallback: "jsonpCallback",
+			success: function (data) {
+
+				if (data.participants) {
+
+					if (data.participants.length > 0) {
+
+						$.each(data.participants, function (key, m) {
+							_participants.push(m);
+						});
+
+
+						var nextParticipant = partyMachineParticipants.getNextParticipant();
+
+						var participantHtmlTemplate = '<img src="' + nextParticipant.imageUrl + '"></img><strong>' + nextParticipant.name + '</strong>'
+							+ '<h2>' + nextParticipant.description + '</h2>';
+
+						$("#partyMachine-participant").append(participantHtmlTemplate);
+
+					}
+
+				}
+			}
+		});
+
+		return _participants;
 	};
 
 	participants.start = function () {
 
-
-		_participants = this.getParticipants();
-
-		var nextParticipant = this.getNextParticipant();
-
-		var participantHtmlTemplate = '<img src="' + nextParticipant.ImageUrl + '"></img><strong>' + nextParticipant.Name + '</strong>';
-
-		$("#partyMachine-participant").append(participantHtmlTemplate);
-		
 
 	};
 

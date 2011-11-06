@@ -104,7 +104,7 @@
 		if (!isHostAvailable()) {
 			pluginRunner.stub();
 			controllers.stub();
-			participants.stub();
+			//participants.stub();
 		}
 
 		participants.start();
