@@ -307,22 +307,22 @@
 		window.addEventListener('keyup', function (e) {
 			virtualGameController(e, false);
 		}, true);
-		
-	},
-	
-	controllers.start = function (participants) {
-	
-		for (var i = 0; i < participants.length; i++) {
 
-			participants[i].gameController =
-				{
-					joystick: function (x, y) { },
-					gamepadPressed: function (left, up, right, down) { },
-					gamepadReleased: function (left, up, right, down) { },
-					buttonsPressed: function (buttonA, buttonB, buttonC, buttonD) { },
-					buttonsReleased: function (buttonA, buttonB, buttonC, buttonD) { }
-				};
-		}
+	},
+
+	controllers.start = function (participants) {
+
+		this.assignGameControllers(
+			undefined,
+			participants[0],
+			participants[1],
+			participants[2],
+			participants[3],
+			participants[4],
+			participants[5],
+			participants[6],
+			participants[7]
+		);
 
 	},
 
@@ -367,8 +367,30 @@
 		participant7) {
 		var plist = arguments;
 
-		for (var i = 1; i < arguments.length; i++)
+		for (var i = 1; i < arguments.length; i++) {
+
 			_gameControllerMap[i - 1] = plist[i];
+
+			if (typeof arguments[i] === "undefined") {
+				continue;
+			}
+
+			if (typeof arguments[i].gameController === "undefined") {
+				arguments[i].gameController =
+					{
+						joystick: function(x, y) { },
+						gamepadPressed: function(left, up, right, down) { },
+						gamepadReleased: function(left, up, right, down) { },
+						buttonsPressed: function(buttonA, buttonB, buttonC, buttonD) { },
+						buttonsReleased: function(buttonA, buttonB, buttonC, buttonD) { }
+					};
+			}
+
+		}
+
+		if (typeof gameControllersAssigned === "undefined") {
+			return;
+		}
 
 		gameControllersAssigned();
 

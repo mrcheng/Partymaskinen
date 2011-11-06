@@ -6,7 +6,7 @@
 
 	var currentMediaIndex = 0;
 
-	var playlistUrl = 'http://partymaskinen.se/party.json';
+	var playlistUrl = 'http://partymaskinen.se/party.json.aspx';
 
 	function getCurrentSongHtml(currentMedia, nextMedia) {
 		var nextMediaHtml = '';
@@ -90,10 +90,9 @@
 			pagePlayer.init(typeof PP_CONFIG !== 'undefined' ? PP_CONFIG : null);
 
 			$.ajax({
-				url: playlistUrl,
+				url: playlistUrl + "?callback=?",
 				jsonp: true,
 				dataType: 'jsonp',
-				jsonpCallback: "jsonpCallback",
 				success: function (data) {
 
 					if (data.media) {

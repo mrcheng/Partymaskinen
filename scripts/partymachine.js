@@ -1,6 +1,8 @@
 ﻿
 (function (partyMachine, controllers, pluginRunner, participants, soundplayer, $, undefined) {
 
+	var partyFeedUrl = 'http://partymaskinen.se/party.json.aspx';
+
 	var _contexts = {
 		atPluginSelection: 0,
 		runningPlugin: 1
@@ -11,17 +13,25 @@
 		currentlySelectedPlugin: 0
 	};
 
-	var _participants = [];
-
 	function isHostAvailable() {
 		return false;
 	}
 
-	function atPluginSelect() {
+	function atPluginSelect(freshParticipants) {
 
-		for (var participant = 0; participant < _participants.length; participant++) {
+		var currentParticipant = participants.getNextParticipant();
 
-			var p = _participants[participant];
+		var participantHtmlTemplate = '<img src="' + currentParticipant.imageUrl + '"></img><strong>' + currentParticipant.name + '</strong>'
+							+ '<h2>' + currentParticipant.description + '</h2>';
+
+		$("#partyMachine-participant").html(participantHtmlTemplate);
+
+		//		partyMachine.assignGameControllers(
+		//						function () {
+
+		for (var participant = 0; participant < freshParticipants.length; participant++) {
+
+			var p = freshParticipants[participant];
 
 			if (typeof p === "undefined" || p == null) {
 				continue;
@@ -72,7 +82,7 @@
 				}
 				else if (up) {
 					if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
-						_state.currentlySelectedPlugin = plugins.length - 1;
+						_state.currentlySelectedPlugin = (plugins.length - 1) % 4;
 					}
 					else {
 						_state.currentlySelectedPlugin -= 4;
@@ -80,7 +90,7 @@
 				}
 				else if (down) {
 					if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
-						_state.currentlySelectedPlugin = plugins.length - 1;
+						_state.currentlySelectedPlugin = (plugins.length - 1) % 4;
 					}
 					else {
 						_state.currentlySelectedPlugin += 4;
@@ -93,43 +103,82 @@
 
 				pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
 
-			};
+			}
 
 		}
+
+		//						},
+		//						freshParticipants[0],
+		//						freshParticipants[1],
+		//						freshParticipants[2],
+		//						freshParticipants[3],
+		//						freshParticipants[4],
+		//						freshParticipants[5],
+		//						freshParticipants[6]
+		//					);
+
+
 
 	}
 
 	partyMachine.start = function () {
 
-		if (!isHostAvailable()) {
+		if (/*!isHostAvailable() ||*/!partyFeedUrl) {
 			pluginRunner.stub();
 			controllers.stub();
-			//participants.stub();
+			participants.stub();
+		}
+		else {
+			// We dont have a fully working controller solution
+			controllers.stub();
+
+			// We dont have a fully working runner yet..
+			pluginRunner.stub();
+
+			$.ajax({
+				url: partyFeedUrl + "?callback=?",
+				jsonp: true,
+				dataType: 'jsonp',
+				success: function (data) {
+
+					var freshParticipants = [];
+
+					if (data.participants && data.participants.length > 0) {
+						$.each(data.participants, function (key, m) {
+							freshParticipants.push(m);
+						});
+					}
+
+					participants.start(partyFeedUrl, freshParticipants);
+
+					pluginRunner.start(soundplayer);
+
+					controllers.start(freshParticipants);
+
+					var atPluginSelectWithParticipants = function () {
+						atPluginSelect(freshParticipants);
+					};
+
+					partyMachine.assignGameControllers(
+						atPluginSelectWithParticipants,
+						freshParticipants[0],
+						freshParticipants[1],
+						freshParticipants[2],
+						freshParticipants[3],
+						freshParticipants[4],
+						freshParticipants[5],
+						freshParticipants[6]
+					);
+
+					soundplayer.start();
+
+				}
+			});
 		}
 
-		participants.start();
-		_participants = participants.getParticipants();
-
-		pluginRunner.start(soundplayer);
-		
-		controllers.start(_participants);
-
-		partyMachine.assignGameControllers(
-			atPluginSelect,
-			_participants[0],
-			_participants[1],
-			_participants[2],
-			_participants[3],
-			_participants[4],
-			_participants[5],
-			_participants[6]
-		);
-
-		soundplayer.start();
-		
-		//		// Setup a callback to handle the dispatched MessageEvent event. In cases where
-		//		// window.postMessage is supported, the passed event will have .data, .origin and
-		//		// .source properties. Otherwise, this will only have the .data property.
+		// Setup a callback to handle the dispatched MessageEvent event. In cases where
+		// window.postMessage is supported, the passed event will have .data, .origin and
+		// .source properties. Otherwise, this will only have the .data property.
 		$.receiveMessage(function (e) {
 
 			var data = JSON.parse(e.data);

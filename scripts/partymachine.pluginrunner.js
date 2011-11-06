@@ -13,14 +13,14 @@
 
 			var freshPlugins = [];
 
-			freshPlugins.push({ Name: "plugin1", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin2", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin3", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin4", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin5", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin6", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin7", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ Name: "plugin8", Url: "plugin-test.html", ImageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin1", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin2", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin3", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin4", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin5", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin6", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin7", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "plugin8", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
 
 			return freshPlugins;
 		};
@@ -88,22 +88,18 @@
 
 			for (var plugin = 0; plugin < _plugins.length; plugin++) {
 				var displayPlugin = _plugins[plugin];
-				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.ImageUrl + '"><span class="plugin-glare"></span></img><p>' + displayPlugin.Name + '</p></div>';
+				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.imageUrl + '"><span class="plugin-glare"></span></img><p>' + displayPlugin.name + '</p></div>';
 				$("#partyMachine-plugins").append(pluginHtmlTemplate);
 			}
 
-			this.highlightPlugin(0);
+			this.highlightPlugin(0, true);
 		}
-
-
-
-
 
 	};
 
-	pluginRunner.highlightPlugin = function (pluginIndex) {
+	pluginRunner.highlightPlugin = function (pluginIndex, dontPlaySound) {
 
-		if (typeof _soundplayer !== "undefined") {
+		if (typeof _soundplayer !== "undefined" && !dontPlaySound) {
 			_soundplayer.playEvent("pluginHighlight");
 		}
 
