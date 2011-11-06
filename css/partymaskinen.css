@@ -1,6 +1,6 @@
 /* THE PARTYMACHINE DEFAULT THEME*/
 html{margin:0;height:100%;}
-body{height:100%;text-align:center;margin:0;padding:0;text-align:center;color:#111;}
+body{height:100%;text-align:center;margin:0;padding:0;color:#111;}
 
 body{font-family: 'ITCAvantGardeGothicStdBkCn';}
 strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
@@ -12,9 +12,9 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 /*PARTICIPANTS*/
 .participant-container{width:100%;top:15%;position:fixed;}
 .participant{background-image:url(../img/contenderframe.png);width:157px;height:188px;position:relative;margin:0 auto;}
-
-.participant strong{font-size:20px;position:relative;top:4px;}
+.participant strong{font-size:16px;position:relative;top:8px;font-family: 'ITCAvantGardeGothicStdBkCn';}
 .participant img{width:127px;height:102px;margin-top:10px;}
+.participant p{margin-top:-170px;font-size:20px;color:#fff;font-family: 'ITCAvantGardeGothicStdBdCn';}
 
 /*PLUGINS*/
 .plugin-container{width:100%;position:fixed;top:40%;}
@@ -28,12 +28,13 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 .plugin-selected img{border-radius:3px;padding:10px;margin-top:-1px;margin-left:-2px;margin-bottom:-13px;}
 
 /*PARTYPLAYER*/
-.party-player-container{width:100%;bottom:0%;position:fixed;}
-.party-player{position:relative;margin:0 auto;width:50%;}
+.party-player-container{width:100%;bottom:1%;position:fixed;}
+.party-player{margin:0 auto;width:50%;}
+.playlist{padding-right:7%;}
 #sm2movie{height:1px;}
 #sm2-container{height:1px;}
 .created-by{font-size:14px;margin-top:-3px;}
-.next-song{font-size:14px;margin-top:-3px;margin-left:5px;}
+.next-song{font-size:14px;margin-top:2px;}
 
 /*FONTS*/
 @font-face {
@@ -68,3 +69,6 @@ strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 
 /*PROGRESSBAR*/
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
+
+/*INSTRUCTIONS*/
+.instructions{position:fixed;text-align:right;right:20px;bottom:0px;list-style:none;}

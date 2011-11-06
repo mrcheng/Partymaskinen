@@ -5,6 +5,35 @@ $(document).ready(function() {
 		}, 500, function() {
 			//Fires when fade in is done
 	});
+	
+	//Slide for the partyplayer
+	shortcut.add("p", togglePlayer);
+	var playerVisible = true;
+	function togglePlayer(){
+		if(playerVisible){
+			$(".party-player-container").animate({ 
+				bottom: '-30%'
+				}, 500, function(){playerVisible = false;});
+			}
+		if(!playerVisible){
+			$(".party-player-container").animate({ 
+			bottom: '1%'
+			}, 500,function(){playerVisible = true;});
+		}
+	}
+//	var playerVisible = true;
+//	$(".togglePlayer").click( function() {
+//		if(playerVisible){
+//			$(".party-player-container").animate({ 
+//				bottom: '-30%'
+//				}, 500, function(){playerVisible = false;});
+//			}
+//		if(!playerVisible){
+//			$(".party-player-container").animate({ 
+//			bottom: '-2%'
+//			}, 500,function(){playerVisible = true;});
+//		}
+//	})
 
 	shortcut.add("esc", showSettings);
 	//Opens the settings panel using 'esc' key

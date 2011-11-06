@@ -12,7 +12,7 @@
 		var nextMediaHtml = '';
 
 		if (nextMedia) {
-			nextMediaHtml = '<span class="next-song"> Nästa låt: ' + nextMedia.title + '</span>';
+			nextMediaHtml = '<p class="next-song">Nästa låt: ' + nextMedia.title + '</p>';
 		}
 
 		var html = '<li><a id="media" href="' + currentMedia.url + '">'
