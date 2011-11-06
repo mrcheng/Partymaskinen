@@ -71,7 +71,7 @@
 
 		$("#partyMachine").hide();
 
-		$('<iframe id="partyMachinePlugin" name="partyMachinePlugin" src="' + _currentPluginSrc + '" scrolling="no" frameborder="0">')
+		$('<iframe id="partyMachinePlugin" name="partyMachinePlugin" src="' + _currentPluginSrc + '" scrolling="no" frameborder="0" height="100%" width="100%" style="display:block;position:absolute;z-index:1001;">')
 			.appendTo("#partyMachinePluginContainer");
 
 
@@ -111,7 +111,7 @@
 
 		if (pluginDomElem) {
 			$(pluginDomElem).addClass("plugin-selected");
-			console.log("highlighting plugin: " + highlightPlugin.Name);
+			console.log("highlighting plugin: " + highlightPlugin.name);
 		}
 
 	};
