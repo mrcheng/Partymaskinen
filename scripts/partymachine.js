@@ -21,8 +21,8 @@
 
 		var currentParticipant = participants.getNextParticipant();
 
-		var participantHtmlTemplate = '<img src="' + currentParticipant.imageUrl + '"></img><strong>' + currentParticipant.name + '</strong>'
-							+ '<h2>' + currentParticipant.description + '</h2>';
+		var participantHtmlTemplate = '<p class="participant-info">' + currentParticipant.description + '</p>' + '<img src="' + currentParticipant.imageUrl + '"></img><p>' + currentParticipant.name + '</p>'
+							;
 
 		$("#partyMachine-participant").html(participantHtmlTemplate);
 

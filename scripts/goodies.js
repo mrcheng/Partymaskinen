@@ -1,4 +1,10 @@
 $(document).ready(function() {
+	
+	//FITTEXT
+	$(".fittext1").fitText();
+	//$(".fittext2").fitText(1.2);
+	//$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
+
 	//Fades in the whole page on dom ready
 	$('#logo, .participant, .music-info, .plugin-frame').animate({
     	opacity: 1,
@@ -8,7 +14,7 @@ $(document).ready(function() {
 	
 	//Slide for the partyplayer
 	shortcut.add("p", togglePlayer);
-	var playerVisible = true;
+	var playerVisible = false;
 	function togglePlayer(){
 		if(playerVisible){
 			$(".party-player-container").animate({ 
@@ -16,7 +22,7 @@ $(document).ready(function() {
 				}, 500, function(){playerVisible = false;});
 			}
 		if(!playerVisible){
-			$(".party-player-container").animate({ 
+			$(".party-player-container").css({visibility: "visible"}).animate({
 			bottom: '1%'
 			}, 500,function(){playerVisible = true;});
 		}
