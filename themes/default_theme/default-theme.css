@@ -2,9 +2,10 @@
 /*BACKGROUND*/
 html{background-color:#3573de;/*background-image:url();*/}/*add image if you want*/
 /*LOGO*/
-#logo{background:url(img/PM-logo.png) no-repeat;margin:0 auto;background-size:100% auto;height:100%;width:100%;position:fixed;}
+#logo{background:url(img/PM-logo.png) no-repeat;margin:1% 0 0 5%;background-size:100% auto;height:100%;width:90%;position:fixed;}
 /*PLUGIN FONT-COLOR*/
 .plugin p{color:#fff;}
+.plugin-selected p{color:#c9ff33;}
 .plugin-selected img{border:2px solid #c9ff33;}/*plugin selected color*/
 /*SETTINGS*/
 #settings{background-color:#002C46;}

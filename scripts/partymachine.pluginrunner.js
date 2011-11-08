@@ -13,14 +13,14 @@
 
 			var freshPlugins = [];
 
-			freshPlugins.push({ name: "plugin1", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ name: "plugin2", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ name: "plugin3", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ name: "plugin4", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ name: "plugin5", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ name: "plugin6", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ name: "plugin7", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
-			freshPlugins.push({ name: "plugin8", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "Vem vill bli full?", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "Centurion", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "Unicorn Death", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "Alizée", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "SMTD", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "King Pong", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "Geggins Lair", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			freshPlugins.push({ name: "Dual Beerbong", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
 
 			return freshPlugins;
 		};
