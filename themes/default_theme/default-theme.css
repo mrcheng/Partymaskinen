@@ -3,6 +3,8 @@
 html{background-color:#3573de;/*background-image:url();*/}/*add image if you want*/
 /*LOGO*/
 #logo{background:url(img/PM-logo.png) no-repeat;margin:1% 0 0 5%;background-size:100% auto;height:100%;width:90%;position:fixed;}
+/*PARTICIPANT*/
+p.participant-info{color:#fff;}
 /*PLUGIN FONT-COLOR*/
 .plugin p{color:#fff;}
 .plugin-selected p{color:#c9ff33;}
@@ -12,7 +14,8 @@ html{background-color:#3573de;/*background-image:url();*/}/*add image if you wan
 #settings h2{color:#fff;}/*Settings headline*/
 #settings li{color:#fff;}/*Setting name*/
 /*PARTYPLAYER*/
-.party-player{}/*width:800px;margin:0 auto; (default style)*/
+.party-player{}
+.current-media-title h2{color:white;}/*Color of song title in main window*/
 	/*playing*/
 ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#69c;}/*Partyplayer is playing*/
 ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#58b;}/*playing time & vu boxes*/
