@@ -18,7 +18,7 @@ $(document).ready(function() {
 	function togglePlayer(){
 		if(playerVisible){
 			$(".party-player-container").animate({ 
-				bottom: '-30%'
+				bottom: '-100%'
 				}, 500, function(){playerVisible = false;});
 			}
 		if(!playerVisible){
