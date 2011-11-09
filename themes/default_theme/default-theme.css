@@ -17,7 +17,7 @@ p.participant-info{color:#fff;}
 #settings li{color:#fff;}/*Setting name*/
 /*PARTYPLAYER*/
 .party-player{}
-.current-media-title h2{color:white;}/*Color of song title in main window*/
+.current-media-title h2{color:#c9ff33;}/*Color of song title in main window*/
 	/*playing*/
 ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#69c;}/*Partyplayer is playing*/
 ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#58b;}/*playing time & vu boxes*/
