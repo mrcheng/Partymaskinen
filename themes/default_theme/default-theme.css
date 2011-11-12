@@ -1,6 +1,6 @@
 /* The partymachine default theme by TSC, Mejje and 8< */
 /*BACKGROUND*/
-html{background-color:#3573de;/*background-image:url();*/}/*add image if you want*/
+html{background-color:#000;/*#3573de;*//*background-image:url();*/}/*add image if you want*/
 /*BACKGROUND*/
 .background-video{width:100%;height:133.5%;position:fixed;margin:0 auto;z-index:-1000;}
 /*LOGO*/
