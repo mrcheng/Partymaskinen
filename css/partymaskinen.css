@@ -32,7 +32,7 @@ p.participant-info{font-size:150%;margin-top:-20%}
 .created-by{font-size:14px;margin-top:-3px;}
 .next-song{font-size:14px;margin-top:2px;}
 .current-media-title{margin-bottom:-2%;margin-left:-24%;}
-.current-media-title h2{font-size:60%;margin-top:1%;}/*song output in main window*/
+.current-media-title h2{font-size:40%;margin-top:1%;}/*song output in main window*/
 
 /*FONTS*/
 @font-face {
@@ -69,4 +69,4 @@ p.participant-info{font-size:150%;margin-top:-20%}
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
 
 /*INSTRUCTIONS*/
-.instructions{position:fixed;text-align:right;right:20px;bottom:0px;list-style:none;}
+.instructions{position:fixed;text-align:right;right:50px;bottom:30px;list-style:none;}
