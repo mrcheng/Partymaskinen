@@ -1,9 +1,10 @@
 /* The partymachine default theme by TSC, Mejje and 8< */
 /*BACKGROUND*/
-html{background-color:#000;/*#3573de;*//*background:url(http://www.mileanhour.com/files/2010/12/santa-beer.jpg);*/}/*add image if you want*/
+html{background:#000;/*#3573de;*//*background:url(http://www.mileanhour.com/files/2010/12/santa-beer.jpg);*//*add image if you want*/}
 .background-video{width:100%;height:133.5%;position:fixed;margin:0 auto;z-index:-1000;}
 /*LOGO*/
-#logo{background:url(img/PM-logo.png) no-repeat;margin:1% 0 0 5%;background-size:100% auto;height:100%;width:90%;position:fixed;}
+/*#logo{background:url(img/logo_small_v1.png) no-repeat;margin:1% 0 0 5%;background-size:100% auto;height:100%;width:90%;position:fixed;}*/
+#logo{background:url(../../img/logo_small_v1.png) no-repeat;top:6%;left:6%;background-size:100% auto;position:fixed;height:15%;width:10%;}
 /*PARTICIPANT*/
 p.participant-info{color:#fff;}
 /*PLUGIN FONT-COLOR*/
