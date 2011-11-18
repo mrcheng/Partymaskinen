@@ -1,6 +1,6 @@
 /* The partymachine default theme by TSC, Mejje and 8< */
 /*BACKGROUND*/
-html{background-color:#000;/*#3573de;*//*background-image:url();*/}/*add image if you want*/
+html{background-color:#000;/*#3573de;*//*background:url(http://www.mileanhour.com/files/2010/12/santa-beer.jpg);*/}/*add image if you want*/
 /*BACKGROUND*/
 .background-video{width:100%;height:133.5%;position:fixed;margin:0 auto;z-index:-1000;}
 /*LOGO*/
@@ -15,6 +15,8 @@ p.participant-info{color:#fff;}
 #settings{background-color:#002C46;}
 #settings h2{color:#fff;}/*Settings headline*/
 #settings li{color:#fff;}/*Setting name*/
+/*INSTRUCTIONS*/
+.instructions{color:white;font-size:15%;}
 /*PARTYPLAYER*/
 .party-player{}
 .current-media-title h2{color:#c9ff33;}/*Color of song title in main window*/

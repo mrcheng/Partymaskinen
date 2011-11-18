@@ -69,4 +69,4 @@ p.participant-info{font-size:150%;margin-top:-20%}
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
 
 /*INSTRUCTIONS*/
-.instructions{position:fixed;text-align:right;right:20px;bottom:0px;list-style:none;font-size:10%;}
+.instructions{position:fixed;text-align:right;right:20px;bottom:0px;list-style:none;}
