@@ -23,23 +23,10 @@ $(document).ready(function() {
 			}
 		if(!playerVisible){
 			$(".party-player-container").css({visibility: "visible"}).animate({
-			bottom: '1%'
+			bottom: '3%'
 			}, 500,function(){playerVisible = true;});
 		}
 	}
-//	var playerVisible = true;
-//	$(".togglePlayer").click( function() {
-//		if(playerVisible){
-//			$(".party-player-container").animate({ 
-//				bottom: '-30%'
-//				}, 500, function(){playerVisible = false;});
-//			}
-//		if(!playerVisible){
-//			$(".party-player-container").animate({ 
-//			bottom: '-2%'
-//			}, 500,function(){playerVisible = true;});
-//		}
-//	})
 
 	shortcut.add("esc", showSettings);
 	//Opens the settings panel using 'esc' key

@@ -10,17 +10,17 @@ p{font-family: 'ITCAvantGardeGothicStdBdCn';}
 #logo, .participant, .plugin-frame, .music-info{opacity:0.0;}
 /*PARTICIPANTS*/
 .participant-container{margin:0 auto;width:12%;}
-.participant{background:url(../img/contenderframe.png) no-repeat;background-size:100% auto;width:12%;position:fixed;margin-top:10%;}
+.participant{background:url(../img/contenderframe.png) no-repeat;background-size:100% auto;width:12%;position:fixed;margin-top:11%;}
 .participant p{margin-top:5%;}
 .participant img{background-size:100% auto;width:69%;position:relative;margin-top:-6%;margin-left:3%;}
 p.participant-info{font-size:150%;margin-top:-20%}
 
 /*PLUGINS*/
-.plugin-container{width:70%;height:45%;position:fixed;top:35%;padding:0 10% 0 24%;}
+.plugin-container{width:60%;height:25%;position:fixed;top:39%;padding:0 10% 0 27%;}
 .plugin{background:url(../img/pluginframe.png) no-repeat;background-size:70%;width:20%;float:left;margin:0 1% 0 0;}
 .plugin img{background-size:50%;width:60%;float:left;margin:6.1% 0 0 5.2%;}
 .plugin p{font-size:23%;font-family:'ITCAvantGardeGothicStdBkCn';display:block;margin-left:-30%;}
-.plugin-glare{background:url(../img/lobbyGfx-pluginglare.png) no-repeat;background-size:100%;position:fixed;height:9%;width:9.25%;margin-left:0.25%;margin-top:0.4%;}
+.plugin-glare{background:url(../img/lobbyGfx-pluginglare.png) no-repeat;background-size:100%;position:fixed;height:9%;width:7.90%;margin-left:0.25%;margin-top:0.4%;}
 .plugin-selected img{border-radius:3px;padding:3% 3% 3% 3%;margin:2.1% 0 0 1.5%;}
 
 /*PARTYPLAYER*/
