@@ -59,10 +59,12 @@ p.participant-info{font-size:150%;margin-top:-20%}
 
 /*SETTINGS*/
 #settings{display:none;position:fixed;top:20%;height:60%;width:100%;opacity:0.9;z-index:100;}
-#settings h2{}
+#settings h2{font-size:30%;}
 #settings ul{list-style:none;margin:0 auto;width:800px;margin-top:40px;}
-#settings li{float:left;margin:0 10px 0 50px;font-size:20px;}
+#settings li{float:left;margin:0 10px 0 50px;font-size:20%;}
+#settings p{}
 #settings li img{width:108px;height:108px;margin-top:10px;}
+/*background:url(../img/pluginframe.png) no-repeat;background-size:70%;width:20%;float:left;margin:0 1% 0 0;*/
 .setting-selected{border:2px solid #c9ff33;width:128px;height:128px;position:relative;border-radius:3px;margin-top:-20px;}
 
 /*PROGRESSBAR*/
