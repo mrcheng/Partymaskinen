@@ -86,15 +86,14 @@ p.participant-info{font-size:150%;margin-top:-20%;color:#fff;font-family:'ITCAva
 .instructions{position:fixed;text-align:right;right:50px;bottom:30px;list-style:none;color:white;font-size:10%;}
 
 /*PARTYPLAYER*/
-.party-player-container{width:100%;bottom:-100%;position:fixed;visibility:hidden;margin-left:-11%;}
-.party-player{margin:0 auto;width:50%;}
+.party-player-container{width:100%;bottom:-100%;position:fixed;visibility:hidden;}
+.party-player{margin:0 auto;width:50%;margin-left:15%;}
 .playlist{padding-right:7%;}
 #sm2movie{height:1px;}
 #sm2-container{height:1px;}
 .created-by{font-size:14px;margin-top:-3px;color:#c9ff33;}
 .next-song{font-size:14px;margin-top:2px;color:white;}
-.current-media-title{color:#fff;margin:6% 0 0 -3%;}
-.current-media-title h2{font-size:40%;margin-top:1%;}
+.current-media-title{margin:1% 0 0 -1%;color:#fff;font-size:30%;}
 
 ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#111;-moz-box-shadow: 5px 5px 9px #111;-webkit-box-shadow: 5px 5px 9px #111;box-shadow: 5px 5px 9px #111;}
 ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#111;}
