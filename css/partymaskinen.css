@@ -1,10 +1,10 @@
-/* THE PARTYMACHINE DEFAULT THEME*/
-html{margin:0;height:100%;}
+html{margin:0;height:100%;background:#000;}
 body{height:100%;text-align:center;margin:0;padding:0;font-family: 'ITCAvantGardeGothicStdBkCn';}
 strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
 p{font-family: 'ITCAvantGardeGothicStdBdCn';}
 .header{width:100%;}
 .clear{clear:both;}
+.background-video{width:100%;height:133.5%;position:fixed;margin:0 auto;z-index:-1000;}
 
 /*FADE IN*/
 #logo, .participant, .plugin-frame, .music-info{opacity:0.0;}
@@ -13,15 +13,16 @@ p{font-family: 'ITCAvantGardeGothicStdBdCn';}
 .participant{background:url(../img/contenderframe.png) no-repeat;background-size:100% auto;width:12%;position:fixed;margin-top:11%;}
 .participant p{margin-top:5%;}
 .participant img{background-size:100% auto;width:69%;position:relative;margin-top:-6%;margin-left:3%;}
-p.participant-info{font-size:150%;margin-top:-20%}
+p.participant-info{font-size:150%;margin-top:-20%;color:#fff;}
 
 /*PLUGINS*/
 .plugin-container{width:60%;height:25%;position:fixed;top:39%;padding:0 10% 0 27%;}
 .plugin{background:url(../img/pluginframe.png) no-repeat;background-size:70%;width:20%;float:left;margin:0 1% 0 0;}
 .plugin img{background-size:50%;width:60%;float:left;margin:6.1% 0 0 5.2%;}
-.plugin p{font-size:23%;font-family:'ITCAvantGardeGothicStdBkCn';display:block;margin-left:-30%;}
+.plugin p{font-size:23%;font-family:'ITCAvantGardeGothicStdBkCn';display:block;margin-left:-30%;color:#fff;}
 .plugin-glare{background:url(../img/lobbyGfx-pluginglare.png) no-repeat;background-size:100%;position:fixed;height:9%;width:7.90%;margin-left:0.25%;margin-top:0.4%;}
-.plugin-selected img{border-radius:3px;padding:3% 3% 3% 3%;margin:2.1% 0 0 1.5%;}
+.plugin-selected img{border-radius:3px;padding:3% 3% 3% 3%;margin:2.1% 0 0 1.5%;border:2px solid #c9ff33;}
+.plugin-selected p{color:#c9ff33;}
 
 /*PARTYPLAYER*/
 .party-player-container{width:100%;bottom:-100%;position:fixed;visibility:hidden;}
@@ -29,10 +30,18 @@ p.participant-info{font-size:150%;margin-top:-20%}
 .playlist{padding-right:7%;}
 #sm2movie{height:1px;}
 #sm2-container{height:1px;}
-.created-by{font-size:14px;margin-top:-3px;}
-.next-song{font-size:14px;margin-top:2px;}
-.current-media-title{margin-bottom:-2%;margin-left:-24%;}
-.current-media-title h2{font-size:40%;margin-top:1%;}/*song output in main window*/
+.created-by{font-size:14px;margin-top:-3px;color:#c9ff33;}
+.next-song{font-size:14px;margin-top:2px;color:white;}
+.current-media-title{margin-bottom:-2%;margin-left:-24%;color:#c9ff33;}
+.current-media-title h2{font-size:40%;margin-top:1%;}
+
+ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#69c;}
+ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#58b;}
+ul.playlist li.sm2_paused{background-color:red;opacity:0.7;}
+ul.playlist li.sm2_paused .timing,ul.playlist.use-peak li.sm2_paused .peak{background-color:red; border-color:#ccc;}
+ul.playlist li .controls .statusbar .loading{background-color:#eee}
+ul.playlist li .peak .l,ul.playlist li .peak .r{background:#fff;border:1px solid #fff;}
+ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing a{color:#c9ff33;}
 
 /*FONTS*/
 @font-face {
@@ -58,10 +67,10 @@ p.participant-info{font-size:150%;margin-top:-20%}
 }
 
 /*SETTINGS*/
-#settings{display:none;position:fixed;top:20%;height:60%;width:100%;opacity:0.9;z-index:100;}
-#settings h2{font-size:30%;}
+#settings{display:none;position:fixed;top:20%;height:60%;width:100%;opacity:0.9;z-index:100;background-color:#002C46;}
+#settings h2{font-size:30%;color:#fff;}
 #settings ul{list-style:none;margin:0 auto;width:800px;margin-top:40px;}
-#settings li{float:left;margin:0 10px 0 50px;font-size:20%;}
+#settings li{float:left;margin:0 10px 0 50px;font-size:20%;color:#fff;}
 #settings p{}
 #settings li img{width:108px;height:108px;margin-top:10px;}
 /*background:url(../img/pluginframe.png) no-repeat;background-size:70%;width:20%;float:left;margin:0 1% 0 0;*/
@@ -71,4 +80,4 @@ p.participant-info{font-size:150%;margin-top:-20%}
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
 
 /*INSTRUCTIONS*/
-.instructions{position:fixed;text-align:right;right:50px;bottom:30px;list-style:none;}
+.instructions{position:fixed;text-align:right;right:50px;bottom:30px;list-style:none;color:white;font-size:10%;}
