@@ -1,4 +1,6 @@
-/*BACKGROUND*/
+/*===============================
+=           BACKGROUND          =
+================================*/
 html{background:#000;margin:0;height:100%;
 background: #090909;
 background: -moz-linear-gradient(top,  #090909 0%, #000000 0%, #2b2727 30%, #3e3e3c 100%);
@@ -16,7 +18,9 @@ p{font-family: 'ITCAvantGardeGothicStdBdCn';}
 .header{width:100%;}
 .clear{clear:both;}
 #logo{background:url(img/logo.png) no-repeat;background-size:100% auto;width:30%;height:100%;position:fixed;top:4%;left:5%;}
-/*FONTS*/
+/*===============================
+=              FONTS            =
+================================*/
 @font-face {
     font-family: 'ITCAvantGardeGothicStdBkCn';
     src: url('../../fonts/itcavantgardestd-bkcn-webfont.eot');
@@ -38,7 +42,9 @@ p{font-family: 'ITCAvantGardeGothicStdBdCn';}
     font-weight: normal;
     font-style: normal;
 }
-/*SIDEBAR*/
+/*===============================
+=             SIDEBAR           =
+================================*/
 .sidebar-container{float:right;height:99.9%;width:20%;border-left:5px solid #313131;
 background: #232322;
 background: -moz-linear-gradient(left,  #232322 1%, #000000 100%);
@@ -53,26 +59,30 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#232322', end
 -webkit-box-shadow: -5px 5px 15px #000;
 box-shadow: -5px 5px 15px #111;
 }
-
-/*FADE IN*/
+/*===============================
+=             FADE IN           =
+================================*/
 #logo, .participant, .plugin-frame, .music-info{opacity:0.0;}
-
-/*PARTICIPANT*/
+/*===============================
+=           PARTICIPANT         =
+================================*/
 .participant{background:url(../../img/contenderframe.png) no-repeat;background-size:100% auto;width:12%;position:fixed;margin-top:11%;}
 .participant-container{margin:0 auto;width:12%;float:right;margin-right:4%;}
 .participant p{margin-top:5%;}
 .participant img{background-size:100% auto;width:69%;position:relative;margin-top:-6%;margin-left:3%;}
 p.participant-info{font-size:150%;margin-top:-20%;color:#fff;font-family:'ITCAvantGardeGothicStdBkCn';}
-
-/*PLUGINS*/
+/*===============================
+=             PLUGINS           =
+================================*/
 .plugin-container{width:70%;height:62%;position:fixed;padding:0.6% 0% 0 0.3%;margin: 18% 0 0 5%;background-color:#555;-moz-box-shadow: 5px 5px 9px #111;-webkit-box-shadow: 5px 5px 9px #111;box-shadow: 5px 5px 9px #111;}
 .plugin{background-color:#eb2287;width:23%;float:left;margin:1% 1% 1% 1%;-moz-box-shadow: 5px 5px 9px #111;-webkit-box-shadow: 5px 5px 9px #111;box-shadow: 5px 5px 9px #111;}
 .plugin p{font-size:20%;font-family:'ITCAvantGardeGothicStdBkCn';display:block;color:#fff;margin-top:30%;margin-bottom:3%;}
 .plugin-selected p{color:#c9ff33;}
 .plugin-selected.plugin{background-color:#f89300;}
 .plugin img{background-size:100%;width:84%;height:34%;float:left;margin:7% 0 0 8.6%;/*background-color:#7fb538;*/}
-
-/*SETTINGS*/
+/*===============================
+=            SETTINGS           =
+================================*/
 #settings{display:none;position:fixed;top:20%;height:60%;width:100%;opacity:0.9;z-index:100;background-color:#000;}
 #settings h2{font-size:30%;color:#fff;}
 #settings ul{list-style:none;margin:0 auto;width:800px;margin-top:40px;}
@@ -80,12 +90,13 @@ p.participant-info{font-size:150%;margin-top:-20%;color:#fff;font-family:'ITCAva
 #settings p{}
 #settings li img{width:108px;height:108px;margin-top:10px;}
 .setting-selected{border:2px solid #c9ff33;width:128px;height:128px;position:relative;border-radius:3px;margin-top:-20px;}
-
-
-/*INSTRUCTIONS*/
+/*===============================
+=          INSTRUCTIONS         =
+================================*/
 .instructions{position:fixed;text-align:right;right:50px;bottom:30px;list-style:none;color:white;font-size:10%;}
-
-/*PARTYPLAYER*/
+/*===============================
+=           PARTYPLAYER         =
+================================*/
 .party-player-container{width:100%;bottom:-100%;position:fixed;visibility:hidden;}
 .party-player{margin:0 auto;width:50%;margin-left:15%;}
 .playlist{padding-right:7%;}
