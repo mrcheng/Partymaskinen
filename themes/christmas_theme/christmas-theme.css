@@ -1,27 +1,127 @@
-/* The partymachine default theme by TSC, Mejje and 8< */
-/*BACKGROUND*/
-html{background-color:green;width:100%;height:100%;/*background-image:url();*/}/*add image if you want*/
-/*LOGO*/
-#logo{/*background-image:url(img/PM-logo.png);width:913px;height:316px;margin:0 auto;*/}
-/*PLUGIN FONT-COLOR*/
-.plugin p{color:#fff;}
-/*SETTINGS*/
-#settings{background-color:#002C46;}
-#settings h2{color:#fff;}/*Settings headline*/
-#settings li{color:#fff;}/*Setting name*/
+html{margin:0;height:100%;background:red;}
+body{height:100%;text-align:center;margin:0;padding:0;font-family: 'ITCAvantGardeGothicStdBkCn';}
+strong{font-family: 'ITCAvantGardeGothicStdBdCn';}
+p{font-family: 'ITCAvantGardeGothicStdBdCn';}
+.header{width:100%;}
+.clear{clear:both;}
+.background-video{width:100%;height:133.5%;position:fixed;margin:0 auto;z-index:-1000;}
+
+/*FADE IN*/
+#logo, .participant, .plugin-frame, .music-info{opacity:0.0;}
+/*PARTICIPANTS*/
+.participant-container{margin:0 auto;width:12%;}
+.participant{background:url(../../img/contenderframe.png) no-repeat;background-size:100% auto;width:12%;position:fixed;margin-top:11%;}
+.participant p{margin-top:5%;}
+.participant img{background-size:100% auto;width:69%;position:relative;margin-top:-6%;margin-left:3%;}
+p.participant-info{font-size:150%;margin-top:-20%;color:#fff;}
+
+/*PLUGINS*/
+.plugin-container{width:60%;height:25%;position:fixed;top:39%;padding:0 10% 0 27%;}
+.plugin{background:url(../img/pluginframe.png) no-repeat;background-size:70%;width:20%;float:left;margin:0 1% 0 0;}
+.plugin img{background-size:50%;width:60%;float:left;margin:6.1% 0 0 5.2%;}
+.plugin p{font-size:23%;font-family:'ITCAvantGardeGothicStdBkCn';display:block;margin-left:-30%;color:#fff;}
+.plugin-glare{background:url(../../img/lobbyGfx-pluginglare.png) no-repeat;background-size:100%;position:fixed;height:9%;width:7.90%;margin-left:0.25%;margin-top:0.4%;}
+.plugin-selected img{border-radius:3px;padding:3% 3% 3% 3%;margin:2.1% 0 0 1.5%;border:2px solid #c9ff33;}
+.plugin-selected p{color:#c9ff33;}
+
 /*PARTYPLAYER*/
-.party-player{width:650px;margin:0 auto;}/*width:800px;margin:0 auto; (default style)*/
-	/*playing*/
-ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#69c;}/*Partyplayer is playing*/
-ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#58b;}/*playing time & vu boxes*/
-	/*paused*/
-ul.playlist li.sm2_paused{background-color:red;opacity:0.7;}/*Partyplayer is paused*/
-ul.playlist li.sm2_paused .timing,ul.playlist.use-peak li.sm2_paused .peak{background-color:red; border-color:#ccc;}/*paused time & vu boxes*/
-	/*meter*/
-ul.playlist li .controls .statusbar .loading{background-color:#eee}/*Loading meter*/
-ul.playlist li .peak .l,ul.playlist li .peak .r{background:#fff;border:1px solid #fff;}/*VU meter color*/
-	/*fonts*/
-.created-by{color:#c9ff33;}/*created by name color*/
-.next-song{color:white;}/*next song name color*/
-	/*counter*/
-ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing a{color:#c9ff33;}/*counter color*/
+.party-player-container{width:100%;bottom:-100%;position:fixed;visibility:hidden;}
+.party-player{margin:0 auto;width:50%;}
+.playlist{padding-right:7%;}
+#sm2movie{height:1px;}
+#sm2-container{height:1px;}
+.created-by{font-size:14px;margin-top:-3px;color:#c9ff33;}
+.next-song{font-size:14px;margin-top:2px;color:white;}
+.current-media-title{position:relative;color:#c9ff33;font-size:30%;margin-left:-22%;}
+
+ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#69c;}
+ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#58b;}
+ul.playlist li.sm2_paused{background-color:red;opacity:0.7;}
+ul.playlist li.sm2_paused .timing,ul.playlist.use-peak li.sm2_paused .peak{background-color:red; border-color:#ccc;}
+ul.playlist li .controls .statusbar .loading{background-color:#eee}
+ul.playlist li .peak .l,ul.playlist li .peak .r{background:#fff;border:1px solid #fff;}
+ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing a{color:#c9ff33;}
+
+/*FONTS*/
+@font-face {
+    font-family: 'ITCAvantGardeGothicStdBkCn';
+    src: url('../../fonts/itcavantgardestd-bkcn-webfont.eot');
+    src: url('../../fonts/itcavantgardestd-bkcn-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/itcavantgardestd-bkcn-webfont.woff') format('woff'),
+         url('../../fonts/itcavantgardestd-bkcn-webfont.ttf') format('truetype'),
+         url('../../fonts/itcavantgardestd-bkcn-webfont.svg#ITCAvantGardeGothicStdBkCn') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ITCAvantGardeGothicStdBdCn';
+    src: url('../../fonts/itcavantgardestd-boldcn-webfont.eot');
+    src: url('../../fonts/itcavantgardestd-boldcn-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/itcavantgardestd-boldcn-webfont.woff') format('woff'),
+         url('../../fonts/itcavantgardestd-boldcn-webfont.ttf') format('truetype'),
+         url('../../fonts/itcavantgardestd-boldcn-webfont.svg#ITCAvantGardeGothicStdBdCn') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*SETTINGS*/
+#settings{display:none;position:fixed;top:20%;height:60%;width:100%;opacity:0.9;z-index:100;background-color:#002C46;}
+#settings h2{font-size:30%;color:#fff;}
+#settings ul{list-style:none;margin:0 auto;width:800px;margin-top:40px;}
+#settings li{float:left;margin:0 10px 0 50px;font-size:20%;color:#fff;}
+#settings p{}
+#settings li img{width:108px;height:108px;margin-top:10px;}
+/*background:url(../img/pluginframe.png) no-repeat;background-size:70%;width:20%;float:left;margin:0 1% 0 0;*/
+.setting-selected{border:2px solid #c9ff33;width:128px;height:128px;position:relative;border-radius:3px;margin-top:-20px;}
+
+/*PROGRESSBAR*/
+#progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
+
+/*INSTRUCTIONS*/
+.instructions{position:fixed;text-align:right;right:4%;bottom:5%;list-style:none;color:white;font-size:10%;}
+
+/*THEMES*/
+.themes p{color:white;cursor:pointer;position:fixed;left:5%;font-family:'ITCAvantGardeGothicStdBkCn';}
+.fat p{font-family: 'ITCAvantGardeGothicStdBdCn';}
+
+/*PAGE PLAYER (DO NOT TOUCH)*/
+#soundmanager-debug {
+ /* SM2 debug container (optional, makes debug more useable) */
+ position:absolute;position:fixed;*position:absolute;bottom:10px;right:10px;width:50em;height:18em;overflow:auto;background:#fff;margin:1em;padding:1em;border:1px solid #999;font-family:"lucida console",verdana,tahoma,"sans serif";font-size:x-small;line-height:1.5em;opacity:0.9;filter:alpha(opacity=90);}
+
+ul.playlist li{text-align:left;position:relative;display:block;font-size:16px;color:#666;padding:10px;border:none;/*letter-spacing:-1px;*/background-color:#69c;-webkit-transition-property:hover;-webkit-transition:background-color 0.15s ease-in-out;-moz-transition:background-color 0.15s linear 0s;/* firefox 4 */-o-transition-property:background-color;/* opera 10.5 */-o-transition-duration:0.15s}
+
+ul.playlist li a{display:block;text-decoration:none;font-weight:normal;color:#000;font-size:120%;outline:none;position:relative;z-index:2}
+ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing a{border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px}
+ul.playlist li:hover{background-color:#eee}
+ul.playlist li:hover a{color:#333}
+ul.playlist li.sm2_playing:hover a,ul.playlist li.sm2_paused a{color:#fff}
+ul.playlist li .controls{display:none}
+ul.playlist li .peak,ul.playlist.use-peak li .peak{display:none;position:absolute;top:0.55em;right:0.5em}
+ul.playlist li.sm2_playing .controls,ul.playlist li.sm2_paused .controls{position:relative;display:block}
+ul.playlist.use-peak li.sm2_playing .peak,ul.playlist.use-peak li.sm2_paused .peak{display:inline;display:inline-block}
+ul.playlist.use-peak li .peak{display:none;/* IE 7 */}
+ul.playlist li.sm2_paused .controls{background-color:#666}
+ul.playlist li:hover .controls .statusbar{position:relative;cursor:ew-resize;cursor:-moz-grab;cursor:grab}
+ul.playlist li.sm2_paused .controls .statusbar{background-color:#ccc}
+ul.playlist li .controls{position:relative;margin-top:0.25em;margin-bottom:0.25em;background-color:#9cf}
+ul.playlist li .controls .statusbar{position:relative;height:0.5em;background-color:#cdf;border:2px solid #fff;border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;overflow:hidden;cursor:-moz-grab;cursor:grab}
+ul.playlist li .controls.dragging .statusbar{cursor:-moz-grabbing;cursor:grabbing}
+ul.playlist li .controls .statusbar .position,ul.playlist li .controls .statusbar .loading,ul.playlist li .controls .statusbar .annotation{position:absolute;left:0px;top:0px;height:0.5em}
+ul.playlist li .controls .statusbar .position{background-color:#369;border-right:3px solid #369;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px}
+ul.playlist li.sm2_paused .controls .statusbar .position{background-color:#666;border-color:#666}
+ul.playlist li .controls .statusbar .position,ul.playlist li .controls .statusbar .loading{width:0px}
+ul.playlist li.sm2_playing a.sm2_link,ul.playlist li.sm2_paused a.sm2_link{margin-right:4.5em;/* room for timing stuff */}
+ul.playlist li .timing{position:absolute;display:none;text-align:right;right:1em;top:1em;width:auto;height:1em;padding:3px 5px;border:1px solid #9cf; -moz-border-radius:4px; -khtml-border-radius:4px; border-radius:4px; letter-spacing:0px; font:44% monaco,"VT-100","lucida console",courier,system; line-height:1em; vertical-align:middle}
+ul.playlist.use-peak li .timing{right:4.25em}
+ul.playlist li:hover .timing{z-index:2}
+ul.playlist li .timing div.sm2_timing{margin:0px; padding:0px; margin-top:-1em}
+ul.playlist li.sm2_playing .timing,ul.playlist li.sm2_paused .timing{display:block}
+ul.playlist li.sm2_paused .timing .sm2_position{text-decoration:blink;/* hee hee. first actual appropriate use?:D */}
+ul.playlist.use-peak li .peak{display:none; zoom:1; border:1px solid #9cf; padding:2px; height:0.55em; -moz-border-radius:4px; -khtml-border-radius:4px; border-radius:4px;width:0.8em; height:0.55em; margin-top:-1px;padding-top:3px;}
+ul.playlist.use-peak li .peak-box{position:relative; width:100%; height:0.55em; overflow:hidden;}
+ul.playlist li .peak .l,ul.playlist li .peak .r{position:absolute; left:-2px; top:0px; width:5px; height:50px;-moz-border-radius:1px; -khtml-border-radius:1px; margin-top:1em;}
+ul.playlist li .peak .l{margin-right:1px}
+ul.playlist li .peak .r{left:7px;}
+#control-template{display:none}

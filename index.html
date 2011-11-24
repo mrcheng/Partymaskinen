@@ -2,10 +2,9 @@
 <html>
 <head>
     <title>Partymaskinen</title>
-	<!--<link href="css/partymaskinen.css" media="screen" rel="stylesheet" type="text/css" />-->
-	<link href="themes/media_theme/media-theme.css" media="screen" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="css/page-player.css" />
-	    
+
+    <link rel="stylesheet" type="text/css" href="css/partymaskinen.css" />
+
 	<script src="deps/json2.js" type="text/javascript"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 	
@@ -20,8 +19,9 @@
 	
 	<script src="scripts/jquery.fittext.js"></script>
 	<script src="scripts/partymachine.js" type="text/javascript"></script>
-	<script src="scripts/goodies.js" type="text/javascript"></script>
-	
+    <script src="scripts/styleswitch.js" type="text/javascript"></script>
+    <script src="scripts/goodies.js" type="text/javascript"></script>
+
 	<script type="text/javascript">
 
 		$(function () { 
@@ -36,7 +36,7 @@
     <!--<video autoplay loop fullscreen="true" class="background-video"><source src="themes/default_theme/vid/default_background.mp4" type="video/mp4" /></video>-->
 
 	<div id="partyMachine">
-
+        
 		<div id="logo"></div>
 
 		<div class="fittext1" id="settings">
@@ -47,6 +47,11 @@
 				<li><img src="img/settings-icon1.png" /><p>Deltagare</p></li>
 				<li><img src="img/settings-icon1.png" /><p>Plugins</p></li>
 			</ul>
+			<ul class="themes">
+				<li id="style1"><p>Default theme</p><br /></li>
+				<li id="style2"><p>Media theme</p><br /></li>
+				<li id="style3"><p>Christmas theme</p><br /></li>
+			</ul>
 		</div>
 
 		<div class="participant-container">
@@ -55,8 +60,7 @@
 
 		<div class="plugin-container fittext1">
 			<div id="partyMachine-plugins"></div>
-			<div class="clear"></div>
-			<div class="current-media-title"><h2>Laddar låtlista...</h2></div>
+            <div class="current-media-title"><h2>Laddar låtlista...</h2></div>
 		</div>
 
 		<div id="sm2-container"></div>
@@ -67,16 +71,19 @@
 			</div>
 		</div>
 
-		<div class="fittext1">
-			<ul class="instructions">
-				<li>Inställningar: Escape</li>
-				<li>Partyplayer: P</li>
-				<li>Navigera: Pilar / ASDW</li>
-				<li>Välj plugin: Delete</li>
-			</ul>
-		</div>
 	</div><!-- Closes #partyMachine -->
-	<div class="sidebar-container"></div><!-- For media-theme or if needed -->
-	<div id="partyMachinePluginContainer"></div>
+	
+    <div id="partyMachinePluginContainer"></div>
+	
+    <div class="sidebar-container fittext1">
+
+		<ul class="instructions">
+            <li>Inställningar: Escape</li>
+            <li>Partyplayer: P</li>
+            <li>Navigera: Pilar / ASDW</li>
+            <li>Välj plugin: Delete</li>
+		</ul>
+
+    </div><!-- For media-theme or if needed -->
 </body>
 </html>
