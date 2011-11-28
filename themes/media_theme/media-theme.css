@@ -74,7 +74,7 @@ p.participant-info{font-size:150%;margin-top:-20%;color:#fff;font-family:'ITCAva
 /*===============================
 =             PLUGINS           =
 ================================*/
-.plugin-container{width:70%;position:fixed;padding:0.2% 0 0.3% 0.3%;top:18%;left:5%;background-color:#555;-moz-box-shadow: 5px 5px 9px #111;-webkit-box-shadow: 5px 5px 9px #111;box-shadow: 5px 5px 9px #111;}
+.plugin-container{width:70%;position:fixed;padding:0.2% 0 0.3% 0.3%;top:18%;left:5%;background-color:#333;-moz-box-shadow: 5px 5px 9px #111;-webkit-box-shadow: 5px 5px 9px #111;box-shadow: 5px 5px 9px #111;}
 .plugin{background-color:#eb2287;height:62%;width:23%;float:left;margin:1% 1% 1% 1%;-moz-box-shadow: 5px 5px 9px #111;-webkit-box-shadow: 5px 5px 9px #111;box-shadow: 5px 5px 9px #111;}
 .plugin p{font-size:20%;font-family:'ITCAvantGardeGothicStdBkCn';display:block;color:#fff;margin-top:30%;margin-bottom:3%;}
 .plugin-selected p{color:#c9ff33;}
@@ -93,7 +93,7 @@ p.participant-info{font-size:150%;margin-top:-20%;color:#fff;font-family:'ITCAva
 /*===============================
 =          INSTRUCTIONS         =
 ================================*/
-.instructions{position:fixed;text-align:right;right:4%;bottom:5%;list-style:none;color:white;font-size:10%;}
+.instructions{position:fixed;text-align:right;right:4%;bottom:5%;list-style:none;color:white;font-size:30%;}
 /*===============================
 =           THEMES		        =
 ================================*/
@@ -109,7 +109,7 @@ p.participant-info{font-size:150%;margin-top:-20%;color:#fff;font-family:'ITCAva
 #sm2-container{height:1px;}
 .created-by{font-size:14px;margin-top:-3px;color:#c9ff33;}
 .next-song{font-size:14px;margin-top:2px;color:white;}
-.current-media-title{position:relative;color:#fff;font-size:30%;margin-bottom:-19%;margin-top:53%;}
+.current-media-title{position:fixed;color:#fff;font-size:25%;margin-bottom:-1%;margin-top:3%;}
 
 ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#111;-moz-box-shadow: 5px 5px 9px #111;-webkit-box-shadow: 5px 5px 9px #111;box-shadow: 5px 5px 9px #111;}
 ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#111;}
