@@ -79,10 +79,10 @@ ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing 
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
 
 /*INSTRUCTIONS*/
-.instructions{position:fixed;text-align:right;right:4%;bottom:5%;list-style:none;color:white;font-size:10%;}
+.instructions{position:fixed;text-align:right;right:4%;bottom:5%;list-style:none;color:white;font-size:10%;font-family:'ITCAvantGardeGothicStdBkCn';}
 
 /*THEMES*/
-.themes p{color:white;cursor:pointer;position:fixed;left:5%;font-family:'ITCAvantGardeGothicStdBkCn';}
+.themes p{color:white;cursor:pointer;position:relative;left:5%;font-family:'ITCAvantGardeGothicStdBkCn';}
 .fat p{font-family: 'ITCAvantGardeGothicStdBdCn';}
 
 /*PAGE PLAYER (DO NOT TOUCH)*/
@@ -92,9 +92,9 @@ ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing 
 
 ul.playlist li{text-align:left;position:relative;display:block;font-size:16px;color:#666;padding:10px;border:none;/*letter-spacing:-1px;*/background-color:#69c;-webkit-transition-property:hover;-webkit-transition:background-color 0.15s ease-in-out;-moz-transition:background-color 0.15s linear 0s;/* firefox 4 */-o-transition-property:background-color;/* opera 10.5 */-o-transition-duration:0.15s}
 
-ul.playlist li a{display:block;text-decoration:none;font-weight:normal;color:#000;font-size:120%;outline:none;position:relative;z-index:2}
+ul.playlist li a{display:block;text-decoration:none;font-weight:normal;color:#000;font-size:120%;outline:none;position:relative;z-index:2;}
 ul.playlist li.sm2_playing,ul.playlist li.sm2_paused,ul.playlist li.sm2_playing a{border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px}
-ul.playlist li:hover{background-color:#eee}
+ul.playlist li:hover{background-color:#555}
 ul.playlist li:hover a{color:#333}
 ul.playlist li.sm2_playing:hover a,ul.playlist li.sm2_paused a{color:#fff}
 ul.playlist li .controls{display:none}
