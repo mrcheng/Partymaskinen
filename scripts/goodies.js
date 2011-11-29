@@ -1,26 +1,26 @@
 $(document).ready(function() {
 	
 	// Switch CSS
-	$("#style1").addClass("fat");
-	
-	$("#style1").click(function() {
-		$("link[rel=stylesheet]").attr({href : "css/partymaskinen.css"});
-		$("#style1").addClass("fat");
-		$("#style2").removeClass("fat");
-		$("#style3").removeClass("fat");
-	});
-	$("#style2").click(function() {
-		$("link[rel=stylesheet]").attr({href : "themes/media_theme/media-theme.css"});
-		$("#style2").addClass("fat");
-		$("#style1").removeClass("fat");
-		$("#style3").removeClass("fat");
-	});	
-	$("#style3").click(function() {
-		$("link[rel=stylesheet]").attr({href : "themes/christmas_theme/christmas-theme.css"});
-		$("#style3").addClass("fat");
-		$("#style1").removeClass("fat");
-		$("#style2").removeClass("fat");
-	});
+	//$("#style1").addClass("fat");
+//	
+//	$("#style1").click(function() {
+//		$("link[rel=stylesheet]").attr({href : "css/partymaskinen.css"});
+//		$("#style1").addClass("fat");
+//		$("#style2").removeClass("fat");
+//		$("#style3").removeClass("fat");
+//	});
+//	$("#style2").click(function() {
+//		$("link[rel=stylesheet]").attr({href : "themes/media_theme/media-theme.css"});
+//		$("#style2").addClass("fat");
+//		$("#style1").removeClass("fat");
+//		$("#style3").removeClass("fat");
+//	});	
+//	$("#style3").click(function() {
+//		$("link[rel=stylesheet]").attr({href : "themes/christmas_theme/christmas-theme.css"});
+//		$("#style3").addClass("fat");
+//		$("#style1").removeClass("fat");
+//		$("#style2").removeClass("fat");
+//	});
 	
 	//FITTEXT
 	$(".fittext1").fitText();
