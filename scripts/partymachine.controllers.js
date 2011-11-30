@@ -314,14 +314,7 @@
 
 		this.assignGameControllers(
 			undefined,
-			participants[0],
-			participants[1],
-			participants[2],
-			participants[3],
-			participants[4],
-			participants[5],
-			participants[6],
-			participants[7]
+			participants
 		);
 
 	},
@@ -358,25 +351,19 @@
 
 	controllers.assignGameControllers = function (
 		gameControllersAssigned,
-		participant1,
-		participant2,
-		participant3,
-		participant4,
-		participant5,
-		participant6,
-		participant7) {
-		var plist = arguments;
+		participants
+	) {
 
-		for (var i = 1; i < arguments.length; i++) {
+		for (var i = 0; i < participants.length; i++) {
 
-			_gameControllerMap[i - 1] = plist[i];
+			_gameControllerMap[i] = participants[i];
 
-			if (typeof arguments[i] === "undefined") {
+			if (typeof participants[i] === "undefined") {
 				continue;
 			}
 
-			if (typeof arguments[i].gameController === "undefined") {
-				arguments[i].gameController =
+			if (typeof participants[i].gameController === "undefined") {
+				participants[i].gameController =
 					{
 						joystick: function(x, y) { },
 						gamepadPressed: function(left, up, right, down) { },

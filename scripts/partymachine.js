@@ -1,7 +1,7 @@
 ﻿
 (function (partyMachine, controllers, pluginRunner, participants, soundplayer, $, undefined) {
 
-	var partyFeedUrl = 'http://partymaskinen.se/party.json.aspx';
+	var partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
 
 	var _contexts = {
 		atPluginSelection: 0,
@@ -13,8 +13,21 @@
 		currentlySelectedPlugin: 0
 	};
 
-	function isHostAvailable() {
-		return false;
+
+	partyMachine.getUrlParams = function () {
+		var urlParams = {};
+		(function () {
+			var e,
+        a = /\+/g,  // Regex for replacing addition symbol with a space
+        r = /([^&=]+)=?([^&]*)/g,
+        d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+        q = window.location.search.substring(1);
+
+			while (e = r.exec(q))
+				urlParams[d(e[1])] = d(e[2]);
+		})();
+
+		return urlParams;
 	}
 
 	function atPluginSelect(freshParticipants) {
@@ -26,9 +39,6 @@
 
 		$("#partyMachine-participant").html(participantHtmlTemplate);
 
-		//		partyMachine.assignGameControllers(
-		//						function () {
-
 		for (var participant = 0; participant < freshParticipants.length; participant++) {
 
 			var p = freshParticipants[participant];
@@ -36,7 +46,7 @@
 			if (typeof p === "undefined" || p == null) {
 				continue;
 			}
-
+			
 			p.gameController.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
 
 				var plugins = pluginRunner.getPlugins();
@@ -97,23 +107,13 @@
 
 		}
 
-		//						},
-		//						freshParticipants[0],
-		//						freshParticipants[1],
-		//						freshParticipants[2],
-		//						freshParticipants[3],
-		//						freshParticipants[4],
-		//						freshParticipants[5],
-		//						freshParticipants[6]
-		//					);
-
-
-
 	}
 
 	partyMachine.start = function () {
 
-		if (/*!isHostAvailable() ||*/!partyFeedUrl) {
+		var partyParams = partyMachine.getUrlParams();
+
+		if (typeof partyParams["id"] === "undefined" || partyParams["id"] == null) {
 			pluginRunner.stub();
 			controllers.stub();
 			participants.stub();
@@ -123,12 +123,12 @@
 			controllers.stub();
 
 			// We dont have a fully working runner yet..
-			pluginRunner.stub();
+			// pluginRunner.stub();
 
 			$.ajax({
-				url: partyFeedUrl + "?callback=?",
+				url: partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"],
 				jsonp: true,
-				dataType: 'jsonp',
+				dataType: 'json',
 				success: function (data) {
 
 					var freshParticipants = [];
@@ -141,7 +141,7 @@
 
 					participants.start(partyFeedUrl, freshParticipants);
 
-					pluginRunner.start(soundplayer);
+					pluginRunner.start(soundplayer, data.plugins);
 
 					controllers.start(freshParticipants);
 
@@ -151,17 +151,14 @@
 
 					partyMachine.assignGameControllers(
 						atPluginSelectWithParticipants,
-						freshParticipants[0],
-						freshParticipants[1],
-						freshParticipants[2],
-						freshParticipants[3],
-						freshParticipants[4],
-						freshParticipants[5],
-						freshParticipants[6]
+						freshParticipants
 					);
 
-					soundplayer.start();
+					soundplayer.start(data.media);
 
+				},
+				failure: function () {
+					alert("FAIL");
 				}
 			});
 		}
@@ -193,24 +190,12 @@
 
 	partyMachine.assignGameControllers = function (
 		gameControllersAssigned,
-		participant1,
-		participant2,
-		participant3,
-		participant4,
-		participant5,
-		participant6,
-		participant7
+		participantz
 	) {
 
 		controllers.assignGameControllers(
 			gameControllersAssigned,
-			participant1,
-			participant2,
-			participant3,
-			participant4,
-			participant5,
-			participant6,
-			participant7
+			participantz
 		);
 
 	}

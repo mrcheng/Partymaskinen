@@ -60,7 +60,7 @@
 
 	};
 
-	snd.start = function () {
+	snd.start = function (medias) {
 
 
 		var PP_CONFIG = {
@@ -90,28 +90,16 @@
 			pagePlayer = new PagePlayer();
 
 			pagePlayer.init(typeof PP_CONFIG !== 'undefined' ? PP_CONFIG : null);
+			
+			if (medias && medias.length > 0) {
 
-			$.ajax({
-				url: playlistUrl + "?callback=?",
-				jsonp: true,
-				dataType: 'jsonp',
-				success: function (data) {
+				$.each(medias, function (key, m) {
+					media.push(m);
+				});
 
-					if (data.media) {
+				setMedia();
 
-						if (data.media.length > 0) {
-
-							$.each(data.media, function (key, m) {
-								media.push(m);
-							});
-
-							setMedia();
-
-						}
-
-					}
-				}
-			});
+			}
 
 		});
 

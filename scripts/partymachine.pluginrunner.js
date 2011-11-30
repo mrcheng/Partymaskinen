@@ -9,21 +9,23 @@
 	var if_height;
 
 	pluginRunner.stub = function () {
+		
 		pluginRunner.getPlugins = function () {
-			
+
 			var freshPlugins = [];
-			for (var i = 0; i <= 7; i++){
-				freshPlugins.push({ name: "Vem vill bli full?", Url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+			for (var i = 0; i <= 7; i++) {
+				freshPlugins.push({ title: "Vem vill bli full?", url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
 			}
-			
+
 			return freshPlugins;
 		};
+
+		_plugins = this.getPlugins();
+		
 	};
 
 	pluginRunner.getPlugins = function () {
-		// TODO: Implement
-		var freshPlugins = [];
-		return freshPlugins;
+		return _plugins;
 	};
 
 	pluginRunner.adjustPlugin = function (data) {
@@ -55,13 +57,13 @@
 		}
 
 		var selectedPlugin = _plugins[pluginIndex];
-		alert(selectedPlugin.Name);
+		alert(selectedPlugin.title);
 
 		$("#partyMachinePluginContainer").empty();
 
 		alert("test");
 
-		_currentPluginSrc = selectedPlugin.Url + "#" + encodeURIComponent(document.location.href);
+		_currentPluginSrc = selectedPlugin.url + "#" + encodeURIComponent(document.location.href);
 
 		$("#partyMachine").hide();
 
@@ -72,17 +74,17 @@
 		// $.postMessage('toggle_content', src, $("#partyMachinePlugin").contentWindow);
 	};
 
-	pluginRunner.start = function (soundplayer) {
+	pluginRunner.start = function (soundplayer, plugins) {
 
 		_soundplayer = soundplayer;
 
-		_plugins = this.getPlugins();
+		_plugins = plugins;
 
 		if (_plugins.length > 0) {
 
 			for (var plugin = 0; plugin < _plugins.length; plugin++) {
 				var displayPlugin = _plugins[plugin];
-				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.imageUrl + '"></img><div class="plugin-glare"></div><br /><p>' + displayPlugin.name + '</p></div>';
+				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.imageUrl + '"></img><div class="plugin-glare"></div><br /><p>' + displayPlugin.title + '</p></div>';
 				$("#partyMachine-plugins").append(pluginHtmlTemplate);
 			}
 
