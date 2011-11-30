@@ -58,7 +58,7 @@
 		}
 
 		var selectedPlugin = _plugins[pluginIndex];
-
+			
 		$("#partyMachinePluginContainer").empty();
 
 		_currentPluginSrc = selectedPlugin.url + "#" + encodeURIComponent(document.location.href);
@@ -78,6 +78,11 @@
 		});
 
 
+	};
+
+	pluginRunner.exitPlugin = function() {
+		$("#partyMachinePluginContainer").empty();
+		$("#partyMachine").show();
 	};
 
 	pluginRunner.start = function (soundplayer, plugins) {
