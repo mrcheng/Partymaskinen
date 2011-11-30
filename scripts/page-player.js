@@ -566,11 +566,10 @@ function PagePlayer() {
 
 
 	this.playLink = function () {
-
-
-
-		var o = $("#media").get(0);
-
+	
+		var o = $("#playlist li a").get(0);
+		var sndId = $(o).attr('id');
+		
 		var sURL, soundURL, thisSound, oControls, oLI, str;
 
 		if (!o) {
@@ -645,7 +644,7 @@ function PagePlayer() {
 
 			// create sound
 			thisSound = sm.createSound({
-				id: decodeURI(soundURL),
+				id: sndId,
 				url: decodeURI(soundURL),
 				onplay: self.events.play,
 				onstop: self.events.stop,
@@ -698,14 +697,14 @@ function PagePlayer() {
 			str = str.replace('%s2', self.config.emptyTime);
 			thisSound._data.oTiming.innerHTML = str;
 
-//			$.each(data.media, function (key, m) {
-//				m.stopSound();
-//			});
+			//			$.each(data.media, function (key, m) {
+			//				m.stopSound();
+			//			});
 
 			//self.sounds.length = 0;
-			
+
 			self.sounds.push(thisSound);
-			
+
 			if (self.lastSound) {
 				self.stopSound(self.lastSound);
 			}

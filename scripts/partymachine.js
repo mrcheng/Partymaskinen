@@ -46,7 +46,7 @@
 			if (typeof p === "undefined" || p == null) {
 				continue;
 			}
-			
+
 			p.gameController.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
 
 				var plugins = pluginRunner.getPlugins();
@@ -59,7 +59,7 @@
 					return false;
 				}
 
-				pluginRunner.startPlugin(_state.currentlySelectedPlugin);
+				pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
 			};
 
 			p.gameController.gamepadPressed = function (left, up, right, down) {
@@ -97,7 +97,7 @@
 					_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
 				}
 				else {
-					pluginRunner.startPlugin(_state.currentlySelectedPlugin);
+					pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
 					return true;
 				}
 
@@ -109,14 +109,25 @@
 
 	}
 
-	partyMachine.start = function () {
+	partyMachine.start = function (pluginDevelopment) {
 
 		var partyParams = partyMachine.getUrlParams();
 
-		if (typeof partyParams["id"] === "undefined" || partyParams["id"] == null) {
+		if (typeof pluginDevelopment !== "undefined" || pluginDevelopment != null) {
 			pluginRunner.stub();
 			controllers.stub();
 			participants.stub();
+
+			var stubbedParticipants = participants.getParticipants();
+
+			pluginRunner.startPlugin(stubbedParticipants, _state.currentlySelectedPlugin);
+
+		}
+		else if (typeof partyParams["id"] === "undefined" || partyParams["id"] == null) {
+			pluginRunner.stub();
+			controllers.stub();
+			participants.stub();
+			
 		}
 		else {
 			// We dont have a fully working controller solution
@@ -156,36 +167,33 @@
 
 					soundplayer.start(data.media);
 
-				},
-				failure: function () {
-					alert("FAIL");
 				}
 			});
 		}
 
-		// Setup a callback to handle the dispatched MessageEvent event. In cases where
-		// window.postMessage is supported, the passed event will have .data, .origin and
-		// .source properties. Otherwise, this will only have the .data property.
-		$.receiveMessage(function (e) {
+		//		// Setup a callback to handle the dispatched MessageEvent event. In cases where
+		//		// window.postMessage is supported, the passed event will have .data, .origin and
+		//		// .source properties. Otherwise, this will only have the .data property.
+		//		$.receiveMessage(function (e) {
 
-			var data = JSON.parse(e.data);
+		//			var data = JSON.parse(e.data);
 
-			if (data.event === "iframe_resize") {
-				pluginRunner.adjustPlugin(data);
-			}
-			else if (data.event === "getParticipants") {
+		//			if (data.event === "iframe_resize") {
+		//				pluginRunner.adjustPlugin(data);
+		//			}
+		//			else if (data.event === "getParticipants") {
 
-				var msg = { event: "participants", "participants": _participants };
-				var currentPlugin = pluginRunner.getPlugin();
+		//				var msg = { event: "participants", "participants": _participants };
+		//				var currentPlugin = pluginRunner.getPlugin();
 
-				// $.postMessage(JSON.stringify(msg), currentPlugin.src, currentPlugin.contentWindow);
+		//				// $.postMessage(JSON.stringify(msg), currentPlugin.src, currentPlugin.contentWindow);
 
-				$.postMessage(JSON.stringify(msg), '*', currentPlugin.contentWindow);
-			}
-			else {
-				alert("daaa" + data.event);
-			}
-		});
+		//				$.postMessage(JSON.stringify(msg), '*', currentPlugin.contentWindow);
+		//			}
+		//			else {
+		//				alert("daaa" + data.event);
+		//			}
+		//		});
 	},
 
 	partyMachine.assignGameControllers = function (
