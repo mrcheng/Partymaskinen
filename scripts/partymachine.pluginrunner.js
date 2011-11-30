@@ -56,7 +56,7 @@
 		if (typeof _soundplayer !== "undefined") {
 			_soundplayer.playEvent("pluginHighlight");
 		}
-
+		
 		var selectedPlugin = _plugins[pluginIndex];
 			
 		$("#partyMachinePluginContainer").empty();
