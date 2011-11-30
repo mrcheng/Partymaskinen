@@ -1,27 +1,24 @@
 ﻿
-(function (partyMachineClient, msg, $, undefined) {
+(function (partyMachine, msg, $, undefined) {
 
+	var parent_url = decodeURIComponent(document.location.hash.replace(/^#/, ''));
 
+	partyMachine.start = function () {
 
-	function isHostAvailable() {
-		return false;
-	}
-
-	partyMachineClient.start = function () {
-
-		msg.start();
 
 	};
 
-	partyMachineClient.getParticipants = function () {
-		var msg = { 'event': 'getParticipants' };
-
-		$.postMessage(JSON.stringify(msg), '*', parent);
-	}
+	partyMachine.exit = function () {
+		alert("pluginExit");
+		
+		var pluginExitMsg = { event: 'pluginExit' };
+		
+		$.postMessage(JSON.stringify(pluginExitMsg), parent_url, parent);
+	};
 
 } (
-	window.partyMachineClient = window.partyMachineClient || {},
-	window.partyMachineClientMessaging,
+	window.partyMachine = window.partyMachineClient || {},
+	window.partyMachine,
 	jQuery
 	)
 );

@@ -17,7 +17,7 @@
 
 		$('.current-media-title').html('<h2>' + currentMedia.title + '</h2>');
 
-		var html = '<li><a id="media" href="' + currentMedia.url + '">'
+		var html = '<li><a id="' + currentMedia.id + '" href="' + currentMedia.url + '">'
 			+ currentMedia.title + '<span class="created-by"> by ' + currentMedia.createdBy.name + '</span>'
 			+ nextMediaHtml
 			+ '</a></li>';

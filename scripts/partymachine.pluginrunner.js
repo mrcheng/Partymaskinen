@@ -9,19 +9,19 @@
 	var if_height;
 
 	pluginRunner.stub = function () {
-		
+
 		pluginRunner.getPlugins = function () {
 
 			var freshPlugins = [];
 			for (var i = 0; i <= 7; i++) {
-				freshPlugins.push({ title: "Vem vill bli full?", url: "plugin-test.html", imageUrl: "img/plugin-icon-axample.png" });
+				freshPlugins.push({ title: "Your plugin title", url: "index.html" });
 			}
 
 			return freshPlugins;
 		};
 
 		_plugins = this.getPlugins();
-		
+
 	};
 
 	pluginRunner.getPlugins = function () {
@@ -49,19 +49,17 @@
 		return plugDesc;
 	};
 
-	pluginRunner.startPlugin = function (pluginIndex) {
+	pluginRunner.startPlugin = function (participants, pluginIndex) {
 
+		pluginIndex = pluginIndex || 0;
 		_currentPluginIndex = pluginIndex;
 		if (typeof _soundplayer !== "undefined") {
 			_soundplayer.playEvent("pluginHighlight");
 		}
 
 		var selectedPlugin = _plugins[pluginIndex];
-		alert(selectedPlugin.title);
-
+			
 		$("#partyMachinePluginContainer").empty();
-
-		alert("test");
 
 		_currentPluginSrc = selectedPlugin.url + "#" + encodeURIComponent(document.location.href);
 
@@ -70,8 +68,21 @@
 		$('<iframe id="partyMachinePlugin" name="partyMachinePlugin" src="' + _currentPluginSrc + '" scrolling="no" frameborder="0" height="100%" width="100%" style="display:block;position:absolute;z-index:1001;">')
 			.appendTo("#partyMachinePluginContainer");
 
+		var startMsg = {
+			'event': 'startPlugin',
+			'participants': participants
+		};
 
-		// $.postMessage('toggle_content', src, $("#partyMachinePlugin").contentWindow);
+		$("#partyMachinePlugin").load(function () {
+			$.postMessage(JSON.stringify(startMsg), '*', $("#partyMachinePlugin").get(0).contentWindow);
+		});
+
+
+	};
+
+	pluginRunner.exitPlugin = function() {
+		$("#partyMachinePluginContainer").empty();
+		$("#partyMachine").show();
 	};
 
 	pluginRunner.start = function (soundplayer, plugins) {
@@ -84,7 +95,7 @@
 
 			for (var plugin = 0; plugin < _plugins.length; plugin++) {
 				var displayPlugin = _plugins[plugin];
-				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.imageUrl + '"></img><div class="plugin-glare"></div><br /><p>' + displayPlugin.title + '</p></div>';
+				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.url + '/thumbnail.png"></img><div class="plugin-glare"></div><br /><p>' + displayPlugin.title + '</p></div>';
 				$("#partyMachine-plugins").append(pluginHtmlTemplate);
 			}
 

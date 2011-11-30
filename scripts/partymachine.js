@@ -47,7 +47,7 @@
 			if (typeof p === "undefined" || p == null) {
 				continue;
 			}
-			
+
 			p.gameController.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
 
 				var plugins = pluginRunner.getPlugins();
@@ -60,7 +60,7 @@
 					return false;
 				}
 
-				pluginRunner.startPlugin(_state.currentlySelectedPlugin);
+				pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
 			};
 
 			p.gameController.gamepadPressed = function (left, up, right, down) {
@@ -98,7 +98,7 @@
 					_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
 				}
 				else {
-					pluginRunner.startPlugin(_state.currentlySelectedPlugin);
+					pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
 					return true;
 				}
 
@@ -110,14 +110,25 @@
 
 	}
 
-	partyMachine.start = function () {
+	partyMachine.start = function (pluginDevelopment) {
 
 		var partyParams = partyMachine.getUrlParams();
 
-		if (typeof partyParams["id"] === "undefined" || partyParams["id"] == null) {
+		if (typeof pluginDevelopment !== "undefined" || pluginDevelopment != null) {
 			pluginRunner.stub();
 			controllers.stub();
 			participants.stub();
+
+			var stubbedParticipants = participants.getParticipants();
+
+			pluginRunner.startPlugin(stubbedParticipants, _state.currentlySelectedPlugin);
+
+		}
+		else if (typeof partyParams["id"] === "undefined" || partyParams["id"] == null) {
+			pluginRunner.stub();
+			controllers.stub();
+			participants.stub();
+
 		}
 		else {
 			// We dont have a fully working controller solution
@@ -157,9 +168,6 @@
 
 					soundplayer.start(data.media);
 
-				},
-				failure: function () {
-					alert("FAIL");
 				}
 			});
 		}
@@ -174,19 +182,20 @@
 			if (data.event === "iframe_resize") {
 				pluginRunner.adjustPlugin(data);
 			}
-			else if (data.event === "getParticipants") {
+			else if (data.event === "pluginExit") {
+				
+				pluginRunner.exitPlugin();
+				
+				_state.context = _contexts.atPluginSelection;
 
-				var msg = { event: "participants", "participants": _participants };
-				var currentPlugin = pluginRunner.getPlugin();
-
-				// $.postMessage(JSON.stringify(msg), currentPlugin.src, currentPlugin.contentWindow);
-
-				$.postMessage(JSON.stringify(msg), '*', currentPlugin.contentWindow);
+				atPluginSelect(participants.getParticipants());
+				
 			}
 			else {
-				alert("daaa" + data.event);
+				console.log("unknown message recieved: " + data);
 			}
 		});
+
 	},
 
 	partyMachine.assignGameControllers = function (
