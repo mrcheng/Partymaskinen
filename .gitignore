@@ -1,5 +1,5 @@
 ﻿*.DS_Store
-
+.DS_Store
 #Visual Studio files
 *.[Oo]bj
 *.user
