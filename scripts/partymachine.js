@@ -33,11 +33,12 @@
 	function atPluginSelect(freshParticipants) {
 
 		var currentParticipant = participants.getNextParticipant();
-
-		var participantHtmlTemplate = '<p class="participant-info">' + currentParticipant.description + '</p>' + '<img src="' + currentParticipant.imageUrl + '"></img><p>' + currentParticipant.name + '</p>'
-							;
-
-		$("#partyMachine-participant").html(participantHtmlTemplate);
+		$("#participant-info").html('<p>' + currentParticipant.description + '</p>');
+		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
+		$("#participant-name").html('<p>' + currentParticipant.name + '</p>');
+		
+		//var participantHtmlTemplate = '<p>' + currentParticipant.name + '</p>';
+		//$("#partyMachine-participant").html(participantHtmlTemplate);
 
 		for (var participant = 0; participant < freshParticipants.length; participant++) {
 

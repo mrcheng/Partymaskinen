@@ -67,7 +67,7 @@
 
 						var nextParticipant = partyMachineParticipants.getNextParticipant();
 
-						var participantHtmlTemplate = '<img src="' + nextParticipant.imageUrl + '"></img><p>' + nextParticipant.name + '</p>'
+						var participantHtmlTemplate = '<p class="participant-info"> + nextParticipant.description + </p><img src="' + nextParticipant.imageUrl + '"></img><p>' + nextParticipant.name + '</p>'
 							+ '<p>' + nextParticipant.description + '</p>';
 
 						$("#partyMachine-participant").append(participantHtmlTemplate);
