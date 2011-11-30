@@ -127,7 +127,7 @@
 			pluginRunner.stub();
 			controllers.stub();
 			participants.stub();
-			
+
 		}
 		else {
 			// We dont have a fully working controller solution
@@ -182,13 +182,19 @@
 				pluginRunner.adjustPlugin(data);
 			}
 			else if (data.event === "pluginExit") {
-			
+				
+				pluginRunner.exitPlugin();
+				
+				_state.context = _contexts.atPluginSelection;
+
+				atPluginSelect(participants.getParticipants());
+				
 			}
 			else {
 				console.log("unknown message recieved: " + data);
 			}
 		});
-		
+
 	},
 
 	partyMachine.assignGameControllers = function (
