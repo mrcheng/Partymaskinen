@@ -25,6 +25,9 @@
 		return html;
 	};
 
+	snd.resume = function() {
+		pagePlayer.playLink();
+	};
 
 	function setMedia() {
 
@@ -90,7 +93,7 @@
 			pagePlayer = new PagePlayer();
 
 			pagePlayer.init(typeof PP_CONFIG !== 'undefined' ? PP_CONFIG : null);
-			
+
 			if (medias && medias.length > 0) {
 
 				$.each(medias, function (key, m) {

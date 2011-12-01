@@ -183,13 +183,15 @@
 				pluginRunner.adjustPlugin(data);
 			}
 			else if (data.event === "pluginExit") {
-				
+
 				pluginRunner.exitPlugin();
-				
+
 				_state.context = _contexts.atPluginSelection;
 
-				atPluginSelect(participants.getParticipants());
+				soundplayer.resume();
 				
+				atPluginSelect(participants.getParticipants());
+
 			}
 			else {
 				console.log("unknown message recieved: " + data);

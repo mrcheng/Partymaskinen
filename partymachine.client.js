@@ -9,7 +9,6 @@
 	};
 
 	partyMachine.exit = function () {
-		alert("pluginExit");
 		
 		var pluginExitMsg = { event: 'pluginExit' };
 		
