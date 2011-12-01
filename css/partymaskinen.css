@@ -1,5 +1,5 @@
-html{margin:0;height:94%;background:#000;}
-/*html{background: url(../themes/christmas_theme/img/Christmas_back_1.jpg) no-*/
+/*html{margin:0;height:94%;background:#000;}*/
+html{background: url(../themes/christmas_theme/img/Christmas_back_1.jpg) no-repeat center center fixed;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;}
 body{height:100%;text-align:center;margin:0;padding:0;}
 strong{}
 p{}
