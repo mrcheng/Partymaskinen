@@ -28,9 +28,9 @@ $(document).ready(function() {
 	//$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
 
 	//Fades in the whole page on dom ready
-	$('#logo, .participant, .music-info, .plugin-frame').animate({
+	$('#partyMachine').animate({
     	opacity: 1,
-		}, 500, function() {
+		}, 3000, function() {
 			//Fires when fade in is done
 	});
 	
