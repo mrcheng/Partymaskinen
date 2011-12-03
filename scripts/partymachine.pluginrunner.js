@@ -55,6 +55,7 @@
 		_currentPluginIndex = pluginIndex;
 		if (typeof _soundplayer !== "undefined") {
 			_soundplayer.playEvent("pluginHighlight");
+			_soundplayer.pause();
 		}
 		
 		var selectedPlugin = _plugins[pluginIndex];

@@ -1,12 +1,9 @@
-﻿(function (snd, $, undefined) {
-
+﻿(function (snd, youtubePlayer, $, undefined) {
 	var media = [];
 
 	var pagePlayer;
 
 	var currentMediaIndex = 0;
-
-	var playlistUrl = 'http://partymaskinen.se/party.json.aspx';
 
 	function getCurrentSongHtml(currentMedia, nextMedia) {
 		var nextMediaHtml = '';
@@ -25,8 +22,18 @@
 		return html;
 	};
 
+	snd.pause = function() {
+		if (media[currentMediaIndex].youtubeVideoId)
+			youtubePlayer.pause();
+//		else
+//			pagePlayer.???
+	};
+
 	snd.resume = function() {
-		pagePlayer.playLink();
+		if (media[currentMediaIndex].youtubeVideoId)
+			youtubePlayer.resume();
+		else
+			pagePlayer.playLink();
 	};
 
 	function setMedia() {
@@ -55,7 +62,10 @@
 
 		$("#playlist").html(mediaHtml);
 
-		pagePlayer.playLink();
+		if (currentMedia.youtubeVideoId)
+			youtubePlayer.play(currentMedia.youtubeVideoId);
+		else
+			pagePlayer.playLink();
 
 	}
 
@@ -87,7 +97,6 @@
 			alert('probably a flash security error');
 		});
 
-
 		soundManager.onready(function () {
 
 			pagePlayer = new PagePlayer();
@@ -106,7 +115,8 @@
 
 		});
 
-
+		youtubePlayer.onFinished = setMedia;
+		youtubePlayer.start();
 
 	};
 
@@ -146,5 +156,5 @@
 
 	};
 
-} (window.partyMachineSound = window.partyMachineSound || {}, jQuery));
-
+} (window.partyMachineSound = window.partyMachineSound || {},
+	window.partyMachineYoutube, jQuery));

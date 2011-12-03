@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, pluginRunner, participants, soundplayer, youtubeplayer, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, participants, soundplayer, $, undefined) {
 
 	var partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
 
@@ -166,9 +166,7 @@
 						freshParticipants
 					);
 
-					soundplayer.start(data.media);
-
-					youtubeplayer.start();
+					soundplayer.start($.shuffle(data.media));
 				}
 			});
 		}
@@ -219,7 +217,6 @@
 	window.partyMachinePluginRunner,
 	window.partyMachineParticipants,
 	window.partyMachineSound,
-	window.partyMachineYoutube,
 	jQuery
 	)
 );
