@@ -1,62 +1,106 @@
-$(document).ready(function() {
-	
-	// Switch CSS
-	//$("#style1").addClass("fat");
-//	
-//	$("#style1").click(function() {
-//		$("link[rel=stylesheet]").attr({href : "css/partymaskinen.css"});
-//		$("#style1").addClass("fat");
-//		$("#style2").removeClass("fat");
-//		$("#style3").removeClass("fat");
-//	});
-//	$("#style2").click(function() {
-//		$("link[rel=stylesheet]").attr({href : "themes/media_theme/media-theme.css"});
-//		$("#style2").addClass("fat");
-//		$("#style1").removeClass("fat");
-//		$("#style3").removeClass("fat");
-//	});	
-//	$("#style3").click(function() {
-//		$("link[rel=stylesheet]").attr({href : "themes/christmas_theme/christmas-theme.css"});
-//		$("#style3").addClass("fat");
-//		$("#style1").removeClass("fat");
-//		$("#style2").removeClass("fat");
-//	});
-	
-	//FITTEXT
-	$(".fittext1").fitText();
-	//$(".fittext2").fitText(1.2);
-	//$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
+$(document).ready(function () {
 
-	//Fades in the whole page on dom ready
-	$('#partyMachine').animate({
-    	opacity: 1,
-		}, 3000, function() {
-			//Fires when fade in is done
-	});
-	
-	//Slide for the partyplayer
-	shortcut.add("p", togglePlayer);
-	var playerVisible = false;
-	function togglePlayer(){
-		if(playerVisible){
-			$(".party-player-container").animate({ 
-				bottom: '-100%'
-				}, 500, function(){playerVisible = false;});
-			}
-		if(!playerVisible){
-			$(".party-player-container").css({visibility: "visible"}).animate({
-			bottom: '3%'
-			}, 500,function(){playerVisible = true;});
-		}
-	}
+    // Switch CSS
+    //$("#style1").addClass("fat");
+    //	
+    //	$("#style1").click(function() {
+    //		$("link[rel=stylesheet]").attr({href : "css/partymaskinen.css"});
+    //		$("#style1").addClass("fat");
+    //		$("#style2").removeClass("fat");
+    //		$("#style3").removeClass("fat");
+    //	});
+    //	$("#style2").click(function() {
+    //		$("link[rel=stylesheet]").attr({href : "themes/media_theme/media-theme.css"});
+    //		$("#style2").addClass("fat");
+    //		$("#style1").removeClass("fat");
+    //		$("#style3").removeClass("fat");
+    //	});	
+    //	$("#style3").click(function() {
+    //		$("link[rel=stylesheet]").attr({href : "themes/christmas_theme/christmas-theme.css"});
+    //		$("#style3").addClass("fat");
+    //		$("#style1").removeClass("fat");
+    //		$("#style2").removeClass("fat");
+    //	});
 
-	shortcut.add("esc", showSettings);
-	//Opens the settings panel using 'esc' key
-	function showSettings(){
-		$('#settings').toggle({
-			}, 500, function() {
-		});
-	}
+    //FITTEXT
+    $(".fittext1").fitText();
+    //$(".fittext2").fitText(1.2);
+    //$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
+
+    //Fades in the whole page on dom ready
+    $('#partyMachine').animate({
+        opacity: 1
+    }, 3000, function () {
+        //Fires when fade in is done
+    });
+
+    //Slide for the partyplayer
+    shortcut.add("p", togglePlayer);
+    var playerVisible = false;
+    function togglePlayer() {
+        if (playerVisible) {
+            $(".party-player-container").animate({
+                bottom: '-100%'
+            }, 500, function () { playerVisible = false; });
+        }
+        if (!playerVisible) {
+            $(".party-player-container").css({ visibility: "visible" }).animate({
+                bottom: '3%'
+            }, 500, function () { playerVisible = true; });
+        }
+    }
+
+    shortcut.add("esc", showSettings);
+    //Opens the settings panel using 'esc' key
+    function showSettings() {
+        $('#settings').toggle({
+        }, 500, function () {
+        });
+    }
+
+
+    shortcut.add("u", showParticipants);
+    function showParticipants() {
+        var partydudes = window.partyMachineParticipants.getAllParticipants();
+
+        $("#participantWrapper").html('');
+        for (var i = 0; i < partydudes.length; i++) {
+            var newDiv = "<div><img src='" + partydudes[i].imageUrl + "' height='100'></img><p>Status: " + partydudes[i].status + " <br />" + partydudes[i].name + "</p></div>";
+
+            $("#participantWrapper").append(newDiv);
+        }
+
+        var test = window.partyMachineParticipants.getNextParticipant();
+
+        $('#participantList').toggle(500, function () {
+            if ($("#participantList").is(':visible')) {
+                //override partyMashine bindings
+                for (var participant = 0; participant < partydudes.length; participant++) {
+
+                    var p = partydudes[participant];
+
+                    if (typeof p === "undefined" || p == null) {
+                        continue;
+                    }
+
+                    p.gameController.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
+
+                        alert("test");
+                    };
+
+                    p.gameController.gamepadPressed = function (left, up, right, down) {
+
+                        alert("test2");
+
+                    };
+                }
+            }
+            else {
+                //restore
+                partyMachine.bindKeys(window.partyMachineParticipants.getActiveParticipants());
+            }
+        });
+    }
 });
 
 /**
