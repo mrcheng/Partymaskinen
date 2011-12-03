@@ -35,8 +35,8 @@
 		iframe.id = 'youtube';
 		iframe.frameBorder = 0;
 		iframe.style.position = 'fixed';
-		iframe.style.right = 0;
-		iframe.style.top = 0;
+		iframe.style.marginLeft = '35%';
+		iframe.style.bottom = 0;
 		iframe.style.zIndex = '-100';
 		iframe.style.visibility = 'hidden';
 		iframe.width = '30%';
