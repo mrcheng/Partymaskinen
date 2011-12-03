@@ -36,11 +36,11 @@
 
 		var currentParticipant = participants.getNextParticipant();
 		var CP = currentParticipant.description;
-		
-		if (CP == null){
+
+		if (CP == null) {
 			CP = "Jag orkade inte skriva description =(";
 		}
-		
+
 		$("#participant-info").html('<p>' + CP + '</p>');
 		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
 		$("#participant-name").html('<p>' + currentParticipant.name + '</p>');
@@ -120,7 +120,7 @@
 
 	function resetParticipantTimeout() {
 
-		if(_participantTimeoutTimer !== null)
+		if (_participantTimeoutTimer !== null)
 			window.clearTimeout(_participantTimeoutTimer);
 
 		_participantTimeoutDateTime = new Date();
@@ -135,26 +135,24 @@
 		var nTimeDiff = _participantTimeoutDateTime.getTime() - dateNow.getTime();
 		var oDiff = new Object();
 
-		oDiff.days = Math.floor(nTimeDiff/1000/60/60/24);
-		nTimeDiff -= oDiff.days*1000*60*60*24;
+		oDiff.days = Math.floor(nTimeDiff / 1000 / 60 / 60 / 24);
+		nTimeDiff -= oDiff.days * 1000 * 60 * 60 * 24;
 
-		oDiff.hours = Math.floor(nTimeDiff/1000/60/60);
-		nTimeDiff -= oDiff.hours*1000*60*60;
+		oDiff.hours = Math.floor(nTimeDiff / 1000 / 60 / 60);
+		nTimeDiff -= oDiff.hours * 1000 * 60 * 60;
 
-		oDiff.minutes = Math.floor(nTimeDiff/1000/60);
-		nTimeDiff -= oDiff.minutes*1000*60;
+		oDiff.minutes = Math.floor(nTimeDiff / 1000 / 60);
+		nTimeDiff -= oDiff.minutes * 1000 * 60;
 
-		oDiff.seconds = Math.floor(nTimeDiff/1000);
+		oDiff.seconds = Math.floor(nTimeDiff / 1000);
 
 		$("#participant-timer").html('<p>' + (oDiff.minutes < 10 ? '0' : '') + oDiff.minutes + ':' + (oDiff.seconds < 10 ? '0' : '') + oDiff.seconds + '</p>');
 
-		if(oDiff.minutes == 0 && oDiff.seconds == 0)
-		{
+		if (oDiff.minutes == 0 && oDiff.seconds == 0) {
 			atPluginSelect(participants.getParticipants());
 			resetParticipantTimeout();
 		}
-		else
-		{
+		else {
 			_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
 		}
 	},
@@ -186,8 +184,10 @@
 			// We dont have a fully working runner yet..
 			// pluginRunner.stub();
 
+			var feedUrl = partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"];
+			
 			$.ajax({
-				url: partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"],
+				url: feedUrl,
 				jsonp: true,
 				dataType: 'json',
 				success: function (data) {
@@ -201,7 +201,7 @@
 					}
 					$.shuffle(freshParticipants);
 
-					participants.start(partyFeedUrl, freshParticipants);
+					participants.start(feedUrl, freshParticipants);
 
 					pluginRunner.start(mediaPlayer, data.plugins);
 
