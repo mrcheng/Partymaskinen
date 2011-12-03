@@ -55,11 +55,13 @@
 	};
 
 	youtube.pause = function () {
+		iframe.style.visibility = 'hidden';
 		player.pauseVideo();
 	};
 
 	youtube.resume = function () {
 		player.playVideo();
+		iframe.style.visibility = 'visible';
 	};
 
 	youtube.onFinished = function () { };
