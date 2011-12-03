@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, pluginRunner, participants, soundplayer, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, participants, mediaPlayer, $, undefined) {
 
 	var partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
 
@@ -153,7 +153,7 @@
 
 					participants.start(partyFeedUrl, freshParticipants);
 
-					pluginRunner.start(soundplayer, data.plugins);
+					pluginRunner.start(mediaPlayer, data.plugins);
 
 					controllers.start(freshParticipants);
 
@@ -166,7 +166,7 @@
 						freshParticipants
 					);
 
-					soundplayer.start($.shuffle(data.media));
+					mediaPlayer.start($.shuffle(data.media));
 				}
 			});
 		}
@@ -187,7 +187,7 @@
 
 				_state.context = _contexts.atPluginSelection;
 
-				soundplayer.resume();
+				mediaPlayer.resume();
 				
 				atPluginSelect(participants.getParticipants());
 
@@ -216,7 +216,7 @@
 	window.partyMachineControllers,
 	window.partyMachinePluginRunner,
 	window.partyMachineParticipants,
-	window.partyMachineSound,
+	window.partyMachineMedia,
 	jQuery
 	)
 );
