@@ -74,6 +74,13 @@ $(document).ready(function () {
 
         $('#participantList').toggle(500, function () {
             if ($("#participantList").is(':visible')) {
+
+
+                partyMachine.assignGameControllers(
+						undefined,
+						partydudes
+					);
+                
                 //override partyMashine bindings
                 for (var participant = 0; participant < partydudes.length; participant++) {
 

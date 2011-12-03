@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, pluginRunner, participants, soundplayer, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, participants, mediaPlayer, $, undefined) {
 
     var partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
 
@@ -13,6 +13,8 @@
         currentlySelectedPlugin: 0
     };
 
+	var _participantTimeoutTimer;
+	var _participantTimeoutDateTime = null;
 
     partyMachine.getUrlParams = function () {
         var urlParams = {};
@@ -28,12 +30,18 @@
         })();
 
         return urlParams;
-    }
+	};
 
     function atPluginSelect(freshParticipants) {
 
         var currentParticipant = participants.getNextParticipant();
-        $("#participant-info").html('<p>' + currentParticipant.description + '</p>');
+		var CP = currentParticipant.description;
+		
+		if (CP == null){
+			CP = "Jag orkade inte skriva description =(";
+		}
+		
+		$("#participant-info").html('<p>' + CP + '</p>');
         $("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
         $("#participant-name").html('<p>' + currentParticipant.name + '</p>');
 
@@ -113,11 +121,53 @@
 
                 pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
 
-            };
+			};
+
+		}
+    },
+    
+	function resetParticipantTimeout() {
+
+		if(_participantTimeoutTimer !== null)
+			window.clearTimeout(_participantTimeoutTimer);
+
+		_participantTimeoutDateTime = new Date();
+		_participantTimeoutDateTime.setTime(_participantTimeoutDateTime.getTime() + (5 * 60 * 1000));
+
+		_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
+    },
+
+    partyMachine.updateParticipantTimeout = function() {
+
+        var dateNow = new Date();
+        var nTimeDiff = _participantTimeoutDateTime.getTime() - dateNow.getTime();
+        var oDiff = new Object();
+
+        oDiff.days = Math.floor(nTimeDiff / 1000 / 60 / 60 / 24);
+        nTimeDiff -= oDiff.days * 1000 * 60 * 60 * 24;
+
+        oDiff.hours = Math.floor(nTimeDiff / 1000 / 60 / 60);
+        nTimeDiff -= oDiff.hours * 1000 * 60 * 60;
+
+        oDiff.minutes = Math.floor(nTimeDiff / 1000 / 60);
+        nTimeDiff -= oDiff.minutes * 1000 * 60;
+
+        oDiff.seconds = Math.floor(nTimeDiff / 1000);
+
+        $("#participant-timer").html('<p>' + (oDiff.minutes < 10 ? '0' : '') + oDiff.minutes + ':' + (oDiff.seconds < 10 ? '0' : '') + oDiff.seconds + '</p>');
+
+        if (oDiff.minutes == 0 && oDiff.seconds == 0)
+        {
+            atPluginSelect(participants.getParticipants());
+            resetParticipantTimeout();
+        }
+        else
+        {
+            _participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
         }
     },
 
-    partyMachine.start = function (pluginDevelopment) {
+    partyMachine.start = function(pluginDevelopment) {
 
         var partyParams = partyMachine.getUrlParams();
 
@@ -147,44 +197,45 @@
             var feedUrl = partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"]
 
             $.ajax({
-                url: feedUrl,
-                jsonp: true,
-                dataType: 'json',
-                success: function (data) {
+                    url: feedUrl,
+                    jsonp: true,
+                    dataType: 'json',
+                    success: function(data) {
 
-                    var freshParticipants = [];
+                        var freshParticipants = [];
 
-                    if (data.participants && data.participants.length > 0) {
-                        $.each(data.participants, function (key, m) {
-                            m.status = "active";
-                            freshParticipants.push(m);
-                        });
-                    }
+                        if (data.participants && data.participants.length > 0) {
+                            $.each(data.participants, function(key, m) {
+                                m.status = "active";
+                                freshParticipants.push(m);
+                            });
+                        }
+                        $.shuffle(freshParticipants);
 
-                    participants.start(feedUrl, freshParticipants);
+                        participants.start(feedUrl, freshParticipants);
 
-                    pluginRunner.start(soundplayer, data.plugins);
+                        pluginRunner.start(mediaPlayer, data.plugins);
 
-                    controllers.start(freshParticipants);
+                        controllers.start(freshParticipants);
 
-                    var atPluginSelectWithParticipants = function () {
-                        atPluginSelect(freshParticipants);
-                    };
+                        var atPluginSelectWithParticipants = function() {
+                            atPluginSelect(freshParticipants);
+                        };
 
-                    partyMachine.assignGameControllers(
-						atPluginSelectWithParticipants,
-						freshParticipants
+                        partyMachine.assignGameControllers(
+                            atPluginSelectWithParticipants,
+                            freshParticipants
 					);
 
-                    soundplayer.start($.shuffle(data.media));
-                }
-            });
+                        mediaPlayer.start($.shuffle(data.media));
+                    }
+                });
         }
 
         // Setup a callback to handle the dispatched MessageEvent event. In cases where
         // window.postMessage is supported, the passed event will have .data, .origin and
         // .source properties. Otherwise, this will only have the .data property.
-        $.receiveMessage(function (e) {
+        $.receiveMessage(function(e) {
 
             var data = JSON.parse(e.data);
 
@@ -197,36 +248,37 @@
 
                 _state.context = _contexts.atPluginSelection;
 
-                soundplayer.resume();
+                mediaPlayer.resume();
 
                 atPluginSelect(participants.getActiveParticipants());
-
+                resetParticipantTimeout();
             }
             else {
-                console.log("unknown message recieved: " + data);
+                //console.log("unknown message recieved: " + data);
             }
         });
 
+        resetParticipantTimeout();
     },
 
-	partyMachine.assignGameControllers = function (
-		gameControllersAssigned,
-		participantz
+    partyMachine.assignGameControllers = function(
+        gameControllersAssigned,
+        participantz
 	) {
 
-	    controllers.assignGameControllers(
-			gameControllersAssigned,
-			participantz
+        controllers.assignGameControllers(
+            gameControllersAssigned,
+            participantz
 		);
 
-	}
+    };
 
 } (
 	window.partyMachine = window.partyMachine || {},
 	window.partyMachineControllers,
 	window.partyMachinePluginRunner,
 	window.partyMachineParticipants,
-	window.partyMachineSound,
+	window.partyMachineMedia,
 	jQuery
 	)
 );

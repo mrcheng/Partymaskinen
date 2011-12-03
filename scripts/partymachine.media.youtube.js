@@ -1,13 +1,31 @@
-﻿(function(youtube, $, undefined)
-{
+﻿(function (youtube, $, undefined) {
 	var player;
 	var iframe;
 
 	var playerReady = false;
 	var currentVideoId;
 
-	youtube.start = function()
-	{
+	youtube.getMediaHandler = function (media) {
+
+		if (!media.youtubeVideoId)
+			return null;
+
+		media.play = function () {
+			youtube.play(media.youtubeVideoId);
+		};
+
+		media.pause = function () {
+			youtube.pause();
+		};
+
+		media.resume = function () {
+			youtube.resume();
+		};
+
+		return media;
+	},
+
+	youtube.start = function () {
 		var tag = document.createElement('script');
 		tag.src = 'http://www.youtube.com/player_api';
 		var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -26,57 +44,48 @@
 		document.body.appendChild(iframe);
 	};
 
-	youtube.play = function(videoId)
-	{
+	youtube.play = function (videoId) {
 		currentVideoId = videoId;
 
-		if (playerReady)
-		{
+		if (playerReady) {
 			player.loadVideoById(videoId);
 			iframe.style.visibility = 'visible';
 		}
 	};
 
-	youtube.pause = function()
-	{
+	youtube.pause = function () {
 		player.pauseVideo();
 	};
 
-	youtube.resume = function()
-	{
+	youtube.resume = function () {
 		player.playVideo();
 	};
 
-	youtube.onFinished = function() {};
+	youtube.onFinished = function () { };
 
-	window.onYouTubePlayerAPIReady = function()
-	{
+	window.onYouTubePlayerAPIReady = function () {
 		player = new YT.Player('youtube',
 		{
 			events:
 			{
-				onReady: function(event)
-				{
+				onReady: function (event) {
 					event.target.setVolume(100);
 					playerReady = true;
 					if (currentVideoId)
 						youtube.play(currentVideoId);
 				},
-				onStateChange: function(e)
-				{
+				onStateChange: function (e) {
 					console.log('onStateChange: ' + e.data);
-					if (e.data == YT.PlayerState.ENDED)
-					{
+					if (e.data == YT.PlayerState.ENDED) {
 						iframe.style.visibility = 'hidden';
 						youtube.onFinished();
 					}
 				},
-				onError: function(e)
-				{
+				onError: function (e) {
 					console.log('onError: ' + e.data);
 					youtube.onFinished();
 				}
 			}
 		});
 	}
-}(window.partyMachineYoutube = window.partyMachineYoutube || {}, jQuery));
+} (window.partyMachineYoutube = window.partyMachineYoutube || {}, jQuery));
