@@ -2,9 +2,8 @@
 	var _media = [];
 	var _players = [];
 
-	var currentMedia;
-	var nextMedia;
-
+	var _currentMedia;
+	
 	function getCurrentSongHtml(currentMedia, nextMedia) {
 		var nextMediaHtml = '';
 
@@ -132,7 +131,7 @@
 
 		var mediaHtml = getCurrentSongHtml(playableMedia.currentMedia, playableMedia.nextMedia);
 
-		currentMedia = playableMedia.currentMedia;
+		_currentMedia = playableMedia.currentMedia;
 
 		$("#playlist").html(mediaHtml);
 
