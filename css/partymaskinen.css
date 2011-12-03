@@ -10,11 +10,11 @@ body{height:100%;text-align:center;margin:0;padding:0;}
 /*PARTICIPANTS*/
 #participant-info p{color:#fff;font-size:20%;position:inherit;margin-top:3%;}
 #participant-frame{background:url(../img/contenderframe.png) no-repeat;background-size:100%;width:12%;height:50%;position:fixed;margin-left:44%;z-index:0;}
-#participant-image img{background-size:100% auto;width:80%;height:28%;position:relative;margin-left:-0.5%;margin-top:7.1%;}
-#participant-name p{margin-top:10%;color:#000;position:relative;font-size:100%;}
+#participant-image img{width:65%;position:relative;margin-left:-0.5%;margin-top:7.1%;}
+#participant-name p{margin-top:11.5%;color:#000;position:relative;font-size:10%;}
 
 /*PLUGINS*/
-.plugin-container{position:inherit;width:60%;margin:18% 0 0 27%;}
+.plugin-container{position:inherit;width:60%;margin:5% 0 0 27%;}
 .plugin{background:url(../img/pluginframe.png) no-repeat;background-size:70%;width:20%;float:left;margin:0 1% 0 0;}
 .plugin img{background-size:50%;width:60%;float:left;margin:6.1% 0 0 5.2%;}
 .plugin p{font-size:20%;display:block;margin-left:-30%;color:#fff;}
@@ -30,7 +30,8 @@ body{height:100%;text-align:center;margin:0;padding:0;}
 #sm2-container{height:1px;}
 .created-by{font-size:14px;margin-top:-3px;color:#c9ff33;}
 .next-song{font-size:14px;margin-top:2px;color:white;}
-.current-media-title{position:inherit;color:#c9ff33;font-size:20%;margin-left:-22%;}
+.current-media-title-container{background-color:#000;position:inherit;margin-left:-22%;opacity:0.7;}
+.current-media-title{color:#c9ff33;font-size:100%;margin-left:22%;}
 
 ul.playlist li.sm2_playing,ul.playlist li.sm2_playing:hover{background-color:#69c;}
 ul.playlist.use-peak li .peak,ul.playlist li .timing{ background-color:#58b;}
