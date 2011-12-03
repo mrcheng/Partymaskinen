@@ -50,7 +50,7 @@
 	participants.getParticipants = function () {
 
 		$.ajax({
-			url: _participantsUrl + "?callback=?",
+			url: _participantsUrl,
 			jsonp: true,
 			dataType: 'jsonp',
 			success: function (data) {
