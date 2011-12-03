@@ -33,14 +33,15 @@
 
 		iframe = document.createElement('iframe');
 		iframe.id = 'youtube';
+		iframe.frameBorder = 0;
 		iframe.style.position = 'fixed';
-		iframe.style.left = 0;
+		iframe.style.right = 0;
 		iframe.style.top = 0;
 		iframe.style.zIndex = '-100';
 		iframe.style.visibility = 'hidden';
-		iframe.width = '100%';
-		iframe.height = '100%';
-		iframe.src = 'http://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;wmode=opaque';
+		iframe.width = '30%';
+		iframe.height = '30%';
+		iframe.src = 'http://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1';
 		document.body.appendChild(iframe);
 	};
 
