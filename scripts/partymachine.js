@@ -13,6 +13,8 @@
 		currentlySelectedPlugin: 0
 	};
 
+	var _participantTimeoutTimer;
+	var _participantTimeoutDateTime = null;
 
 	partyMachine.getUrlParams = function () {
 		var urlParams = {};
@@ -28,7 +30,7 @@
 		})();
 
 		return urlParams;
-	}
+	};
 
 	function atPluginSelect(freshParticipants) {
 
@@ -36,7 +38,7 @@
 		$("#participant-info").html('<p>' + currentParticipant.description + '</p>');
 		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
 		$("#participant-name").html('<p>' + currentParticipant.name + '</p>');
-		
+
 		//var participantHtmlTemplate = '<p>' + currentParticipant.name + '</p>';
 		//$("#partyMachine-participant").html(participantHtmlTemplate);
 
@@ -104,11 +106,52 @@
 
 				pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
 
-			}
+			};
 
 		}
 
 	}
+
+	function resetParticipantTimeout() {
+
+		if(_participantTimeoutTimer !== null)
+			window.clearTimeout(_participantTimeoutTimer);
+
+		_participantTimeoutDateTime = new Date();
+		_participantTimeoutDateTime.setTime(_participantTimeoutDateTime.getTime() + (1 * 60 * 1000));
+
+		_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
+	}
+
+	partyMachine.updateParticipantTimeout = function () {
+
+		var dateNow = new Date();
+		var nTimeDiff = _participantTimeoutDateTime.getTime() - dateNow.getTime();
+		var oDiff = new Object();
+
+		oDiff.days = Math.floor(nTimeDiff/1000/60/60/24);
+		nTimeDiff -= oDiff.days*1000*60*60*24;
+
+		oDiff.hours = Math.floor(nTimeDiff/1000/60/60);
+		nTimeDiff -= oDiff.hours*1000*60*60;
+
+		oDiff.minutes = Math.floor(nTimeDiff/1000/60);
+		nTimeDiff -= oDiff.minutes*1000*60;
+
+		oDiff.seconds = Math.floor(nTimeDiff/1000);
+
+		$("#participant-timer").html('<p>' + (oDiff.minutes < 10 ? '0' : '') + oDiff.minutes + ':' + (oDiff.seconds < 10 ? '0' : '') + oDiff.seconds + '</p>');
+
+		if(oDiff.minutes == 0 && oDiff.seconds == 0)
+		{
+			atPluginSelect(participants.getParticipants());
+			resetParticipantTimeout();
+		}
+		else
+		{
+			_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
+		}
+	},
 
 	partyMachine.start = function (pluginDevelopment) {
 
@@ -188,15 +231,16 @@
 				_state.context = _contexts.atPluginSelection;
 
 				soundplayer.resume();
-				
-				atPluginSelect(participants.getParticipants());
 
+				atPluginSelect(participants.getParticipants());
+				resetParticipantTimeout();
 			}
 			else {
 				console.log("unknown message recieved: " + data);
 			}
 		});
 
+		resetParticipantTimeout();
 	},
 
 	partyMachine.assignGameControllers = function (
