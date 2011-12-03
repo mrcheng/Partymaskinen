@@ -65,16 +65,13 @@ $(document).ready(function () {
 
         $("#participantWrapper").html('');
         for (var i = 0; i < partydudes.length; i++) {
-            var newDiv = "<div><img src='" + partydudes[i].imageUrl + "' height='100'></img><p>Status: " + partydudes[i].status + " <br />" + partydudes[i].name + "</p></div>";
+            var newDiv = "<div id='" + partydudes.id + "' class='partyDude'><img src='" + partydudes[i].imageUrl + "'></img><p>Status: " + partydudes[i].status + " <br />" + partydudes[i].name + "</p></div>";
 
             $("#participantWrapper").append(newDiv);
         }
 
-        var test = window.partyMachineParticipants.getNextParticipant();
-
         $('#participantList').toggle(500, function () {
             if ($("#participantList").is(':visible')) {
-
 
                 partyMachine.assignGameControllers(
 						undefined,
@@ -91,14 +88,11 @@ $(document).ready(function () {
                     }
 
                     p.gameController.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
-
-                        alert("test");
+                        //do nothing
                     };
 
                     p.gameController.gamepadPressed = function (left, up, right, down) {
-
-                        alert("test2");
-
+                        //do nothing
                     };
                 }
             }
