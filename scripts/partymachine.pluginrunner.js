@@ -1,7 +1,7 @@
 ﻿(function (pluginRunner, $, undefined) {
 
 	var _plugins = [];
-	var _soundplayer;
+	var _mediaPlayer;
 	var _currentPluginIndex;
 	var _currentPluginSrc;
 
@@ -49,21 +49,46 @@
 		return plugDesc;
 	};
 
+	var addUrlParam = function (search, key, val) {
+		var newParam = key + '=' + val,
+      params = '?' + newParam;
+
+		// If the "search" string exists, then build params from it
+		if (search) {
+			// Try to replace an existance instance
+			params = search.replace(new RegExp('[\?&]' + key + '[^&]*'), '$1' + newParam);
+
+			// If nothing was replaced, then add the new param to the end
+			if (params === search) {
+				params += '&' + newParam;
+			}
+		}
+
+		return params;
+	};
+
 	pluginRunner.startPlugin = function (participants, pluginIndex) {
 
 		pluginIndex = pluginIndex || 0;
 		_currentPluginIndex = pluginIndex;
-		if (typeof _soundplayer !== "undefined") {
-			_soundplayer.playEvent("pluginHighlight");
-			_soundplayer.pause();
+		if (typeof _mediaPlayer !== "undefined") {
+			_mediaPlayer.playEvent("pluginHighlight");
+			_mediaPlayer.pause();
 		}
-		
+
 		var selectedPlugin = _plugins[pluginIndex];
-			
+
 		$("#partyMachinePluginContainer").empty();
 
-		_currentPluginSrc = selectedPlugin.url + "#" + encodeURIComponent(document.location.href);
+		var milliseconds = new Date().getTime();
 
+		if (selectedPlugin.url.indexOf('?') === -1) {
+			_currentPluginSrc = selectedPlugin.url + '?' + milliseconds + '=' + milliseconds + "#" + encodeURIComponent(document.location.href);
+		}
+		else {
+			_currentPluginSrc = selectedPlugin.url + '&' + milliseconds + '=' + milliseconds + "#" + encodeURIComponent(document.location.href);
+		}
+		
 		$("#partyMachine").hide();
 
 		$('<iframe id="partyMachinePlugin" name="partyMachinePlugin" src="' + _currentPluginSrc + '" scrolling="no" frameborder="0" height="100%" width="100%" style="display:block;position:absolute;z-index:1001;">')
@@ -81,14 +106,14 @@
 
 	};
 
-	pluginRunner.exitPlugin = function() {
+	pluginRunner.exitPlugin = function () {
 		$("#partyMachinePluginContainer").empty();
 		$("#partyMachine").show();
 	};
 
-	pluginRunner.start = function (soundplayer, plugins) {
+	pluginRunner.start = function (mediaPlayer, plugins) {
 
-		_soundplayer = soundplayer;
+		_mediaPlayer = mediaPlayer;
 
 		_plugins = plugins;
 
@@ -107,8 +132,8 @@
 
 	pluginRunner.highlightPlugin = function (pluginIndex, dontPlaySound) {
 
-		if (typeof _soundplayer !== "undefined" && !dontPlaySound) {
-			_soundplayer.playEvent("pluginHighlight");
+		if (typeof _mediaPlayer !== "undefined" && !dontPlaySound) {
+			_mediaPlayer.playEvent("pluginHighlight");
 		}
 
 		var highlightPlugin = _plugins[pluginIndex];
@@ -119,7 +144,7 @@
 
 		if (pluginDomElem) {
 			$(pluginDomElem).addClass("plugin-selected");
-			console.log("highlighting plugin: " + highlightPlugin.name);
+			console.log("highlighting plugin: " + highlightPlugin.title);
 		}
 
 	};

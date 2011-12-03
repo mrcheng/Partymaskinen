@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, pluginRunner, participants, soundplayer, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, participants, mediaPlayer, $, undefined) {
 
 	var partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
 
@@ -35,7 +35,13 @@
 	function atPluginSelect(freshParticipants) {
 
 		var currentParticipant = participants.getNextParticipant();
-		$("#participant-info").html('<p>' + currentParticipant.description + '</p>');
+		var CP = currentParticipant.description;
+		
+		if (CP == null){
+			CP = "Jag orkade inte skriva description =(";
+		}
+		
+		$("#participant-info").html('<p>' + CP + '</p>');
 		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
 		$("#participant-name").html('<p>' + currentParticipant.name + '</p>');
 
@@ -193,10 +199,11 @@
 							freshParticipants.push(m);
 						});
 					}
+					$.shuffle(freshParticipants);
 
 					participants.start(partyFeedUrl, freshParticipants);
 
-					pluginRunner.start(soundplayer, data.plugins);
+					pluginRunner.start(mediaPlayer, data.plugins);
 
 					controllers.start(freshParticipants);
 
@@ -209,7 +216,7 @@
 						freshParticipants
 					);
 
-					soundplayer.start($.shuffle(data.media));
+					mediaPlayer.start($.shuffle(data.media));
 				}
 			});
 		}
@@ -230,13 +237,13 @@
 
 				_state.context = _contexts.atPluginSelection;
 
-				soundplayer.resume();
+				mediaPlayer.resume();
 
 				atPluginSelect(participants.getParticipants());
 				resetParticipantTimeout();
 			}
 			else {
-				console.log("unknown message recieved: " + data);
+				//console.log("unknown message recieved: " + data);
 			}
 		});
 
@@ -260,7 +267,7 @@
 	window.partyMachineControllers,
 	window.partyMachinePluginRunner,
 	window.partyMachineParticipants,
-	window.partyMachineSound,
+	window.partyMachineMedia,
 	jQuery
 	)
 );
