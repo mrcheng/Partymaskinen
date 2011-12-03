@@ -38,6 +38,7 @@
 
 		if (_previousParticipant >= _participants.length - 1) {
 			nextParticipant = _participants[0];
+			_previousParticipant = 0;
 		}
 		else {
 			nextParticipant = _participants[_previousParticipant];
