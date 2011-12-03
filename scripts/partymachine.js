@@ -33,7 +33,13 @@
 	function atPluginSelect(freshParticipants) {
 
 		var currentParticipant = participants.getNextParticipant();
-		$("#participant-info").html('<p>' + currentParticipant.description + '</p>');
+		var CP = currentParticipant.description;
+		
+		if (CP == null){
+			CP = "Jag orkade inte skriva description =(";
+		}
+		
+		$("#participant-info").html('<p>' + CP + '</p>');
 		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
 		$("#participant-name").html('<p>' + currentParticipant.name + '</p>');
 		
@@ -150,6 +156,7 @@
 							freshParticipants.push(m);
 						});
 					}
+					$.shuffle(freshParticipants);
 
 					participants.start(partyFeedUrl, freshParticipants);
 
