@@ -31,6 +31,17 @@
 
         return urlParams;
 	};
+	
+	function resetParticipantTimeout() {
+
+		if(_participantTimeoutTimer !== null)
+			window.clearTimeout(_participantTimeoutTimer);
+
+		_participantTimeoutDateTime = new Date();
+		_participantTimeoutDateTime.setTime(_participantTimeoutDateTime.getTime() + (5 * 60 * 1000));
+
+		_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
+    };
 
     function atPluginSelect(freshParticipants) {
 
@@ -124,17 +135,6 @@
 			};
 
 		}
-    },
-    
-	function resetParticipantTimeout() {
-
-		if(_participantTimeoutTimer !== null)
-			window.clearTimeout(_participantTimeoutTimer);
-
-		_participantTimeoutDateTime = new Date();
-		_participantTimeoutDateTime.setTime(_participantTimeoutDateTime.getTime() + (5 * 60 * 1000));
-
-		_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
     },
 
     partyMachine.updateParticipantTimeout = function() {
