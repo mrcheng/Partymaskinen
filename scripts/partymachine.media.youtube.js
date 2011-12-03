@@ -6,11 +6,11 @@
 	var currentVideoId;
 
 	youtube.getMediaHandler = function (media) {
-	
+
 		if (!media.youtubeVideoId)
 			return null;
 
-		media.play = function() {
+		media.play = function () {
 			youtube.play(media.youtubeVideoId);
 		};
 
@@ -21,7 +21,7 @@
 		media.resume = function () {
 			youtube.resume();
 		};
-		
+
 		return media;
 	},
 
