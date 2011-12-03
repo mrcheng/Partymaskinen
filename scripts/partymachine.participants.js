@@ -37,7 +37,6 @@
 
         _previousParticipant++;
 
-<<<<<<< HEAD
 		if (_previousParticipant >= _participants.length - 1) {
 			nextParticipant = _participants[0];
 			_previousParticipant = 0;
@@ -45,14 +44,6 @@
 		else {
 			nextParticipant = _participants[_previousParticipant];
 		}
-=======
-        if (_previousParticipant >= activeParticipents.length - 1) {
-            nextParticipant = activeParticipents[0];
-        }
-        else {
-            nextParticipant = activeParticipents[_previousParticipant];
-        }
->>>>>>> b274cc9bceeeec9ff4cda5741e6a0e9c60c49e3f
 
         return nextParticipant;
     };
