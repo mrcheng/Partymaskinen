@@ -18,7 +18,7 @@
 			youtube.pause();
 		};
 
-		media.pause = function () {
+		media.resume = function () {
 			youtube.resume();
 		};
 		

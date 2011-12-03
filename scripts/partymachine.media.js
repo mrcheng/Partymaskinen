@@ -2,7 +2,8 @@
 	var _media = [];
 	var _players = [];
 
-	var currentMediaIndex = 0;
+	var currentMedia;
+	var nextMedia;
 
 	function getCurrentSongHtml(currentMedia, nextMedia) {
 		var nextMediaHtml = '';
@@ -42,17 +43,14 @@
 
 	mediaManager.pause = function () {
 
-		var media = _media[currentMediaIndex];
-
-		var mediaPlayer = getPlayer(media);
+		var mediaPlayer = getPlayer(currentMedia);
 
 		mediaPlayer.pause();
 	};
 
 	mediaManager.resume = function () {
-		var media = _media[currentMediaIndex];
 
-		var mediaPlayer = getPlayer(media);
+		var mediaPlayer = getPlayer(currentMedia);
 
 		mediaPlayer.resume();
 	};
@@ -61,6 +59,23 @@
 
 		if (_media.length <= 0) {
 			return null;
+		}
+
+		var currentMediaIndex = 0;
+
+		if (currentMedia) {
+			
+			for (var m = 0; m < _media.length; m++) {
+			
+				var media = _media[m];
+
+				if (media.id === currentMedia.id) {
+					currentMediaIndex = m;
+					break;
+				}
+
+			}
+			
 		}
 
 		if (currentMediaIndex >= _media.length) {
@@ -117,6 +132,8 @@
 
 		var mediaHtml = getCurrentSongHtml(playableMedia.currentMedia, playableMedia.nextMedia);
 
+		currentMedia = playableMedia.currentMedia;
+
 		$("#playlist").html(mediaHtml);
 
 		playableMedia.currentMedia.play();
@@ -143,11 +160,10 @@
 		_players.push(youtubePlayer);
 		_players.push(soundPlayer);
 
-		if (_media && _media.length > 0) 
-		{
+		if (_media && _media.length > 0) {
 			setMedia();
 		}
-		
+
 	};
 
 	mediaManager.playEvent = function (eventName) {

@@ -16,7 +16,7 @@
 			player.pause(media);
 		};
 
-		media.pause = function () {
+		media.resume = function () {
 			player.resume(media);
 		};
 

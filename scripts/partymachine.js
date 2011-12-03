@@ -200,7 +200,7 @@
 
 			}
 			else {
-				console.log("unknown message recieved: " + data);
+				//console.log("unknown message recieved: " + data);
 			}
 		});
 
