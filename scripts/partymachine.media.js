@@ -62,7 +62,7 @@
 
 		var currentMediaIndex = 0;
 
-		if (currentMedia) {
+		if (_sscurrentMedia) {
 			
 			for (var m = 0; m < _media.length; m++) {
 			
