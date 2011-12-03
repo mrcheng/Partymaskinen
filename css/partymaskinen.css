@@ -52,7 +52,15 @@ strong,.fat p{font-family: 'ITCAvantGardeGothicStdBdCn';}
 
 /*SETTINGS*/
 #settings{display:none;position:fixed;top:20%;height:60%;width:100%;opacity:0.9;z-index:100;background-color:#002C46;}
-#settings h2{font-size:30%;color:#fff;}
+#settings h2 {font-size:30%;color:#fff;}
+
+/*PARTICIPANT LIST*/
+#participantList h2 { font-size: 20px;color: #fff;}
+#participantList div { float: left;padding-left: 10px;padding-right: 10px;}
+#participantList{display:none;position:fixed;top:20%;height:75%;width:100%;opacity:0.95;z-index:111;background-color:#002C46;}
+#participantWrapper img { height: 50px;}
+#participantWrapper { font-size: 11px; color: #fff;}
+#participantWrapper .partyDude { border: white solid 1px;}
 
 /*PROGRESSBAR*/
 #progressbar{position:absolute;z-index:10000;top:10px;left:15px;}
