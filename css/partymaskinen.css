@@ -10,7 +10,7 @@ body{height:100%;text-align:center;margin:0;padding:0;}
 /*PARTICIPANTS*/
 #participant-info p{color:#fff;font-size:20%;position:inherit;margin-top:3%;}
 #participant-frame{background:url(../img/contenderframe.png) no-repeat;background-size:100%;width:12%;height:50%;position:fixed;margin-left:44%;z-index:0;}
-#participant-image img{width:65%;position:relative;margin-left:-0.5%;margin-top:7.1%;}
+#participant-image img{min-width:65%;max-width:70%;position:relative;margin-left:-0.5%;margin-top:7.1%;max-height:28%;}
 #participant-name p{margin-top:11.5%;color:#000;position:relative;font-size:10%;}
 
 /*PLUGINS*/
