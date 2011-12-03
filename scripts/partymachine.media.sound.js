@@ -1,4 +1,12 @@
-﻿(function (player, $, undefined) {
+﻿soundManager.flashVersion = 9;
+soundManager.debugMode = false;
+soundManager.preferFlash = true; // for visualization effects
+soundManager.useHighPerformance = true; // keep flash on screen, boost performance
+soundManager.wmode = 'transparent'; // transparent SWF, if possible
+soundManager.useFastPolling = true; // increased JS callback frequency
+soundManager.url = 'swf/soundmanager2_flash_xdomain/'; //SWF URL
+
+(function (player, $, undefined) {
 	var _sounds = [];
 
 	player.onFinished = function () { };
@@ -107,14 +115,7 @@
 
 	player.start = function () {
 
-		soundManager.flashVersion = 9;
-		soundManager.debugMode = false;
-		soundManager.preferFlash = true; // for visualization effects
-		soundManager.useHighPerformance = true; // keep flash on screen, boost performance
-		soundManager.wmode = 'transparent'; // transparent SWF, if possible
-		soundManager.useFastPolling = true; // increased JS callback frequency
-		soundManager.url = 'swf/soundmanager2_flash_xdomain/'; //SWF URL
-
+		
 	};
 
 	player.play = function (sound) {
