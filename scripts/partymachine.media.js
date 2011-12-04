@@ -42,14 +42,14 @@
 
 	mediaManager.pause = function () {
 
-		var mediaPlayer = getPlayer(currentMedia);
+		var mediaPlayer = getPlayer(_currentMedia);
 
 		mediaPlayer.pause();
 	};
 
 	mediaManager.resume = function () {
 
-		var mediaPlayer = getPlayer(currentMedia);
+		var mediaPlayer = getPlayer(_currentMedia);
 
 		mediaPlayer.resume();
 	};
