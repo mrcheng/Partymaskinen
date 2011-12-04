@@ -62,13 +62,13 @@
 
 		var currentMediaIndex = 0;
 
-		if (_sscurrentMedia) {
+		if (_currentMedia) {
 			
 			for (var m = 0; m < _media.length; m++) {
 			
 				var media = _media[m];
 
-				if (media.id === currentMedia.id) {
+				if (media.id === _currentMedia.id) {
 					currentMediaIndex = m;
 					break;
 				}
@@ -151,13 +151,14 @@
 			});
 		}
 
-		soundPlayer.onFinished = setMedia;
-
-		youtubePlayer.onFinished = setMedia;
-		youtubePlayer.start();
-
 		_players.push(youtubePlayer);
 		_players.push(soundPlayer);
+		
+		for(var p = 0; p < _players.length; p++) {
+			var player = _players[p];
+			player.onFinished = setMedia;
+			player.start();
+		}
 
 		if (_media && _media.length > 0) {
 			setMedia();
