@@ -66,6 +66,7 @@ soundManager.url = 'swf/soundmanager2_flash_xdomain/'; //SWF URL
 						url: 'sounds/lobbySfx-pluginselect.mp3', //temporary URL
 						autoStart: false,
 						multiShot: true,
+						volume: 100,
 						onfinish: function () {
 							soundManager._writeDebug(this.sID + ' finished playing');
 
