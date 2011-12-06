@@ -121,7 +121,7 @@
 
 			for (var plugin = 0; plugin < _plugins.length; plugin++) {
 				var displayPlugin = _plugins[plugin];
-				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.url + '/thumbnail.png"></img><div class="plugin-glare"></div><br /><p>' + displayPlugin.title + '</p></div>';
+				var pluginHtmlTemplate = '<div class="plugin"><img src="' + displayPlugin.url + '/thumbnail.png"></img><!--<div class="plugin-glare"></div><br /><p>' + displayPlugin.title + '</p></div>-->';
 				$("#partyMachine-plugins").append(pluginHtmlTemplate);
 			}
 

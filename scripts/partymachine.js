@@ -51,10 +51,10 @@
 		if (CP == null) {
 			CP = "Jag orkade inte skriva description =(";
 		}
-
-		$("#participant-info").html('<p>' + CP + '</p>');
-        $("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
-        $("#participant-name").html('<p>' + currentParticipant.name + '</p>');
+		
+		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
+		$("#participant-name").html('<p>' + currentParticipant.name + '</p>' + '<i>' + '"' + CP + '"' + '</i>');
+		//$("#participant-info").html('<p>' + CP + '</p>');
 
         partyMachine.bindKeys(freshParticipants);
         //var participantHtmlTemplate = '<p>' + currentParticipant.name + '</p>';
@@ -154,7 +154,7 @@
 
 		oDiff.seconds = Math.floor(nTimeDiff/1000);
 
-        $("#participant-timer").html('<p>' + (oDiff.minutes < 10 ? '0' : '') + oDiff.minutes + ':' + (oDiff.seconds < 10 ? '0' : '') + oDiff.seconds + '</p>');
+        $("#participant-timer").html("<i>Nästa deltagare om:</i><br />" + '<p>' + (oDiff.minutes < 10 ? '0' : '') + oDiff.minutes + ':' + (oDiff.seconds < 10 ? '0' : '') + oDiff.seconds + '</p>');
 
 		if (oDiff.minutes == 0 && oDiff.seconds == 0) {
             atPluginSelect(participants.getParticipants());

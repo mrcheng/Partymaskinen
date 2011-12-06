@@ -8,10 +8,10 @@
 		var nextMediaHtml = '';
 
 		if (nextMedia) {
-			nextMediaHtml = '<p class="next-song">Nästa låt: ' + nextMedia.title + '</p>';
+			nextMediaHtml = '<p class="next-song">Nästa: ' + nextMedia.title + '</p>';
 		}
 
-		$('.current-media-title').html('<h2>' + currentMedia.title + '</h2>');
+		$('.current-media-title').html('<h2>' + currentMedia.title + '</h2>' + '<p>' + currentMedia.createdBy.name + nextMediaHtml + '</p>');
 
 		var html = '<li><a id="' + currentMedia.id + '" href="' + currentMedia.url + '">'
 			+ currentMedia.title + '<span class="created-by"> by ' + currentMedia.createdBy.name + '</span>'

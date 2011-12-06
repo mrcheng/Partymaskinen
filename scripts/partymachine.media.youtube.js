@@ -1,4 +1,4 @@
-﻿(function (youtube, $, undefined) {
+﻿	(function (youtube, $, undefined) {
 	var player;
 	var iframe;
 
@@ -33,13 +33,15 @@
 
 		iframe = document.createElement('iframe');
 		iframe.id = 'youtube';
-		iframe.frameBorder = 0;
-		iframe.style.position = 'fixed';
-		iframe.style.marginLeft = '35%';
-		iframe.style.bottom = 0;
-		iframe.style.zIndex = '-100';
+		iframe.frameBorder = '0';
+		iframe.style.cssFloat = 'fixed';
+		iframe.style.marginTop = '2%';
+		iframe.style.marginBottom = '4%';
+		iframe.style.marginLeft = '20%';
+		//iframe.style.top = '80%';
+		iframe.style.zIndex = '-1000';
 		iframe.style.visibility = 'hidden';
-		iframe.width = '30%';
+		iframe.width = '60%';
 		iframe.height = '30%';
 		iframe.src = 'http://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1';
 		document.body.appendChild(iframe);
