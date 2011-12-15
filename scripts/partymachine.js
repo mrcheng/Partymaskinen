@@ -157,7 +157,9 @@
         $("#participant-timer").html("<i>Nästa deltagare om:</i><br />" + '<p>' + (oDiff.minutes < 10 ? '0' : '') + oDiff.minutes + ':' + (oDiff.seconds < 10 ? '0' : '') + oDiff.seconds + '</p>');
 
 		if (oDiff.minutes == 0 && oDiff.seconds == 0) {
-            atPluginSelect(participants.getParticipants());
+			//TODO: switch participant when time runs out, not on plugin select (no method getParticipants)
+            atPluginSelect(participants.getNextParticipant());
+			
             resetParticipantTimeout();
         }
 		else {
