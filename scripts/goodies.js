@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+//just a test
     // Switch CSS
     //$("#style1").addClass("fat");
     //	
