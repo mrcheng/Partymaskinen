@@ -34,12 +34,10 @@
 		iframe = document.createElement('iframe');
 		iframe.id = 'youtube';
 		iframe.frameBorder = '0';
-		iframe.style.cssFloat = 'fixed';
-		iframe.style.marginTop = '30%';
-		//iframe.style.marginBottom = '20%';
+		iframe.style.position = 'absolute';
+		iframe.style.marginTop = '45%';
+		//iframe.style.zIndex = '-1000';
 		iframe.style.marginLeft = '20%';
-		//iframe.style.top = '80%';
-		iframe.style.zIndex = '-1000';
 		iframe.style.visibility = 'hidden';
 		iframe.width = '60%';
 		iframe.height = '30%';

@@ -11,10 +11,10 @@
 			nextMediaHtml = '<p class="next-song">Nästa: ' + nextMedia.title + '</p>';
 		}
 
-		$('.current-media-title').html('<h2>' + currentMedia.title + '</h2>' + '<p>' + currentMedia.createdBy.name + nextMediaHtml + '</p>');
+		$('.current-media-title').html('<p>' + currentMedia.createdBy.name +  ' spelar:' + '</p>' + '<h2>' + currentMedia.title + '</h2>' + nextMediaHtml);
 
 		var html = '<li><a id="' + currentMedia.id + '" href="' + currentMedia.url + '">'
-			+ currentMedia.title + '<span class="created-by"> by ' + currentMedia.createdBy.name + '</span>'
+			+ currentMedia.title + currentMedia.createdBy.name 
 			+ nextMediaHtml
 			+ '</a></li>';
 

@@ -23,40 +23,40 @@ $(document).ready(function () {
     //	});
 
     //FITTEXT
-    $(".fittext1").fitText();
+    //$(".fittext1").fitText();
     //$(".fittext2").fitText(1.2);
     //$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
 
     //Fades in the whole page on dom ready
-    $('#partyMachine').animate({
-        opacity: 1
-    }, 3000, function () {
+    //$('#partyMachine').animate({
+    //    opacity: 1
+    //}, 3000, function () {
         //Fires when fade in is done
-    });
+    //});
 
     //Slide for the partyplayer
-    shortcut.add("p", togglePlayer);
-    var playerVisible = false;
-    function togglePlayer() {
-        if (playerVisible) {
-            $(".party-player-container").animate({
-                bottom: '-100%'
-            }, 500, function () { playerVisible = false; });
-        }
-        if (!playerVisible) {
-            $(".party-player-container").css({ visibility: "visible" }).animate({
-                bottom: '3%'
-            }, 500, function () { playerVisible = true; });
-        }
-    }
+    //shortcut.add("p", togglePlayer);
+    //var playerVisible = false;
+    //function togglePlayer() {
+    //    if (playerVisible) {
+    //        $(".party-player-container").animate({
+    //            bottom: '-100%'
+    //        }, 500, function () { playerVisible = false; });
+    //    }
+    //    if (!playerVisible) {
+    //        $(".party-player-container").css({ visibility: "visible" }).animate({
+    //            bottom: '3%'
+    //        }, 500, function () { playerVisible = true; });
+    //    }
+    //}
 
-    shortcut.add("esc", showSettings);
+    //shortcut.add("esc", showSettings);
     //Opens the settings panel using 'esc' key
-    function showSettings() {
-        $('#settings').toggle({
-        }, 500, function () {
-        });
-    }
+    //function showSettings() {
+    //    $('#settings').toggle({
+    //    }, 500, function () {
+    //    });
+    //}
 
 
     shortcut.add("u", showParticipants);

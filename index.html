@@ -3,7 +3,6 @@
 <head>
 	<title>Partymaskinen</title>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-	<!--<link rel="stylesheet" type="text/css" href="css/partymaskinen.css" />-->
 	<link rel="stylesheet" type="text/css" href="css/partymaskinen2.css" />
 	<script src="deps/json2.js" type="text/javascript"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
@@ -18,35 +17,16 @@
 	<script src="scripts/partymachine.media.js" type="text/javascript"></script>
 	<script src="scripts/jquery.fittext.js"></script>
 	<script src="scripts/partymachine.js" type="text/javascript"></script>
-	<script src="scripts/goodies.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function () { 
 			partyMachine.start();
+			$(".fittext1").fitText();
 		});
 	</script>
 </head>
 
 <body>
 	<div id="partyMachine">
-
-    <!-- TODO: FIX POSITION OF "SETTINGS" AND "PARTICIPANTLIST" -->
-<!--		<div class="fittext1" id="settings">
-			<h2>Inställningar</h2>
-			<ul class="themes">
-				<li id="style1"><p>Default theme</p></li>
-				<li id="style2"><p>Media theme</p></li>
-				<li id="style3"><p>Christmas theme</p></li>
-			</ul>
-		<div class="" id="participantList">
-			<h2>Party dudes</h2>
-			<div id="participantWrapper"></div>
-			<ul>
-				<li> Test 1</li>
-				<li> Test 2</li>
-				<li> Test 3</li>
-			</ul>
-		</div>-->
-
 		<div id="participant-image"></div>
 		<div class="name-container">
 			<div class="fittext1" id="participant-name"></div>
@@ -54,19 +34,13 @@
 		<div class="timer-container">
 			<div class="fittext1" id="participant-timer"></div>
 		</div>
-		
 		<div class="media-info-container fittext1">
-			<div class="current-media-title"><h2>Laddar låtlista...</h2><span class="created-by"></span></div>
+			<div class="current-media-title"><h2>Laddar låtlista...</h2></div>
 		</div>
 		<div class="clear"></div>
 		<div class="plugin-container-container">
 			<div class="plugin-container fittext1">
 				<div id="partyMachine-plugins"></div>
-			</div>
-		</div>
-		<div class="party-player-container">
-			<div class="party-player">
-				<ul class="playlist" id="playlist"></ul>
 			</div>
 		</div>
 	</div>
