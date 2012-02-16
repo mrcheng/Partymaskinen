@@ -31,7 +31,7 @@
     };
 
     participants.getNextParticipant = function () {
-        var activeParticipents = participants.getActiveParticipants();
+        var activeParticipants = participants.getActiveParticipants();
 
         var nextParticipant;
 
@@ -57,15 +57,15 @@
     };
 
     participants.getActiveParticipants = function () {
-        var activeParticipents = [];
+        var activeParticipants = [];
 
         for (var i = 0; i < _participants.length; i++) {
             if (_participants[i].status === "active") {
-                activeParticipents.push(_participants[i]);
+                activeParticipants.push(_participants[i]);
             }
         }
 
-        return activeParticipents;
+        return activeParticipants;
     };
 
     participants.getAllParticipants = function () {
@@ -106,7 +106,6 @@
 							+ '<p>' + nextParticipant.description + '</p>';
 
                     $("#partyMachine-participant").append(participantHtmlTemplate);
-
                 }
             }
         });

@@ -60,7 +60,6 @@ soundManager.url = 'swf/soundmanager2_flash_xdomain/'; //SWF URL
 
 			if (eventName === "pluginHighlight") {
 
-
 					var pluginSelectSnd = soundManager.createSound({
 						id: 'pluginSound',
 						url: 'sounds/lobbySfx-pluginselect.mp3', //temporary URL
@@ -82,7 +81,6 @@ soundManager.url = 'swf/soundmanager2_flash_xdomain/'; //SWF URL
 					_sounds.push(pluginSelectSnd);
 					
 					pluginSelectSnd.play();
-
 
 			}
 			else if (eventName === "newParticipantDueToTimeout") {

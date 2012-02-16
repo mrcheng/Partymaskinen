@@ -54,11 +54,8 @@
 		
 		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
 		$("#participant-name").html('<p>' + currentParticipant.name + '</p>' + '<i>' + '"' + CP + '"' + '</i>');
-		//$("#participant-info").html('<p>' + CP + '</p>');
 
         partyMachine.bindKeys(freshParticipants);
-        //var participantHtmlTemplate = '<p>' + currentParticipant.name + '</p>';
-        //$("#partyMachine-participant").html(participantHtmlTemplate);
     }
 
     partyMachine.bindKeys = function (freshParticipants) {
@@ -159,7 +156,7 @@
 		if (oDiff.minutes == 0 && oDiff.seconds == 0) {
 			//TODO: switch participant when time runs out, not on plugin select (no method getParticipants)
             atPluginSelect(participants.getNextParticipant());
-			
+			//TODO: Play sound?
             resetParticipantTimeout();
         }
 		else {
@@ -203,14 +200,17 @@
 
                         var freshParticipants = [];
 
+						$('#partyname').html('<p>' + data.name + '</p>');
+
                         if (data.participants && data.participants.length > 0) {
                             $.each(data.participants, function(key, m) {
                                 m.status = "active";
                                 freshParticipants.push(m);
                             });
                         }
+						
                         $.shuffle(freshParticipants);
-
+						
                         participants.start(feedUrl, freshParticipants);
 
                         pluginRunner.start(mediaPlayer, data.plugins);
