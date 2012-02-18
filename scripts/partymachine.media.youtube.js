@@ -35,12 +35,12 @@
 		iframe.id = 'youtube';
 		iframe.frameBorder = '0';
 		iframe.style.position = 'absolute';
-		iframe.style.marginTop = '38%';
+		iframe.style.marginTop = '36%';
 		//iframe.style.zIndex = '-1000';
-		iframe.style.marginLeft = '20%';
+		iframe.style.marginLeft = '31%';
 		iframe.style.visibility = 'hidden';
-		iframe.width = '60%';
-		iframe.height = '30%';
+		iframe.width = '38%';
+		iframe.height = '38%';
 		iframe.src = 'http://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1';
 		document.body.appendChild(iframe);
 	};
