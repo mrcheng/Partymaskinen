@@ -38,7 +38,7 @@
 			window.clearTimeout(_participantTimeoutTimer);
 
 		_participantTimeoutDateTime = new Date();
-		_participantTimeoutDateTime.setTime(_participantTimeoutDateTime.getTime() + (5 * 60 * 1000));
+		_participantTimeoutDateTime.setTime(_participantTimeoutDateTime.getTime() + (10 * 60 * 1000));
 
 		_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
     };

@@ -22,6 +22,11 @@
 			partyMachine.start();
 			$(".fittext1").fitText();
 		});
+		$(function() {
+			$.getJSON("http://jsonip.appspot.com?callback=?",function(jsonResult){
+				$('#ip').html(jsonResult.ip);
+			});
+		});
 	</script>
 </head>
 
@@ -40,11 +45,9 @@
 		<div class="media-info-container fittext1">
 			<div class="current-media-title"></div>
 		</div>
-		
-		<div class="plugin-container-container">
-			<div class="plugin-container fittext1">
-				<div id="partyMachine-plugins"></div>
-			</div>
+		<div id="plugin-wrapper">
+			<div id="ip"></div>
+			<div id="partyMachine-plugins"></div>
 		</div>
 	</div>
 	<div id="partyMachinePluginContainer"></div>

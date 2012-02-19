@@ -34,9 +34,9 @@
 		iframe = document.createElement('iframe');
 		iframe.id = 'youtube';
 		iframe.frameBorder = '0';
-		iframe.style.position = 'absolute';
-		iframe.style.marginTop = '36%';
-		//iframe.style.zIndex = '-1000';
+		iframe.style.position = 'fixed';
+		iframe.style.marginTop = '32%';
+		//iframe.style.zIndex = '1000';
 		iframe.style.marginLeft = '31%';
 		iframe.style.visibility = 'hidden';
 		iframe.width = '38%';
