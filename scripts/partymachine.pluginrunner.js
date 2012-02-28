@@ -88,7 +88,7 @@
 		else {
 			_currentPluginSrc = selectedPlugin.url + '&' + milliseconds + '=' + milliseconds + "#" + encodeURIComponent(document.location.href);
 		}
-		
+
 		$("#partyMachine").hide();
 
 		$('<iframe id="partyMachinePlugin" name="partyMachinePlugin" src="' + _currentPluginSrc + '" scrolling="no" frameborder="0" height="100%" width="100%" style="display:block;position:absolute;z-index:1001;">')
@@ -101,6 +101,7 @@
 
 		$("#partyMachinePlugin").load(function () {
 			$.postMessage(JSON.stringify(startMsg), '*', $("#partyMachinePlugin").get(0).contentWindow);
+			$("#partyMachinePlugin").focus();
 		});
 
 
@@ -109,6 +110,7 @@
 	pluginRunner.exitPlugin = function () {
 		$("#partyMachinePluginContainer").empty();
 		$("#partyMachine").show();
+		$("#partyMachine").focus();
 	};
 
 	pluginRunner.start = function (mediaPlayer, plugins) {
