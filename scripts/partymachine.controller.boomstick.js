@@ -25,7 +25,7 @@
 		var joysticks = JSON.parse(boomstickplugin.joysticksJSON());
 
 		for (var j = 0; j < joysticks.length; j++) {
-			_interpretor.registerInput("boomstick_a");
+			_interpretor.registerInput("boomstick_" + j);
 		}
 
 		var lastTime = 0;
@@ -60,12 +60,12 @@
 
 		for (var j = 0; j < joysticks.length; j++) {
 			var joystick = joysticks[j];
-			
+
 			//console.log("0: " + joystick.axes[0] + "1: " + joystick.axes[1] + " 2: " + joystick.axes[2] + " 3: " + joystick.axes[3] + " 4: " + joystick.axes[4]);
 			//console.log(joystick.buttons);
 			//console.log(joystick.pov);
 
-			var controllerId = "boomstick_a";
+			var controllerId = "boomstick_" + j;
 
 			var up = joystick.pov & UP;
 			var left = joystick.pov & LEFT;
@@ -90,81 +90,6 @@
 		}
 
 		window.requestAnimationFrame(pollJoysticks);
-	}
-
-	function handleArrowKeysController(e, keyDown) {
-
-		var controllerId = "keyboard_arrowkeys";
-
-		e.preventDefault();
-
-		if (e.keyCode == KeyEvent.DOM_VK_LEFT) {
-			if (keyDown && !_joy0Left) {
-				_joy0Left = true;
-				_interpretor.gamepadPressed(controllerId, true, false, false, false);
-			} else if (!keyDown && _joy0Left) {
-				_joy0Left = false;
-				_interpretor.gamepadReleased(controllerId, true, false, false, false);
-			}
-		} else if (e.keyCode == KeyEvent.DOM_VK_UP) {
-			if (keyDown && !_joy0Up) {
-				_joy0Up = true;
-				_interpretor.gamepadPressed(controllerId, false, true, false, false);
-			} else if (!keyDown && _joy0Up) {
-				_joy0Up = false;
-				_interpretor.gamepadReleased(controllerId, false, true, false, false);
-			}
-		} else if (e.keyCode == KeyEvent.DOM_VK_RIGHT) {
-			if (keyDown && !_joy0Right) {
-				_joy0Right = true;
-				_interpretor.gamepadPressed(controllerId, false, false, true, false);
-			} else if (!keyDown && _joy0Right) {
-				_joy0Right = false;
-				_interpretor.gamepadReleased(controllerId, false, false, true, false);
-			}
-		} else if (e.keyCode == KeyEvent.DOM_VK_DOWN) {
-			if (keyDown && !_joy0Down) {
-				_joy0Down = true;
-				_interpretor.gamepadPressed(controllerId, false, false, false, true);
-			} else if (!keyDown && _joy0Down) {
-				_joy0Down = false;
-				_interpretor.gamepadReleased(controllerId, false, false, false, true);
-			}
-		} else if (e.keyCode == KeyEvent.DOM_VK_DELETE) {
-			if (keyDown && !_joy0ButtonADown) {
-				_joy0ButtonADown = true;
-				_interpretor.buttonsPressed(controllerId, true, false, false, false);
-			} else if (!keyDown && _joy0ButtonADown) {
-				_joy0ButtonADown = false;
-				_interpretor.buttonsPressed(controllerId, true, false, false, false);
-			}
-		} else if (e.keyCode == KeyEvent.DOM_VK_PAGE_DOWN) {
-			if (keyDown && !_joy0ButtonBDown) {
-				_joy0ButtonBDown = true;
-				_interpretor.buttonsPressed(controllerId, false, true, false, false);
-			} else if (!keyDown && _joy0ButtonBDown) {
-				_joy0ButtonBDown = false;
-				_interpretor.buttonsPressed(controllerId, false, true, false, false);
-			}
-		}
-
-		var x;
-		if (_joy0Left && !_joy0Right)
-			x = -1;
-		else if (_joy0Right && !_joy0Left)
-			x = 1;
-		else
-			x = 0;
-
-		var y;
-		if (_joy0Up && !_joy0Down)
-			y = -1;
-		else if (_joy0Down && !_joy0Up)
-			y = 1;
-		else
-			y = 0;
-
-		_interpretor.joystick(controllerId, x, y);
 	};
 
 } (window.partyMachineBoomstickControllers = window.partyMachineBoomstickControllers || {}, partyMachineControllers, jQuery));
