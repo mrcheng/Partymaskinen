@@ -117,11 +117,7 @@
 			} else if (down) {
 				_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
 			}
-			//			else {
-			//				pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
-			//				return true;
-			//			}
-
+			
 			pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
 
 		};
@@ -206,8 +202,7 @@
 					$.shuffle(freshParticipants);
 
 					participants.start(feedUrl, freshParticipants);
-
-
+					
 					pluginRunner.start(mediaPlayer, data.plugins);
 
 					controllers.start(freshParticipants);
