@@ -58,9 +58,9 @@
 		partyMachine.bindKeys(freshParticipants);
 	}
 
-	partyMachine.bindKeys = function(freshParticipants) {
+	partyMachine.bindKeys = function (freshParticipants) {
 
-		var buttonsPressed = function(buttonA, buttonB, buttonC, buttonD) {
+		var buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
 
 			var anyButton = buttonA || buttonB || buttonC || buttonD;
 
@@ -82,8 +82,14 @@
 
 		};
 
-		var gamepadPressed = function(left, up, right, down) {
+		var gamepadPressed = function (left, up, right, down) {
 
+			var anyButton = left || up || right || down;
+
+			if (!anyButton) {
+				return false;
+			}
+			
 			var plugins = pluginRunner.getPlugins();
 
 			if (_state.context !== _contexts.atPluginSelection) {
@@ -110,22 +116,23 @@
 				_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
 			} else if (down) {
 				_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
-			} else {
-				pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
-				return true;
 			}
+			//			else {
+			//				pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
+			//				return true;
+			//			}
 
 			pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
 
 		};
 
-		controllers.mapControllers(gamepadPressed, function() {
-		}, buttonsPressed, function() {
-		}, function() {
+		controllers.mapControllers(gamepadPressed, function () {
+		}, buttonsPressed, function () {
+		}, function () {
 		});
 
 	},
-	partyMachine.updateParticipantTimeout = function() {
+	partyMachine.updateParticipantTimeout = function () {
 
 		var dateNow = new Date();
 		var nTimeDiff = _participantTimeoutDateTime.getTime() - dateNow.getTime();
@@ -153,7 +160,7 @@
 			_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
 		}
 	},
-	partyMachine.start = function(pluginDevelopment) {
+	partyMachine.start = function (pluginDevelopment) {
 
 		var partyParams = partyMachine.getUrlParams();
 
@@ -183,14 +190,14 @@
 				url: feedUrl,
 				jsonp: true,
 				dataType: 'json',
-				success: function(data) {
+				success: function (data) {
 
 					var freshParticipants = [];
 
 					$('#partyname').html('<p>' + data.name + '</p>');
 
 					if (data.participants && data.participants.length > 0) {
-						$.each(data.participants, function(key, m) {
+						$.each(data.participants, function (key, m) {
 							m.status = "active";
 							freshParticipants.push(m);
 						});
@@ -200,13 +207,13 @@
 
 					participants.start(feedUrl, freshParticipants);
 
-					
+
 					pluginRunner.start(mediaPlayer, data.plugins);
 
 					controllers.start(freshParticipants);
 
 					atPluginSelect(freshParticipants);
-					
+
 					mediaPlayer.start($.shuffle(data.media));
 				}
 			});
@@ -215,7 +222,7 @@
 		// Setup a callback to handle the dispatched MessageEvent event. In cases where
 		// window.postMessage is supported, the passed event will have .data, .origin and
 		// .source properties. Otherwise, this will only have the .data property.
-		$.receiveMessage(function(e) {
+		$.receiveMessage(function (e) {
 
 			var data = JSON.parse(e.data);
 

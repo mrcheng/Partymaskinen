@@ -26,7 +26,7 @@
 
 	};
 
-	controllers.joystick = function (controllerId, x, y) {
+	controllers.joystick = function (x, y, controllerId) {
 		var controller = _controllers[controllerId];
 
 		if (controller && controller.joystick) {
@@ -34,7 +34,7 @@
 		}
 	};
 
-	controllers.gamepadPressed = function (controllerId, left, up, right, down) {
+	controllers.gamepadPressed = function (left, up, right, down, controllerId) {
 
 		var controller = _controllers[controllerId];
 
@@ -44,7 +44,7 @@
 
 	};
 
-	controllers.gamepadReleased = function (controllerId, left, up, right, down) {
+	controllers.gamepadReleased = function (left, up, right, down, controllerId) {
 
 		var controller = _controllers[controllerId];
 
@@ -54,7 +54,7 @@
 
 	};
 
-	controllers.buttonsPressed = function (controllerId, buttonA, buttonB, buttonC, buttonD) {
+	controllers.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD, controllerId) {
 
 		var controller = _controllers[controllerId];
 
@@ -64,7 +64,7 @@
 
 	};
 
-	controllers.buttonsReleased = function (controllerId, buttonA, buttonB, buttonC, buttonD) {
+	controllers.buttonsReleased = function (buttonA, buttonB, buttonC, buttonD, controllerId) {
 
 		var controller = _controllers[controllerId];
 

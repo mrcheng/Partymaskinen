@@ -168,50 +168,50 @@
 		if (e.keyCode == KeyEvent.DOM_VK_LEFT) {
 			if (keyDown && !_joy0Left) {
 				_joy0Left = true;
-				_interpretor.gamepadPressed(controllerId, true, false, false, false);
+				_interpretor.gamepadPressed(true, false, false, false, controllerId);
 			} else if (!keyDown && _joy0Left) {
 				_joy0Left = false;
-				_interpretor.gamepadReleased(controllerId, true, false, false, false);
+				_interpretor.gamepadReleased(true, false, false, false, controllerId);
 			}
 		} else if (e.keyCode == KeyEvent.DOM_VK_UP) {
 			if (keyDown && !_joy0Up) {
 				_joy0Up = true;
-				_interpretor.gamepadPressed(controllerId, false, true, false, false);
+				_interpretor.gamepadPressed(false, true, false, false, controllerId);
 			} else if (!keyDown && _joy0Up) {
 				_joy0Up = false;
-				_interpretor.gamepadReleased(controllerId, false, true, false, false);
+				_interpretor.gamepadReleased(false, true, false, false, controllerId);
 			}
 		} else if (e.keyCode == KeyEvent.DOM_VK_RIGHT) {
 			if (keyDown && !_joy0Right) {
 				_joy0Right = true;
-				_interpretor.gamepadPressed(controllerId, false, false, true, false);
+				_interpretor.gamepadPressed(false, false, true, false, controllerId);
 			} else if (!keyDown && _joy0Right) {
 				_joy0Right = false;
-				_interpretor.gamepadReleased(controllerId, false, false, true, false);
+				_interpretor.gamepadReleased(false, false, true, false, controllerId);
 			}
 		} else if (e.keyCode == KeyEvent.DOM_VK_DOWN) {
 			if (keyDown && !_joy0Down) {
 				_joy0Down = true;
-				_interpretor.gamepadPressed(controllerId, false, false, false, true);
+				_interpretor.gamepadPressed(false, false, false, true, controllerId);
 			} else if (!keyDown && _joy0Down) {
 				_joy0Down = false;
-				_interpretor.gamepadReleased(controllerId, false, false, false, true);
+				_interpretor.gamepadReleased(false, false, false, true, controllerId);
 			}
 		} else if (e.keyCode == KeyEvent.DOM_VK_DELETE) {
 			if (keyDown && !_joy0ButtonADown) {
 				_joy0ButtonADown = true;
-				_interpretor.buttonsPressed(controllerId, true, false, false, false);
+				_interpretor.buttonsPressed(true, false, false, false, controllerId);
 			} else if (!keyDown && _joy0ButtonADown) {
 				_joy0ButtonADown = false;
-				_interpretor.buttonsPressed(controllerId, true, false, false, false);
+				_interpretor.buttonsPressed(true, false, false, false, controllerId);
 			}
 		} else if (e.keyCode == KeyEvent.DOM_VK_PAGE_DOWN) {
 			if (keyDown && !_joy0ButtonBDown) {
 				_joy0ButtonBDown = true;
-				_interpretor.buttonsPressed(controllerId, false, true, false, false);
+				_interpretor.buttonsPressed(false, true, false, false, controllerId);
 			} else if (!keyDown && _joy0ButtonBDown) {
 				_joy0ButtonBDown = false;
-				_interpretor.buttonsPressed(controllerId, false, true, false, false);
+				_interpretor.buttonsPressed(false, true, false, false, controllerId);
 			}
 		}
 
@@ -242,61 +242,61 @@
 		if (e.keyCode == KeyEvent.DOM_VK_A) {
 			if (keyDown && !_joy1Left) {
 				_joy1Left = true;
-				_interpretor.gamepadPressed(controllerId,controllerId, true, false, false, false);
+				_interpretor.gamepadPressed(true, false, false, false, controllerId);
 			}
 			else if (!keyDown && _joy1Left) {
 				_joy1Left = false;
-				_interpretor.gamepadReleased(controllerId,controllerId, true, false, false, false);
+				_interpretor.gamepadReleased(true, false, false, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_W) {
 			if (keyDown && !_joy1Up) {
 				_joy1Up = true;
-				_interpretor.gamepadPressed(controllerId,controllerId, false, true, false, false);
+				_interpretor.gamepadPressed(false, true, false, false, controllerId);
 			}
 			else if (!keyDown && _joy1Up) {
 				_joy1Up = false;
-				_interpretor.gamepadReleased(controllerId,controllerId, false, true, false, false);
+				_interpretor.gamepadReleased(false, true, false, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_D) {
 			if (keyDown && !_joy1Right) {
 				_joy1Right = true;
-				_interpretor.gamepadPressed(controllerId,controllerId, false, false, true, false);
+				_interpretor.gamepadPressed(false, false, true, false, controllerId);
 			}
 			else if (!keyDown && _joy1Right) {
 				_joy1Right = false;
-				_interpretor.gamepadReleased(controllerId,controllerId, false, false, true, false);
+				_interpretor.gamepadReleased(false, false, true, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_S) {
 			if (keyDown && !_joy1Down) {
 				_joy1Down = true;
-				_interpretor.gamepadPressed(controllerId,controllerId, false, false, false, true);
+				_interpretor.gamepadPressed(false, false, false, true, controllerId);
 			}
 			else if (!keyDown && _joy1Down) {
 				_joy1Down = false;
-				_interpretor.gamepadReleased(controllerId,controllerId, false, false, false, true);
+				_interpretor.gamepadReleased(false, false, false, true, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_Q) {
 			if (keyDown && !_joy1ButtonADown) {
 				_joy1ButtonADown = true;
-				_interpretor.buttonsPressed(controllerId,controllerId, true, false, false, false);
+				_interpretor.buttonsPressed(true, false, false, false, controllerId);
 			}
 			else if (!keyDown && _joy1ButtonADown) {
 				_joy1ButtonADown = false;
-				_interpretor.buttonsReleased(controllerId,controllerId, true, false, false, false);
+				_interpretor.buttonsReleased(true, false, false, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_E) {
 			if (keyDown && !_joy1ButtonBDown) {
 				_joy1ButtonBDown = true;
-				_interpretor.buttonsPressed(controllerId,controllerId, false, true, false, false);
+				_interpretor.buttonsPressed(false, true, false, false, controllerId);
 			}
 			else if (!keyDown && _joy1ButtonBDown) {
 				_joy1ButtonBDown = false;
-				_interpretor.buttonsReleased(controllerId,controllerId, false, true, false, false);
+				_interpretor.buttonsReleased(false, true, false, false, controllerId);
 			}
 		}
 
@@ -328,61 +328,61 @@
 		if (e.keyCode == KeyEvent.DOM_VK_J) {
 			if (keyDown && !_joy2Left) {
 				_joy2Left = true;
-				_interpretor.gamepadPressed(controllerId, true, false, false, false);
+				_interpretor.gamepadPressed(true, false, false, false, controllerId);
 			}
 			else if (!keyDown && _joy2Left) {
 				_joy2Left = false;
-				_interpretor.gamepadReleased(controllerId, true, false, false, false);
+				_interpretor.gamepadReleased(true, false, false, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_I) {
 			if (keyDown && !_joy2Up) {
 				_joy2Up = true;
-				_interpretor.gamepadPressed(controllerId, false, true, false, false);
+				_interpretor.gamepadPressed(false, true, false, false, controllerId);
 			}
 			else if (!keyDown && _joy2Up) {
 				_joy2Up = false;
-				_interpretor.gamepadReleased(controllerId, false, true, false, false);
+				_interpretor.gamepadReleased(false, true, false, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_L) {
 			if (keyDown && !_joy2Right) {
 				_joy2Right = true;
-				_interpretor.gamepadPressed(controllerId, false, false, true, false);
+				_interpretor.gamepadPressed(false, false, true, false, controllerId);
 			}
 			else if (!keyDown && _joy2Right) {
 				_joy2Right = false;
-				_interpretor.gamepadReleased(controllerId, false, false, true, false);
+				_interpretor.gamepadReleased(false, false, true, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_K) {
 			if (keyDown && !_joy2Down) {
 				_joy2Down = true;
-				_interpretor.gamepadPressed(controllerId, false, false, false, true);
+				_interpretor.gamepadPressed(false, false, false, true, controllerId);
 			}
 			else if (!keyDown && _joy2Down) {
 				_joy2Down = false;
-				_interpretor.gamepadReleased(controllerId, false, false, false, true);
+				_interpretor.gamepadReleased(false, false, false, true, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_U) {
 			if (keyDown && !_joy2ButtonADown) {
 				_joy2ButtonADown = true;
-				_interpretor.buttonsPressed(controllerId, true, false, false, false);
+				_interpretor.buttonsPressed(true, false, false, false, controllerId);
 			}
 			else if (!keyDown && _joy2ButtonADown) {
 				_joy2ButtonADown = false;
-				_interpretor.buttonsReleased(controllerId, true, false, false, false);
+				_interpretor.buttonsReleased(true, false, false, false, controllerId);
 			}
 		}
 		else if (e.keyCode == KeyEvent.DOM_VK_O) {
 			if (keyDown && !_joy2ButtonBDown) {
 				_joy2ButtonBDown = true;
-				_interpretor.buttonsPressed(controllerId, false, true, false, false);
+				_interpretor.buttonsPressed(false, true, false, false, controllerId);
 			}
 			else if (!keyDown && _joy2ButtonBDown) {
 				_joy2ButtonBDown = false;
-				_interpretor.buttonsReleased(controllerId, false, true, false, false);
+				_interpretor.buttonsReleased(false, true, false, false, controllerId);
 			}
 		}
 
