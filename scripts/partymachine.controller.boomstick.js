@@ -1,70 +1,35 @@
-﻿
+﻿/**
+Get the sign of this number as an integer (1, -1, or 0).
+
+<code><pre>
+(-5).sign()
+# => -1
+
+0.sign()
+# => 0
+
+5.sign()
+# => 1
+</pre></code>
+
+@name sign
+@methodOf Number#
+@returns {Number} The sign of this number, 0 if the number is 0.
+*/
+Number.prototype.sign = function() {
+  if (this > 0) {
+    return 1;
+  } else if (this < 0) {
+    return -1;
+  } else {
+    return 0;
+  }
+};
+
 (function (boomstick, partyMachineControllers, $, undefined) {
 
 	var boomstickpluginType = "application/x-boomstickjavascriptjoysticksupport";
 	var boomstickplugin = null;
-
-	var periodicCheck, promptElement;
-
-	var displayInstallPrompt = function (text, url) {
-		return $("<a />", {
-			css: {
-				backgroundColor: "yellow",
-				boxSizing: "border-box",
-				color: "#000",
-				display: "block",
-				fontWeight: "bold",
-				left: 0,
-				padding: "1em",
-				position: "absolute",
-				textDecoration: "none",
-				top: 0,
-				width: "100%",
-				zIndex: 2000
-			},
-			href: url,
-			target: "_blank",
-			text: text
-		}).appendTo("body");
-	};
-
-
-	if (!boomstickplugin) {
-		boomstickplugin = document.createElement("object");
-		
-		boomstickplugin.onreadystatechange = function(x) {
-			if (boomstickplugin.readyState === 4) {
-				alert("tjoo");
-				//if (displayMessageDelegate !== undefined && typeof displayMessageDelegate === 'function') {
-				//	displayMessageDelegate();
-				//}
-			}
-		};
-
-		boomstickplugin.setAttribute("type", boomstickpluginType);
-		boomstickplugin.setAttribute("width", 0);
-		boomstickplugin.setAttribute("height",  0);
-		boomstickplugin.setAttribute("id", "boomstickplugin");
-
-		$("body").append(boomstickplugin);
-		//boomstickplugin.maxAxes = 6;
-		if (!(boomstickplugin != null && boomstickplugin.joysticksJSON)) {
-			promptElement = displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin!", "https://github.com/STRd6/Boomstick/wiki");
-			periodicCheck = function () {
-				if (boomstickplugin != null && boomstickplugin.joysticksJSON) {
-					init();
-					return promptElement.remove();
-				} else {
-					//init();
-					//return false;
-					return setTimeout(periodicCheck, 500);
-				}
-			};
-			return periodicCheck();
-		} else {
-			init();
-		}
-	}
 
 
 	var previousJoysticks;
@@ -121,6 +86,69 @@
 	var BUTTON_1 = 2;
 	var BUTTON_2 = 4;
 	var BUTTON_3 = 8;
+	
+	var periodicCheck, promptElement;
+
+	var displayInstallPrompt = function (text, url) {
+		return $("<a />", {
+			css: {
+				backgroundColor: "yellow",
+				boxSizing: "border-box",
+				color: "#000",
+				display: "block",
+				fontWeight: "bold",
+				left: 0,
+				padding: "1em",
+				position: "absolute",
+				textDecoration: "none",
+				top: 0,
+				width: "100%",
+				zIndex: 2000
+			},
+			href: url,
+			target: "_blank",
+			text: text
+		}).appendTo("body");
+	};
+
+
+	if (!boomstickplugin) {
+		boomstickplugin = document.createElement("object");
+		
+		boomstickplugin.onreadystatechange = function(x) {
+			if (boomstickplugin.readyState === 4) {
+				if (!boomstickplugin.joysticksJSON) {
+				    displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin!", "https://github.com/STRd6/Boomstick/wiki");
+				}
+			}
+		};
+
+		boomstickplugin.type = boomstickpluginType;
+		boomstickplugin.width = 0;
+		boomstickplugin.height = 0;
+		boomstickplugin.setAttribute("id", "boomstickplugin");
+
+		$("body").append(boomstickplugin);
+		//boomstickplugin.maxAxes = 6;
+		if (!(boomstickplugin != null && boomstickplugin.joysticksJSON)) {
+			promptElement = displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin!", "https://github.com/STRd6/Boomstick/wiki");
+			periodicCheck = function () {
+				if (boomstickplugin != null && boomstickplugin.joysticksJSON) {
+					init();
+					return promptElement.remove();
+				} else {
+					//init();
+					//return false;
+					return setTimeout(periodicCheck, 500);
+				}
+			};
+			return periodicCheck();
+		} else {
+			init();
+		}
+	}
+
+
 
 	function init() {
 		_interpretor = partyMachineControllers;
@@ -169,33 +197,58 @@
 			var previousJoystickState = previousJoysticks[j];
 			//console.log("0: " + joystick.axes[0] + "1: " + joystick.axes[1] + " 2: " + joystick.axes[2] + " 3: " + joystick.axes[3] + " 4: " + joystick.axes[4]);
 			//console.log(joystick.buttons);
-			//console.log(joystick.pov);
+			console.log(joystick.pov);
 
 			var controllerId = "boomstick_" + j;
 
-			var up = (joystick.pov & UP) && (!previousJoystickState.pov & UP);
-			var left = (joystick.pov & LEFT) && (!previousJoystickState.pov & LEFT);
-			var right = (joystick.pov & RIGHT) && (!previousJoystickState.pov & RIGHT);
-			var down = (joystick.pov & DOWN) && (!previousJoystickState.pov & DOWN);
+			var up = (joystick.pov & UP) && ((!previousJoystickState.pov & UP) === 0);
+			var left = (joystick.pov & LEFT) && ((!previousJoystickState.pov & LEFT) === 0);
+			var right = (joystick.pov & RIGHT) && ((!previousJoystickState.pov & RIGHT) === 0);
+			var down = (joystick.pov & DOWN) && ((!previousJoystickState.pov & DOWN) === 0);
 
 			if (left || up || right || down) {
 				_interpretor.gamepadPressed(left, up, right, down, controllerId);
 			}
 
-			var buttonA = joystick.buttons & BUTTON_0;
-			var buttonB = joystick.buttons & BUTTON_1;
-			var buttonC = joystick.buttons & BUTTON_2;
-			var buttonD = joystick.buttons & BUTTON_3;
+			var buttonA = (joystick.buttons & BUTTON_0) && ((!previousJoystickState.buttons & BUTTON_0) === 0);
+			var buttonB = (joystick.buttons & BUTTON_1) && ((!previousJoystickState.buttons & BUTTON_1) === 0);
+			var buttonC = (joystick.buttons & BUTTON_2) && ((!previousJoystickState.buttons & BUTTON_2) === 0);
+			var buttonD = (joystick.buttons & BUTTON_3) && ((!previousJoystickState.buttons & BUTTON_3) === 0);
 
 			if (buttonA || buttonB || buttonC || buttonD) {
 				_interpretor.buttonsPressed(buttonA, buttonB, buttonC, buttonD, controllerId);
 			}
 
-			var x = (joystick.axes[2] === -256 || joystick.axes[2] === 0) ? 0 : joystick.axes[2];
-			var y = (joystick.axes[3] === -256 || joystick.axes[3] === 0) ? 0 : joystick.axes[3];
+            var x, y;
+            
+			var xAxis = joystick.axes[2];
+			var yAxis = joystick.axes[3];
+
+            if (!previousJoystickState.xAxisTrips) {
+                previousJoystickState.xAxisTrips = true;
+                x = parseInt(xAxis, 10).sign();
+            }
+            else if (previousJoystickState.xAxisTrips) {
+                previousJoystickState.xAxisTrips = false;
+                x = 0;
+            }
+            else {
+                x = 0;
+            }
+
+            if (!previousJoystickState.yAxisTrips) {
+                previousJoystickState.yAxisTrips = true;
+                y = parseInt(yAxis, 10).sign();
+            }
+            else if (previousJoystickState.yAxisTrips) {
+                previousJoystickState.yAxisTrips = false;
+                y = 0;
+            }
+            else {
+                y = 0;
+            }
 
 			_interpretor.joystick(x, y, controllerId);
-
 
 		}
 
