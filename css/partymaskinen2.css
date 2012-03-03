@@ -27,6 +27,8 @@ body {height:100%; margin:0; padding:0;}
 .plugin{float:left;margin-right:0.5%;margin-top:25px;}
 .plugin img {width:100px;height:100px;}
 .plugin-selected img {border-radius:3px; border:2px solid #c9ff33;}
+/* LOGO */
+#logo{float:right;margin-top:10px;margin-right:37px;}
 /* MEDIA INFO */
 .media-info-container {position:fixed; width:100%; margin-top:15%;}
 .next-song { font-size:14px; margin-top:2px; color:white; }
