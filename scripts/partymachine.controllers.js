@@ -86,6 +86,18 @@
 		}
 	};
 
+    controllers.mapController = function (gamepadPressed, gamepadReleased, buttonsPressed, buttonsReleased, joystick, controllerId) {
+		
+		var controller = _controllers[controllerId];
+
+		controller.joystick = joystick || function (x, y, cId) { };
+		controller.gamepadPressed = gamepadPressed || function (left, up, right, down, cId) { };
+		controller.gamepadReleased = gamepadReleased || function (left, up, right, down, cId) { };
+		controller.buttonsPressed = buttonsPressed || function (buttonA, buttonB, buttonC, buttonD, cId) { };
+		controller.buttonsReleased = buttonsReleased || function (buttonA, buttonB, buttonC, buttonD, cId) { };
+	
+	};
+	
 	controllers.mapControllers = function (gamepadPressed, gamepadReleased, buttonsPressed, buttonsReleased, joystick) {
 		for (var controllerId in _controllers) {
 
@@ -241,7 +253,8 @@
 
 	controllerSelector.assignGameControllers = function(
 		gameControllersAssigned,
-		participants
+		participants,
+		participantController
 	) {
 
 		_highlightedControllersToParticipants = { };
@@ -251,7 +264,7 @@
 
 			var participantCount = participants.length;
 			
-			var oldparticipant = (_highlightedControllersToParticipants[controllerId]  > -1 ) ? _highlightedControllersToParticipants[controllerId] : -1;
+			var oldparticipant = (_highlightedControllersToParticipants[controllerId] > -1 ) ? _highlightedControllersToParticipants[controllerId] : -1;
 
 			var participant = oldparticipant + mod;
 			
@@ -288,7 +301,37 @@
 			}
 		};
 
-		var buttonsPressed = function (left, up, right, down, controllerId) {
+		var buttonsPressed = function (buttonA, buttonB, buttonC, buttonD, controllerId) {
+		    var participant = _highlightedControllersToParticipants[controllerId];
+		   
+		    if (typeof participant === "undefined") {
+		        return;
+		    }
+		   
+		    if (typeof _assignedParticipantsToControllers[controllerId] !== "undefined") {
+				return;
+			}
+
+			_assignedParticipantsToControllers[participant] = controllerId;
+
+            var p = participants[participant];
+
+            controllers.mapController(p.gameController.gamepadPressed, p.gameController.gamepadReleased, p.gameController.buttonsPressed, p.gameController.buttonsReleased, p.gameController.joystick, controllerId); 
+                      
+			if (Object.keys(_assignedParticipantsToControllers).length === participants.length)
+			{
+			    if (typeof gameControllersAssigned === "undefined") {
+    			    return;
+    		    }
+
+                $("#assignGameControllersOverlay").remove();
+                
+    		    gameControllersAssigned();
+
+			}
+            
+
+            		    
 		};
 
 		var buttonsReleased = function() {};
@@ -320,11 +363,6 @@
 
 //		}
 
-//		if (typeof gameControllersAssigned === "undefined") {
-//			return;
-//		}
-
-//		gameControllersAssigned();
 
 	};
 

@@ -94,6 +94,11 @@
 		$('<iframe id="partyMachinePlugin" name="partyMachinePlugin" src="' + _currentPluginSrc + '" scrolling="no" frameborder="0" height="100%" width="100%" style="display:block;position:absolute;z-index:1001;">')
 			.appendTo("#partyMachinePluginContainer");
 
+        for(var p = 0; p < participants.length; p++) {
+            var participant = participants[p];
+            participant.gameController = {};
+        }
+        
 		var startMsg = {
 			'event': 'startPlugin',
 			'participants': participants

@@ -26,6 +26,14 @@ Number.prototype.sign = function() {
   }
 };
 
+setTimeout( function() {
+
+window.requestAnimationFrame || (window.requestAnimationFrame = window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback, element) {
+  return window.setTimeout(function() {
+    return callback(+new Date());
+  }, 1000 / 60);
+});
+
 (function (boomstick, partyMachineControllers, $, undefined) {
 
 	var boomstickpluginType = "application/x-boomstickjavascriptjoysticksupport";
@@ -76,7 +84,9 @@ Number.prototype.sign = function() {
 		"TR": 128,
 		"ANY": 0xFFFFFF0
 	};
-
+	
+    var lastStepTime = -Infinity;
+    
 	var UP = 1;
 	var DOWN = 16;
 	var RIGHT = 256;
@@ -149,8 +159,23 @@ Number.prototype.sign = function() {
 	}
 
 
+     function animLoop(timestamp) {
+      var delta, msPerFrame, remainder;
+      timestamp || (timestamp = +new Date());
+      msPerFrame = 1000 / 30;
+      delta = timestamp - lastStepTime;
+      remainder = delta - msPerFrame;
+      if (remainder > 0) {
+        lastStepTime = timestamp - Math.min(remainder, msPerFrame);
+        pollJoysticks();
+      }
+      
+      return window.requestAnimationFrame(animLoop);
+      
+    };
 
 	function init() {
+
 		_interpretor = partyMachineControllers;
 
 		joysticks = JSON.parse(boomstickplugin.joysticksJSON());
@@ -159,30 +184,32 @@ Number.prototype.sign = function() {
 			_interpretor.registerInput("boomstick_" + j);
 		}
 
-		var lastTime = 0;
-		var vendors = ['ms', 'moz', 'webkit', 'o'];
-		for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-			window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-			window.cancelAnimationFrame =
-          window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
-		}
+        window.requestAnimationFrame(animLoop);
 
-		if (!window.requestAnimationFrame)
-			window.requestAnimationFrame = function (cintallback, element) {
-				var currTime = new Date().getTime();
-				var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-				var id = window.setTimeout(function () { callback(currTime + timeToCall); },
-              timeToCall);
-				lastTime = currTime + timeToCall;
-				return id;
-			};
+//		var lastTime = 0;
+//		var vendors = ['ms', 'moz', 'webkit', 'o'];
+//		for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+//			window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+//			window.cancelAnimationFrame =
+//          window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+//		}
 
-		if (!window.cancelAnimationFrame)
-			window.cancelAnimationFrame = function (id) {
-				clearTimeout(id);
-			};
+//		if (!window.requestAnimationFrame)
+//			window.requestAnimationFrame = function (cintallback, element) {
+//				var currTime = new Date().getTime();
+//				var timeToCall = Math.max(0, 1000 - (currTime - lastTime));
+//				var id = window.setTimeout(function () { callback(currTime + timeToCall); },
+//              timeToCall);
+//				lastTime = currTime + timeToCall;
+//				return id;
+//			};
 
-		window.requestAnimationFrame(pollJoysticks);
+//		if (!window.cancelAnimationFrame)
+//			window.cancelAnimationFrame = function (id) {
+//				clearTimeout(id);
+//			};
+
+//		window.requestAnimationFrame(pollJoysticks);
 
 	};
 
@@ -197,7 +224,7 @@ Number.prototype.sign = function() {
 			var previousJoystickState = previousJoysticks[j];
 			//console.log("0: " + joystick.axes[0] + "1: " + joystick.axes[1] + " 2: " + joystick.axes[2] + " 3: " + joystick.axes[3] + " 4: " + joystick.axes[4]);
 			//console.log(joystick.buttons);
-			console.log(joystick.pov);
+			//console.log(joystick.pov);
 
 			var controllerId = "boomstick_" + j;
 
@@ -224,35 +251,45 @@ Number.prototype.sign = function() {
 			var xAxis = joystick.axes[2];
 			var yAxis = joystick.axes[3];
 
-            if (!previousJoystickState.xAxisTrips) {
-                previousJoystickState.xAxisTrips = true;
+            if (!joystick.xAxisTrips) {
+                joystick.xAxisTrips = true;
                 x = parseInt(xAxis, 10).sign();
             }
-            else if (previousJoystickState.xAxisTrips) {
-                previousJoystickState.xAxisTrips = false;
+            else if (joystick.xAxisTrips) {
+                joystick.xAxisTrips = false;
                 x = 0;
             }
             else {
                 x = 0;
             }
 
-            if (!previousJoystickState.yAxisTrips) {
-                previousJoystickState.yAxisTrips = true;
+            joystick.x = x;
+            
+            if (!joystick.yAxisTrips) {
+                joystick.yAxisTrips = true;
                 y = parseInt(yAxis, 10).sign();
             }
-            else if (previousJoystickState.yAxisTrips) {
-                previousJoystickState.yAxisTrips = false;
+            else if (joystick.yAxisTrips) {
+                joystick.yAxisTrips = false;
                 y = 0;
             }
             else {
                 y = 0;
             }
 
-			_interpretor.joystick(x, y, controllerId);
+            joystick.y = y;
 
+            if ((x !== previousJoystickState.x) || (y !== previousJoystickState.y)) {
+                // tap?
+			    _interpretor.joystick(x, y, controllerId);
+            }
+            
+            
+            
 		}
 
-		window.requestAnimationFrame(pollJoysticks);
+		//window.requestAnimationFrame(pollJoysticks);
 	};
-
 } (window.partyMachineBoomstickControllers = window.partyMachineBoomstickControllers || {}, partyMachineControllers, jQuery));
+
+}, 1000);
