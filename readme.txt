@@ -10,3 +10,12 @@ Plugins
 
 https://github.com/mrcheng/PartymaskinenPlugins
 
+
+
+To link a plugin at partymaskinen.se just type:
+
+http://mrcheng.github.com/PartymaskinenPlugins/nameOfTheFolderContainingThePlugin
+
+example:
+http://mrcheng.github.com/PartymaskinenPlugins/Beer%20Boy/
+
