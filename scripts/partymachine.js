@@ -16,6 +16,10 @@
 	var _participantTimeoutTimer;
 	var _participantTimeoutDateTime = null;
 
+	var _mediaTimeoutTimer;
+	//var _mediaTimeoutTimerDelay = 1000 * 60 * 1; // Tiden mellan varje koll av media-feeden
+	var _mediaTimeoutTimerDelay = 3000;
+
 	partyMachine.getUrlParams = function () {
 		var urlParams = {};
 		(function () {
@@ -42,6 +46,15 @@
 
 		_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
 	};
+
+	function resetMediaTimeout() {
+
+		if (_mediaTimeoutTimer !== null)
+			window.clearTimeout(_mediaTimeoutTimer);
+
+		_mediaTimeoutTimer = window.setTimeout("window.partyMachine.updateMediaTimeout()", _mediaTimeoutTimerDelay);
+
+	}
 
 	function atPluginSelect(freshParticipants) {
 
@@ -89,7 +102,7 @@
 			if (!anyButton) {
 				return false;
 			}
-			
+
 			var plugins = pluginRunner.getPlugins();
 
 			if (_state.context !== _contexts.atPluginSelection) {
@@ -117,21 +130,21 @@
 			} else if (down) {
 				_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
 			}
-			
+
 			pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
 
 		};
 
-        setTimeout(function() { 
-            controllers.mapControllers(
-                gamepadPressed, 
-                function () { }, 
-                buttonsPressed, 
-                function () { }, 
+		setTimeout(function () {
+			controllers.mapControllers(
+                gamepadPressed,
+                function () { },
+                buttonsPressed,
+                function () { },
                 function () { }
             );
 		}, 1000)
-		
+
 
 	},
 	partyMachine.updateParticipantTimeout = function () {
@@ -162,6 +175,25 @@
 			_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
 		}
 	},
+
+	partyMachine.updateMediaTimeout = function () {
+
+		var partyParams = partyMachine.getUrlParams();
+		var feedUrl = partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"];
+
+		$.ajax({
+			url: feedUrl,
+			jsonp: true,
+			dataType: 'json',
+			success: function (data) {
+
+				mediaPlayer.update(data.media);
+			}
+		});
+
+		_mediaTimeoutTimer = window.setTimeout("window.partyMachine.updateMediaTimeout()", _mediaTimeoutTimerDelay);
+	},
+
 	partyMachine.start = function (pluginDevelopment) {
 
 		var partyParams = partyMachine.getUrlParams();
@@ -208,21 +240,21 @@
 					$.shuffle(freshParticipants);
 
 					participants.start(feedUrl, freshParticipants);
-					
-//					var kingPong = {
-//						created: new Date(),
-//						createdBy: {
-//							id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
-//							imageUrl: "http://i.imgur.com/0ul5i.png",
-//							name: "Jonas Olsson"
-//						},
-//						id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
-//						title: "King Pong!",
-//						url: "http://localhost:50775/PartymaskinenPlugins/King%20Pong/index.html"
-//					};
-//
-//					data.plugins.push(kingPong);
-					
+
+					//					var kingPong = {
+					//						created: new Date(),
+					//						createdBy: {
+					//							id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
+					//							imageUrl: "http://i.imgur.com/0ul5i.png",
+					//							name: "Jonas Olsson"
+					//						},
+					//						id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+					//						title: "King Pong!",
+					//						url: "http://localhost:50775/PartymaskinenPlugins/King%20Pong/index.html"
+					//					};
+
+					//data.plugins.push(kingPong);
+
 					pluginRunner.start(mediaPlayer, data.plugins);
 
 					controllers.start(freshParticipants);
@@ -255,15 +287,20 @@
 
 				atPluginSelect(participants.getActiveParticipants());
 				resetParticipantTimeout();
+				resetMediaTimeout();
 			} else {
 				//console.log("unknown message recieved: " + data);
 			}
 		});
 
 		resetParticipantTimeout();
+		resetMediaTimeout();
+	},
+
+	partyMachine.update = function (pluginDevelopment) {
+
+		// Skulle koda här lite...
 	};
-
-
 } (
 	window.partyMachine = window.partyMachine || {},
 	window.partyMachineControllers,
