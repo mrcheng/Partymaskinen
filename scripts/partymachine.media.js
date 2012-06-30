@@ -183,7 +183,7 @@
 				});
 				if (!mediaExists) {
 					console.log("Adding new media: Media Id: " + m1.id);
-					_media.slice(Math.random(_media.length - 1), 0, m1);
+					_media.push(m1);
 				}
 			});
 		}
