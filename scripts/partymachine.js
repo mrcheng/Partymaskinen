@@ -17,8 +17,7 @@
 	var _participantTimeoutDateTime = null;
 
 	var _mediaTimeoutTimer;
-	//var _mediaTimeoutTimerDelay = 1000 * 60 * 1; // Tiden mellan varje koll av media-feeden
-	var _mediaTimeoutTimerDelay = 3000;
+	var _mediaTimeoutTimerDelay = 1000 * 60 * 5;
 
 	partyMachine.getUrlParams = function () {
 		var urlParams = {};
