@@ -220,8 +220,8 @@
 //						title: "King Pong!",
 //						url: "http://localhost:50775/PartymaskinenPlugins/King%20Pong/index.html"
 //					};
-
-					data.plugins.push(kingPong);
+//
+//					data.plugins.push(kingPong);
 					
 					pluginRunner.start(mediaPlayer, data.plugins);
 
