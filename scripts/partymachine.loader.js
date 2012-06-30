@@ -3,7 +3,7 @@
 
 //var baseUrl = '';
 var baseUrl = 'http://mrcheng.github.com/Partymaskinen/';
-//var baseUrl = 'http://localhost:27086/Partymaskinen/';
+//var baseUrl = 'http://localhost:1645/Partymaskinen/';
 
 yepnope({
 	load: [

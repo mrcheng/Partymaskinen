@@ -98,14 +98,8 @@
             var participant = participants[p];
             participant.gameController = {};
         }
-        
-		var startMsg = {
-			'event': 'startPlugin',
-			'participants': participants
-		};
 
 		$("#partyMachinePlugin").load(function () {
-			$.postMessage(JSON.stringify(startMsg), '*', $("#partyMachinePlugin").get(0).contentWindow);
 			$("#partyMachinePlugin").focus();
 		});
 
@@ -154,6 +148,15 @@
 			console.log("highlighting plugin: " + highlightPlugin.title);
 		}
 
+	};
+
+	pluginRunner.sendParticipants = function(participants) {
+		var startMsg = {
+			'event': 'getParticipants',
+			'participants': participants
+		};
+
+		$.postMessage(JSON.stringify(startMsg), '*', $("#partyMachinePlugin").get(0).contentWindow);
 	};
 
 } (window.partyMachinePluginRunner = window.partyMachinePluginRunner || {}, jQuery));

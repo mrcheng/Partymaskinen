@@ -241,7 +241,7 @@
 	   for (var i = 0; i < participants.length; i++) {
 	   	var currentParticipant = participants[i];
 	   	// TODO: Varför har jag inte ID här?
-	   	var participant = $('<div id="pm-js-participant-controller-selection-'+ i +'"><div class="participant-image"><img src="' + currentParticipant.imageUrl + '"></img></div><div class="name-container"><div class="fittext1 participant-name">' + currentParticipant.name +'</div></div></div>');
+	   	var participant = $('<div id="pm-js-participant-controller-selection-'+ i +'"><div class="participant-image"><img src="' + currentParticipant.imageUrl + '" width="128" height="128"></img></div><div class="name-container"><div class="fittext1 participant-name">' + currentParticipant.name +'</div></div></div>');
 	   	
 		participant.data("participantId", currentParticipant.id);
 	   	
