@@ -276,6 +276,7 @@
 			}
 			
 			while(_assignedParticipantsToControllers[participant]) {
+				participant += mod;
 				if (participant > participantCount - 1) {
 				participant = 0;
 				}
