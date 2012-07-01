@@ -20,10 +20,12 @@
 	};
 
 	var urlParams = getUrlParams();
+	var baseUrlEncoded = urlParams["baseUrl"];
+	var baseUrl = decodeURIComponent(baseUrlEncoded);
 
-	var baseUrl = decodeURIComponent(urlParams["baseUrl"]);
-
-	var pluginDev = urlParams["pluginDev"];
+	if (typeof baseUrlEncoded == undefined) {
+		baseUrl = 'http://mrcheng.github.com/Partymaskinen/';
+	}
 
 	yepnope({
 		load: [
@@ -39,11 +41,11 @@
 			if (typeof pluginDev == undefined) {
 				partyMachinePlugin(["Participant1", "Participant2", "Participant3", "Participant4", "Participant5", "Participant6", "Participant7", "Participant8"]);
 			} else {
-				$.receiveMessage(function(e) {
+				$.receiveMessage(function (e) {
 					var data = JSON.parse(e.data);
 
 					if (data.event === 'getParticipants') {
-						partyMachinePlugin(data.participants);	
+						partyMachinePlugin(data.participants);
 					}
 				});
 				$.postMessage(JSON.stringify({ event: "getParticipants" }), '*', window.parent);
