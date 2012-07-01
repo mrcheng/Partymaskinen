@@ -19,3 +19,6 @@ http://mrcheng.github.com/PartymaskinenPlugins/nameOfTheFolderContainingThePlugi
 example:
 http://mrcheng.github.com/PartymaskinenPlugins/Beer%20Boy/
 
+
+For Chrome users, add the following flags for a smoother run:
+chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins

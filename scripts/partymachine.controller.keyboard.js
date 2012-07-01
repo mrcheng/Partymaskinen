@@ -403,7 +403,7 @@
 			y = 0;
 				
 
-		_interpretor.joystick(controllerId, x, y);	
+		_interpretor.joystick(x, y, controllerId);	
 	
 	};
 	

@@ -74,20 +74,39 @@
 
 	};
 
-	controllers.clearInputMappings = function () {
-		for (var c = 0; c < _controllers.length; c++) {
-			var controller = _controllers[c];
+	controllers.unmapControllersExcept = function (mappedControllers) {
 
-			controller.gamepadPressed = gamepadPressed;
-			controller.gamepadReleased = gamepadReleased;
-			controller.buttonsPressed = buttonsPressed;
-			controller.buttonsReleased = buttonsReleased;
-			controller.joystick = joystick;
+		for (var controllerId in _controllers) {
+
+			var unmapController = true;
+
+			for (var c = 0; c < mappedControllers.length; c++) {
+
+				var mappedControllerId = mappedControllers[c];
+
+				if (mappedControllerId === controllerId) {
+					unmapController = false;
+					break;
+				}
+			}
+
+			if (!unmapController) {
+				continue;
+			}
+
+			var controller = _controllers[controllerId];
+
+			controller.joystick = function (x, y, cId) { };
+			controller.gamepadPressed = function (left, up, right, down, cId) { };
+			controller.gamepadReleased = function (left, up, right, down, cId) { };
+			controller.buttonsPressed = function (buttonA, buttonB, buttonC, buttonD, cId) { };
+			controller.buttonsReleased = function (buttonA, buttonB, buttonC, buttonD, cId) { };
 		}
+
 	};
 
-    controllers.mapController = function (gamepadPressed, gamepadReleased, buttonsPressed, buttonsReleased, joystick, controllerId) {
-		
+	controllers.mapController = function (gamepadPressed, gamepadReleased, buttonsPressed, buttonsReleased, joystick, controllerId) {
+
 		var controller = _controllers[controllerId];
 
 		controller.joystick = joystick || function (x, y, cId) { };
@@ -95,9 +114,9 @@
 		controller.gamepadReleased = gamepadReleased || function (left, up, right, down, cId) { };
 		controller.buttonsPressed = buttonsPressed || function (buttonA, buttonB, buttonC, buttonD, cId) { };
 		controller.buttonsReleased = buttonsReleased || function (buttonA, buttonB, buttonC, buttonD, cId) { };
-	
+
 	};
-	
+
 	controllers.mapControllers = function (gamepadPressed, gamepadReleased, buttonsPressed, buttonsReleased, joystick) {
 		for (var controllerId in _controllers) {
 
@@ -108,7 +127,7 @@
 			controller.gamepadReleased = gamepadReleased || function (left, up, right, down, cId) { };
 			controller.buttonsPressed = buttonsPressed || function (buttonA, buttonB, buttonC, buttonD, cId) { };
 			controller.buttonsReleased = buttonsReleased || function (buttonA, buttonB, buttonC, buttonD, cId) { };
-			
+
 		}
 	};
 
@@ -276,6 +295,7 @@
 			}
 			
 			while(_assignedParticipantsToControllers[participant]) {
+				console.log("while(_assignedParticipantsToControllers[participant]) {");
 				participant += mod;
 				if (participant > participantCount - 1) {
 				participant = 0;
@@ -326,7 +346,15 @@
     		    }
 
                 $("#assignGameControllersOverlay").remove();
-                
+
+				var mappedControllers = [];
+				
+				for(var mappedParticipant in _assignedParticipantsToControllers) {
+					mappedControllers.push(_assignedParticipantsToControllers[mappedParticipant]);
+				}
+
+				controllers.unmapControllersExcept(mappedControllers);
+				
     		    gameControllersAssigned();
 
 			}
@@ -342,28 +370,6 @@
 		controllers.mapControllers(gamepadPressed, gamepadReleased, buttonsPressed, buttonsReleased, joystick);
 
 		constructOverlay(participants);
-
-//		for (var i = 0; i < participants.length; i++) {
-
-//			_gameControllerMap[i] = participants[i];
-
-//			if (typeof participants[i] === "undefined") {
-//				continue;
-//			}
-
-//			if (typeof participants[i].gameController === "undefined") {
-//				participants[i].gameController =
-//					{
-//						joystick: function(x, y) { },
-//						gamepadPressed: function(left, up, right, down) { },
-//						gamepadReleased: function(left, up, right, down) { },
-//						buttonsPressed: function(buttonA, buttonB, buttonC, buttonD) { },
-//						buttonsReleased: function(buttonA, buttonB, buttonC, buttonD) { }
-//					};
-//			}
-
-//		}
-
 
 	};
 
