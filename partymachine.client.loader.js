@@ -23,8 +23,11 @@
 	var baseUrlEncoded = urlParams["baseUrl"];
 	var baseUrl = decodeURIComponent(baseUrlEncoded);
 
+	var isProbablyDevelopingAPlugin = false;
+
 	if (typeof baseUrlEncoded === "undefined") {
 		baseUrl = 'http://mrcheng.github.com/Partymaskinen/';
+		isProbablyDevelopingAPlugin = true;
 	}
 
 	yepnope({
@@ -38,7 +41,7 @@
 			baseUrl + "partymachine.client.js"
 		],
 		complete: function () {
-			if (typeof pluginDev == undefined) {
+			if (isProbablyDevelopingAPlugin) {
 				partyMachinePlugin(["Participant1", "Participant2", "Participant3", "Participant4", "Participant5", "Participant6", "Participant7", "Participant8"]);
 			} else {
 				$.receiveMessage(function (e) {
