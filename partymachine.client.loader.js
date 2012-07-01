@@ -42,7 +42,25 @@
 		],
 		complete: function () {
 			if (isProbablyDevelopingAPlugin) {
-				partyMachinePlugin(["Participant1", "Participant2", "Participant3", "Participant4", "Participant5", "Participant6", "Participant7", "Participant8"]);
+
+				var participants = [];
+				
+				participants.push({ name: 'Pub', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Randy', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Magnecyl', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Geggin', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Mejje', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Joel', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Fold', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Blaizer', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Deamo', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Wipeout', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Vico', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Shahin', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+				participants.push({ name: 'Jesse', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+
+				partyMachinePlugin(participants);
+				
 			} else {
 				$.receiveMessage(function (e) {
 					var data = JSON.parse(e.data);
