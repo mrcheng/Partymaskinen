@@ -44,20 +44,20 @@
 			if (isProbablyDevelopingAPlugin) {
 
 				var participants = [];
-				
-				participants.push({ name: 'Pub', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Randy', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Magnecyl', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Geggin', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Mejje', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Joel', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Fold', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Blaizer', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Deamo', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Wipeout', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Vico', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Shahin', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
-				participants.push({ name: 'Jesse', imageUrl: baseUrl + 'img/participant_example.png', status: "active" });
+
+				participants.push({ name: 'Pub', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Randy', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Magnecyl', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Geggin', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Mejje', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Joel', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Fold', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Blaizer', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Deamo', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Wipeout', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Vico', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Shahin', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+				participants.push({ name: 'Jesse', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController : {} });
 
 				partyMachinePlugin(participants);
 				
