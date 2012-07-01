@@ -23,7 +23,7 @@
 	var baseUrlEncoded = urlParams["baseUrl"];
 	var baseUrl = decodeURIComponent(baseUrlEncoded);
 
-	if (typeof baseUrlEncoded == undefined) {
+	if (typeof baseUrlEncoded === "undefined") {
 		baseUrl = 'http://mrcheng.github.com/Partymaskinen/';
 	}
 
