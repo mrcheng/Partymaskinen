@@ -65,6 +65,8 @@
 		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
 		$("#participant-name").html('<p>' + currentParticipant.name + '</p>' + '<i>' + '"' + CP + '"' + '</i>');
 
+		$(".fittext1").fitText();
+
 		partyMachine.bindKeys(freshParticipants);
 	}
 
