@@ -228,6 +228,7 @@
 					var freshParticipants = [];
 
 					$('#partyname').html('<p>' + data.name + '</p>');
+					$('html').css('background', 'url(' + data.imageUrl + ') no-repeat center center fixed');
 
 					if (data.participants && data.participants.length > 0) {
 						$.each(data.participants, function (key, m) {

@@ -1,4 +1,4 @@
-html{background: url(../themes/trappan_theme/img/poseidon.jpg) no-repeat center center fixed;overflow:hidden;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;background-color:black;}
+html{background: overflow:hidden;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;background-color:black;}
 body {height:100%; margin:0; padding:0;}
 .clear {clear:both;}
 /* HEADER */
