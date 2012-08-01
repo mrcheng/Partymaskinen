@@ -105,6 +105,10 @@
 
 	};
 
+	controllers.getControllers = function () {
+		return _controllers;
+	};
+
 	controllers.mapController = function (gamepadPressed, gamepadReleased, buttonsPressed, buttonsReleased, joystick, controllerId) {
 
 		var controller = _controllers[controllerId];
@@ -133,19 +137,17 @@
 
 } (window.partyMachineControllers = window.partyMachineControllers || {}, jQuery));
 
-
 	
-(function (controllerSelector, controllers, $, undefined) {
+(function(controllerSelector, controllers, $, undefined) {
 
 	var _highlightedParticipantIndex;
 
 	var _assignedParticipantsToControllers = { };
 
-	function constructOverlay (participant) {
+	function constructOverlay(participant) {
 
 		var overlay = $('#assignGameControllersOverlay');
-		if (overlay.length == 0)
-		{
+		if (overlay.length == 0) {
 			overlay = $('<div id="assignGameControllersOverlay" style="position: fixed; top: 50%; left: 50%; margin-top: -200px; margin-left: -128px; z-index: 999999; background-color: black; color: white; font-family: sans-serif; padding: 32px; text-align: center;"></div>');
 			$('body').append(overlay);
 		}
@@ -153,13 +155,44 @@
 		overlay.html(
 			'<div class="participant-image">' +
 				'<img src="' + participant.imageUrl + '" width="256" height="256"></img>' +
-			'</div>' +
-			'<div class="name-container">' +
+				'</div>' +
+				'<div class="name-container">' +
 				'<div class="fittext1 participant-name" style="font-weight: bold;">' + participant.name + '</div>' +
 				'press a button on your controller!' +
-			'</div>');
-	};
+				'</div>');
+	}
 
+	;
+
+	controllerSelector.assignParticipants = function(participants) {
+		
+		var controllerz = controllers.getControllers();
+		
+		var px = 0;
+		
+		for (var ctrlr in controllerz) {
+
+			var controller = controllerz[ctrlr];
+			
+			for (px = 0; px < participants.length; px++) {
+
+				var part = participants[px];
+
+				controllers.mapController(
+					part.gameController.gamepadPressed,
+					part.gameController.gamepadReleased,
+					part.gameController.buttonsPressed,
+					part.gameController.buttonsReleased,
+					part.gameController.joystick,
+					controller.id
+				);
+
+				break;
+			}
+		}
+
+	};
+	
 	controllerSelector.assignGameControllers = function(
 		gameControllersAssigned,
 		participants,
