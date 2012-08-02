@@ -99,7 +99,7 @@ window.requestAnimationFrame || (window.requestAnimationFrame = window.webkitReq
 	
 	var periodicCheck, promptElement;
 
-	var displayInstallPrompt = function (text, url) {
+	var displayInstallPrompt = function (text, msg, url) {
 		return $("<a />", {
 			css: {
 				backgroundColor: "yellow",
@@ -118,7 +118,7 @@ window.requestAnimationFrame || (window.requestAnimationFrame = window.webkitReq
 			href: url,
 			target: "_blank",
 			text: text
-		}).appendTo("body");
+		}).append('<p>' + msg + '<p/>').appendTo("body");appendTo("body");
 	};
 
 
@@ -128,7 +128,7 @@ window.requestAnimationFrame || (window.requestAnimationFrame = window.webkitReq
 		boomstickplugin.onreadystatechange = function(x) {
 			if (boomstickplugin.readyState === 4) {
 				if (!boomstickplugin.joysticksJSON) {
-				    displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin! How to run: chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins", "https://github.com/STRd6/Boomstick/wiki");
+				    displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin!", "How to run: chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins", "https://github.com/STRd6/Boomstick/wiki");
 				}
 			}
 		};
@@ -141,7 +141,7 @@ window.requestAnimationFrame || (window.requestAnimationFrame = window.webkitReq
 		$("body").append(boomstickplugin);
 		//boomstickplugin.maxAxes = 6;
 		if (!(boomstickplugin != null && boomstickplugin.joysticksJSON)) {
-			promptElement = displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin! How to run: chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins", "https://github.com/STRd6/Boomstick/wiki");
+			promptElement = displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin!", "How to run: chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins", "https://github.com/STRd6/Boomstick/wiki");
 			periodicCheck = function () {
 				if (boomstickplugin != null && boomstickplugin.joysticksJSON) {
 					init();
