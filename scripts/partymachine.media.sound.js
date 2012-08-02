@@ -1,6 +1,6 @@
 ﻿soundManager.flashVersion = 9;
 soundManager.debugMode = false;
-soundManager.preferFlash = true; // for visualization effects
+soundManager.preferFlash = false; // for visualization effects
 soundManager.useHighPerformance = true; // keep flash on screen, boost performance
 soundManager.wmode = 'transparent'; // transparent SWF, if possible
 soundManager.useFastPolling = true; // increased JS callback frequency
