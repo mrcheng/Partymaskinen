@@ -12,6 +12,7 @@
   			partyMachineConfig.baseUrl + "scripts/jquery.shuffle.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.participants.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.controllers.js",
+			partyMachineConfig.baseUrl + "scripts/partymachine.controllers.selector.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.controller.keyboard.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.controller.boomstick.js",
   			partyMachineConfig.baseUrl + "scripts/partymachine.pluginrunner.js",
