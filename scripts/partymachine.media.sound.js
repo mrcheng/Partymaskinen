@@ -130,19 +130,10 @@ soundManager.url = 'swf/soundmanager2_flash_xdomain/'; //SWF URL
 	player.pause = function (sound) {
 		soundManager.onready(function () {
 
-			for (var s = 0; s < _sounds.length; s++) {
-				var snd = _sounds[s];
-
-				if (typeof sound === 'undefined' || snd.id === sound.id) {
-					snd.pause();
-
-					if (typeof sound !== 'undefined') {
-						break;
-					}
-
-				}
-
-			}
+			if (sound)
+				soundManager.pause(sound.id);
+			else
+				soundManager.pauseAll();
 
 		});
 	};
@@ -150,18 +141,10 @@ soundManager.url = 'swf/soundmanager2_flash_xdomain/'; //SWF URL
 	player.resume = function (sound) {
 		soundManager.onready(function () {
 
-			for (var s = 0; s < _sounds.length; s++) {
-				var snd = _sounds[s];
-
-				if (typeof sound === 'undefined' || snd.id === sound.id) {
-					snd.resume();
-
-					if (typeof sound !== 'undefined') {
-						break;
-					}
-				}
-
-			}
+			if (sound)
+				soundManager.resume(sound.id);
+			else
+				soundManager.resumeAll();
 
 		});
 	};

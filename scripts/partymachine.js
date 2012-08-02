@@ -261,7 +261,7 @@
 
 					atPluginSelect(freshParticipants);
 
-					mediaPlayer.start($.shuffle(data.media));
+					mediaPlayer.start(data.media, partyParams["id"]);
 				}
 			});
 		}
