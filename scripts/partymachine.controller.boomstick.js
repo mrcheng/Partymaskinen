@@ -100,7 +100,8 @@ window.requestAnimationFrame || (window.requestAnimationFrame = window.webkitReq
 	var periodicCheck, promptElement;
 
 	var displayInstallPrompt = function (text, msg, url) {
-		return $("<a />", {
+
+		var cnt = $("<div/>", {
 			css: {
 				backgroundColor: "yellow",
 				boxSizing: "border-box",
@@ -114,11 +115,22 @@ window.requestAnimationFrame || (window.requestAnimationFrame = window.webkitReq
 				top: 0,
 				width: "100%",
 				zIndex: 2000
-			},
+			}
+		});
+		
+		var link = $("<a />", {
+			css: {
+							},
 			href: url,
 			target: "_blank",
 			text: text
-		}).append('<p>' + msg + '<p/>').appendTo("body");appendTo("body");
+		});
+
+		var msgElem = ('<p>' + msg + '<p/>') ;
+
+		cnt.append(link).append(msgElem);
+		
+		return cnt.appendTo("body");
 	};
 
 
