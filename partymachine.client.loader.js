@@ -36,6 +36,7 @@
 			"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
 			baseUrl + "deps/jquery.ba-postmessage.js",
 			baseUrl + "scripts/partymachine.controllers.js",
+			baseUrl + "scripts/partymachine.controllers.selector.js",
 			baseUrl + "scripts/partymachine.controller.keyboard.js",
 			baseUrl + "scripts/partymachine.controller.boomstick.js",
 			baseUrl + "partymachine.client.js"
