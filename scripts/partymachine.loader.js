@@ -10,7 +10,6 @@
 			"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
 			partyMachineConfig.baseUrl + "deps/jquery.ba-postmessage.js",
   			partyMachineConfig.baseUrl + "scripts/jquery.shuffle.js",
-  			partyMachineConfig.baseUrl + "scripts/jquery.swfobject.1-1-1.min.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.participants.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.controllers.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.controllers.selector.js",
