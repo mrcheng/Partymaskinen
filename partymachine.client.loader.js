@@ -34,13 +34,13 @@
 		load: [
 			baseUrl + "deps/json2.js",
 			"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
-			baseUrl + "deps/jquery.ba-postmessage.js",
-			baseUrl + "deps/jquery.swfobject.1-1-1.min.js",
-			baseUrl + "scripts/partymachine.controllers.js",
-			baseUrl + "scripts/partymachine.controllers.selector.js",
-			baseUrl + "scripts/partymachine.controller.keyboard.js",
-			baseUrl + "scripts/partymachine.controller.boomstick.js",
-			baseUrl + "partymachine.client.js"
+			baseUrl + "deps/jquery.ba-postmessage.js?plugin=1",
+			baseUrl + "deps/jquery.swfobject.1-1-1.min.js?plugin=1",
+			baseUrl + "scripts/partymachine.controllers.js?plugin=1",
+			baseUrl + "scripts/partymachine.controllers.selector.js?plugin=1",
+			baseUrl + "scripts/partymachine.controller.keyboard.js?plugin=1",
+			baseUrl + "scripts/partymachine.controller.boomstick.js?plugin=1",
+			baseUrl + "partymachine.client.js?plugin=1"
 		],
 		complete: function () {
 			if (isProbablyDevelopingAPlugin) {
