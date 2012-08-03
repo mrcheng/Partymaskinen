@@ -78,14 +78,13 @@
 						youtube.play(currentVideoId);
 				},
 				onStateChange: function (e) {
-					console.log('onStateChange: ' + e.data);
 					if (e.data == YT.PlayerState.ENDED) {
 						iframe.style.visibility = 'hidden';
 						youtube.onFinished();
 					}
 				},
 				onError: function (e) {
-					console.log('onError: ' + e.data);
+					console.log('YouTube onError: ' + e.data);
 					youtube.onFinished();
 				}
 			}
