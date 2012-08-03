@@ -243,7 +243,7 @@
 
 					participants.start(feedUrl, freshParticipants);
 
-					var kingPong = {
+					/*var kingPong = {
 						created: new Date(),
 						createdBy: {
 							id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
@@ -255,7 +255,7 @@
 						url: partyMachineConfig.pluginsBaseUrl + "Tangera/index.html"
 					};
 
-					data.plugins.push(kingPong);
+					data.plugins.push(kingPong);*/
 
 					pluginRunner.start(mediaPlayer, data.plugins);
 
