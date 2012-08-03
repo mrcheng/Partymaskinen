@@ -1,5 +1,5 @@
-html{background: overflow:hidden;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;background-color:black;}
-body {height:100%; margin:0; padding:0;}
+html{background: overflow:hidden;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;}
+body {height:100%; margin:0; padding:0;background-color:black;}
 .clear {clear:both;}
 /* HEADER */
 .header{width:100%;height:3%;text-align:left;}
