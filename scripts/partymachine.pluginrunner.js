@@ -86,26 +86,28 @@
 			_currentPluginSrc = selectedPlugin.url
 				+ '?baseUrl=' + encodeURIComponent(partyMachineConfig.baseUrl)
 				+ '&loader=' + encodeURIComponent(partyMachineConfig.baseUrl) + 'partymachine.client.loader.js'
-				+ '&' + milliseconds + '=' + milliseconds 
+				+ '&' + milliseconds + '=' + milliseconds
 				+ "#" + encodeURIComponent(document.location.href);
 		}
 		else {
 			_currentPluginSrc = selectedPlugin.url
 				+ '&baseUrl=' + encodeURIComponent(partyMachineConfig.baseUrl)
 				+ '&loader=' + encodeURIComponent(partyMachineConfig.baseUrl) + 'partymachine.client.loader.js'
-				+ '&' + milliseconds + '=' + milliseconds 
+				+ '&' + milliseconds + '=' + milliseconds
 				+ "#" + encodeURIComponent(document.location.href);
 		}
-		
+
 		$("#partyMachine").hide();
 
 		$('<iframe id="partyMachinePlugin" name="partyMachinePlugin" src="' + _currentPluginSrc + '" scrolling="no" frameborder="0" height="100%" width="100%" style="display:block;position:absolute;z-index:11000;">')
 			.appendTo("#partyMachinePluginContainer");
 
-        for(var p = 0; p < participants.length; p++) {
-            var participant = participants[p];
-            participant.gameController = {};
-        }
+		for (var p = 0; p < participants.length; p++) {
+			var participant = participants[p];
+			participant.gameController = {};
+		}
+
+		partyMachineControllers.unmapControllersExcept([]);
 
 		$("#partyMachinePlugin").load(function () {
 			$("#partyMachinePlugin").focus();
@@ -158,7 +160,7 @@
 
 	};
 
-	pluginRunner.sendParticipants = function(participants) {
+	pluginRunner.sendParticipants = function (participants) {
 		var startMsg = {
 			'event': 'getParticipants',
 			'participants': participants
