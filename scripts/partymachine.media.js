@@ -199,7 +199,7 @@
 				{
 					var store = _db.createObjectStore('playedMedia', { keyPath: 'id' });
 
-					updateMedia(medias, playNext);
+					setTimeout(function() { updateMedia(medias, playNext); }, 1000);
 				};
 			}
 			else
