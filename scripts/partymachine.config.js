@@ -9,8 +9,8 @@
 
 	// DEV
 	
-//	partyMachineConfig.baseUrl = 'http://localhost:10397/Partymaskinen/';
-//	partyMachineConfig.pluginsBaseUrl = 'http://localhost:10358/PartymaskinenPlugins/';
+	//partyMachineConfig.baseUrl = 'http://localhost:10397/Partymaskinen/';
+	//partyMachineConfig.pluginsBaseUrl = 'http://localhost:11111/PartymaskinenPlugins/';
 	
 } (
 	window.partyMachineConfig = window.partyMachineConfig || {}

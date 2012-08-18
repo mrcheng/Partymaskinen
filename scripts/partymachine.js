@@ -218,7 +218,7 @@
 			// We dont have a fully working runner yet..
 			// pluginRunner.stub();
 
-			var feedUrl = partyMachineConfig.partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"]
+			var feedUrl = partyMachineConfig.partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"];
 			$.ajax({
 				url: feedUrl,
 				jsonp: true,
@@ -243,19 +243,19 @@
 
 					participants.start(feedUrl, freshParticipants);
 
-					/*var kingPong = {
-						created: new Date(),
-						createdBy: {
-							id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
-							imageUrl: "http://i.imgur.com/0ul5i.png",
-							name: "Jonas Olsson"
-						},
-						id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
-						title: "King Pong!",
-						url: partyMachineConfig.pluginsBaseUrl + "Tangera/index.html"
-					};
+					//var kingPong = {
+					//	created: new Date(),
+					//	createdBy: {
+					//		id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
+					//		imageUrl: "http://i.imgur.com/0ul5i.png",
+					//		name: "Jonas Olsson"
+					//	},
+					//	id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+					//	title: "King Pong!",
+					//	url: partyMachineConfig.pluginsBaseUrl + "King%20Pong/index.html"
+					//};
 
-					data.plugins.push(kingPong);*/
+					//data.plugins.push(kingPong);
 
 					pluginRunner.start(mediaPlayer, data.plugins);
 
