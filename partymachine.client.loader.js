@@ -71,7 +71,11 @@
 						partyMachinePlugin(data.participants);
 					}
 				});
-				$.postMessage(JSON.stringify({ event: "getParticipants" }), '*', window.parent);
+
+				$(document).ready(function () {
+					$.postMessage(JSON.stringify({ event: "getParticipants" }), '*', window.parent);
+				});
+				
 			}
 		}
 	});

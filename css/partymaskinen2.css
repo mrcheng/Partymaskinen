@@ -7,6 +7,9 @@ body {height:100%; margin:0; padding:0;background-color:black;}
 .timer-container {position:fixed;width:20%;right:5%;top:0.5%;color:#fff;}
 #participant-timer i {float:right; font-style:normal; margin-top:4%; }
 #participant-timer p {float:right; font-size:150%; margin-top:1%; }
+/* LIST LATEST PARTIES*/
+#freshPartiesOverlay { font-style:normal; color:#fff; font-size:150%; }
+
 /* PARTICIPANTS */
 #participant-image { position:fixed; width:10%; margin:3% 0 0 5%; }
 #participant-image img { position:inherit; background-size:100%; width:10%; border:0px solid white; }
@@ -40,3 +43,8 @@ strong,.fat p,#participant-name p { font-family: 'ITCAvantGardeGothicStdBdCn'; }
 #soundmanager-debug { /* SM2 debug container (optional, makes debug more useable) */position:absolute; position:fixed; *position:absolute;bottom:10px; right:10px; width:50em; height:18em; overflow:auto; background:#fff; margin:1em; padding:1em; border:1px solid #999; font-family:"lucida console", verdana, tahoma, "sans serif"; font-size:x-small; line-height:1.5em; opacity:0.9; filter:alpha(opacity=90); }
 #sm2movie {height:1px;}
 #sm2-container {height:1px;}
+
+a:link {color:#FF0000;}      /* unvisited link */
+a:visited {color:#00FF00;}  /* visited link */
+a:hover {color:#FF00FF;}  /* mouse over link */
+a:active {color:#0000FF;}  /* selected link */

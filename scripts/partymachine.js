@@ -70,9 +70,9 @@
 		partyMachine.bindKeys(freshParticipants);
 	}
 
-	partyMachine.bindKeys = function (freshParticipants) {
+	partyMachine.bindKeys = function(freshParticipants) {
 
-		var buttonsPressed = function (buttonA, buttonB, buttonC, buttonD) {
+		var buttonsPressed = function(buttonA, buttonB, buttonC, buttonD) {
 
 			var anyButton = buttonA || buttonB || buttonC || buttonD;
 
@@ -94,7 +94,7 @@
 
 		};
 
-		var gamepadPressed = function (left, up, right, down) {
+		var gamepadPressed = function(left, up, right, down) {
 
 			var anyButton = left || up || right || down;
 
@@ -134,19 +134,22 @@
 
 		};
 
-		setTimeout(function () {
+		setTimeout(function() {
 			controllers.mapControllers(
-                gamepadPressed,
-                function () { },
-                buttonsPressed,
-                function () { },
-                function () { }
-            );
+				gamepadPressed,
+				function() {
+				},
+				buttonsPressed,
+				function() {
+				},
+				function() {
+				}
+			);
 		}, 1000)
 
 
 	},
-	partyMachine.updateParticipantTimeout = function () {
+	partyMachine.updateParticipantTimeout = function() {
 
 		var dateNow = new Date();
 		var nTimeDiff = _participantTimeoutDateTime.getTime() - dateNow.getTime();
@@ -174,8 +177,7 @@
 			_participantTimeoutTimer = window.setTimeout("window.partyMachine.updateParticipantTimeout()", 1000);
 		}
 	},
-
-	partyMachine.updateMediaTimeout = function () {
+	partyMachine.updateMediaTimeout = function() {
 
 		var partyParams = partyMachine.getUrlParams();
 		var feedUrl = partyMachineConfig.partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"];
@@ -184,7 +186,7 @@
 			url: feedUrl,
 			jsonp: true,
 			dataType: 'json',
-			success: function (data) {
+			success: function(data) {
 
 				mediaPlayer.update(data.media);
 			}
@@ -192,8 +194,7 @@
 
 		_mediaTimeoutTimer = window.setTimeout("window.partyMachine.updateMediaTimeout()", _mediaTimeoutTimerDelay);
 	},
-
-	partyMachine.start = function (pluginDevelopment) {
+	partyMachine.start = function(pluginDevelopment) {
 
 		var partyParams = partyMachine.getUrlParams();
 
@@ -206,10 +207,61 @@
 
 			pluginRunner.startPlugin(stubbedParticipants, _state.currentlySelectedPlugin);
 
+			resetParticipantTimeout();
+			resetMediaTimeout();
+
 		} else if (typeof partyParams["id"] === "undefined" || partyParams["id"] == null) {
-			pluginRunner.stub();
-			controllers.stub();
-			participants.stub();
+
+			var latestPartiesUrl = partyMachineConfig.latestPartiesFeedUrl + "?jsoncallback=?";
+			$.ajax({
+				url: latestPartiesUrl,
+				jsonp: true,
+				dataType: 'json',
+				success: function(data) {
+
+					var freshParties = [];
+
+					if (data.parties && data.parties.length > 0) {
+						$.each(data.parties, function(i, item) {
+							freshParties.push('<li><a href="?id=' + item.id + '">' + item.name + '</a></li>');
+						});
+					}
+
+					if (freshParties.length <= 0) {
+
+						// stubAll();
+						//resetParticipantTimeout();
+						//resetMediaTimeout();
+						return;
+					}
+
+					var docHeight = $(document).height();
+
+					$("body").append("<div id='freshPartiesOverlay'>Choose a party:</div>");
+
+					$("#freshPartiesOverlay")
+						.height(docHeight)
+						.css({
+							'opacity': 0.4,
+							'position': 'absolute',
+							'top': 0,
+							'left': 0,
+							'background-color': 'black',
+							'width': '100%',
+							'z-index': 9001
+						});
+
+					console.log("displaying freshPartiesOverlay");
+
+					$('#freshPartiesOverlay').append("<ul>").append(freshParties.join(''));
+
+
+				}
+			});
+
+			//pluginRunner.stub();
+			//controllers.stub();
+			//participants.stub();
 
 		} else {
 			// We dont have a fully working controller solution
@@ -223,7 +275,7 @@
 				url: feedUrl,
 				jsonp: true,
 				dataType: 'json',
-				success: function (data) {
+				success: function(data) {
 
 					var freshParticipants = [];
 
@@ -231,9 +283,8 @@
 					$('html').css('background-image', 'url(' + data.imageUrl + ')');
 
 
-
 					if (data.participants && data.participants.length > 0) {
-						$.each(data.participants, function (key, m) {
+						$.each(data.participants, function(key, m) {
 							m.status = "active";
 							freshParticipants.push(m);
 						});
@@ -243,6 +294,20 @@
 
 					participants.start(feedUrl, freshParticipants);
 
+					//var unicornDeath = {
+					//	created: new Date(),
+					//	createdBy: {
+					//		id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
+					//		imageUrl: "http://i.imgur.com/0ul5i.png",
+					//		name: "Jonas Olsson"
+					//	},
+					//	id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+					//	title: "Unicorn Death!",
+					//	url: partyMachineConfig.pluginsBaseUrl + "Unicorn%20Death/index.html"
+					//};
+
+					//data.plugins.push(unicornDeath);
+					
 					//var kingPong = {
 					//	created: new Date(),
 					//	createdBy: {
@@ -251,7 +316,7 @@
 					//		name: "Jonas Olsson"
 					//	},
 					//	id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
-					//	title: "King Pong!",
+					//	title: "King Pong",
 					//	url: partyMachineConfig.pluginsBaseUrl + "King%20Pong/index.html"
 					//};
 
@@ -264,6 +329,9 @@
 					atPluginSelect(freshParticipants);
 
 					mediaPlayer.start(data.media, partyParams["id"]);
+
+					resetParticipantTimeout();
+					resetMediaTimeout();
 				}
 			});
 		}
@@ -271,7 +339,7 @@
 		// Setup a callback to handle the dispatched MessageEvent event. In cases where
 		// window.postMessage is supported, the passed event will have .data, .origin and
 		// .source properties. Otherwise, this will only have the .data property.
-		$.receiveMessage(function (e) {
+		$.receiveMessage(function(e) {
 
 			var data = JSON.parse(e.data);
 
@@ -295,14 +363,8 @@
 			}
 		});
 
-		resetParticipantTimeout();
-		resetMediaTimeout();
-	},
-
-	partyMachine.update = function (pluginDevelopment) {
-
-		// Skulle koda här lite...
 	};
+
 } (
 	window.partyMachine = window.partyMachine || {},
 	window.partyMachineControllers,
