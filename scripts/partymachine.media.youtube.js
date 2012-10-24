@@ -50,18 +50,18 @@
 
 		if (playerReady) {
 			player.loadVideoById(videoId);
-			iframe.style.visibility = 'visible';
+			$("#youtube").show();
 		}
 	};
 
 	youtube.pause = function () {
-		iframe.style.visibility = 'hidden';
+		$("#youtube").hide();
 		player.pauseVideo();
 	};
 
 	youtube.resume = function () {
 		player.playVideo();
-		iframe.style.visibility = 'visible';
+		$("#youtube").show();
 	};
 
 	youtube.onFinished = function () { };
@@ -74,12 +74,15 @@
 				onReady: function (event) {
 					event.target.setVolume(100);
 					playerReady = true;
-					if (currentVideoId)
+					if (currentVideoId) {
 						youtube.play(currentVideoId);
+					} else {
+						$("#youtube").hide();
+					}
 				},
 				onStateChange: function (e) {
 					if (e.data == YT.PlayerState.ENDED) {
-						iframe.style.visibility = 'hidden';
+						$("#youtube").hide();
 						youtube.onFinished();
 					}
 				},
