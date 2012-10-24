@@ -5,12 +5,12 @@
 	var partyConfig = "live";
 
 	if (partyAdminWebConfig === "live") {
-		partyMachineConfig.partyFeedUrl = 'http://www.partymaskinen.se/Party/JsonP';
-		partyMachineConfig.latestPartiesFeedUrl = 'http://www.partymaskinen.se/Party/ListLatest';
+		partyMachineConfig.partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
+		partyMachineConfig.latestPartiesFeedUrl = 'http://partymaskinen.se/party/listlatest';
 	}
 	else if (partyAdminWebConfig === "dev") {
 		partyMachineConfig.partyFeedUrl = 'http://localhost:36466/Party/JsonP';
-		partyMachineConfig.latestPartiesFeedUrl = 'http://localhost:36466/Party/ListLatest';
+		partyMachineConfig.latestPartiesFeedUrl = 'http://localhost:36466/Party/listlatest';
 	}
 	
 	if (partyConfig === "live") {

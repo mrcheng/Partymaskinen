@@ -8,7 +8,7 @@ body {height:100%; margin:0; padding:0;background-color:black;}
 #participant-timer i {float:right; font-style:normal; margin-top:4%; }
 #participant-timer p {float:right; font-size:150%; margin-top:1%; }
 /* LIST LATEST PARTIES*/
-#freshPartiesOverlay { font-style:normal; color:#fff; font-size:150%; }
+#freshPartiesOverlay { overflow: auto; font-style:normal; color:#fff; font-size:150%; }
 
 /* PARTICIPANTS */
 #participant-image { position:fixed; width:10%; margin:3% 0 0 5%; }

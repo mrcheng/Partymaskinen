@@ -139,12 +139,7 @@
 		var gamepadPressed = function(left, up, right, down) {
 			moved(left, up, right, down);
 		};
-
-		var joystick = function (x, y) {
-			
-			//moved(left, up, right, down);
-		};
-
+		
 		setTimeout(function() {
 			controllers.mapControllers(
 				gamepadPressed,
@@ -153,7 +148,8 @@
 				buttonsPressed,
 				function() {
 				},
-				joystick
+				function () {
+				}
 			);
 		}, 1000);
 
