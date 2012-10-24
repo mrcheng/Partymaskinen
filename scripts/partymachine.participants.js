@@ -9,30 +9,32 @@
     participants.stub = function () {
 
         _participants.length = 0;
+        var currentParticipant = { name: 'Pub', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} };
+	    
+	    _participants.push(currentParticipant);
+	    _participants.push({ name: 'Randy', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Magnecyl', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Geggin', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Deadguy', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Mejje', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Joel', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Fold', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Blaizer', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Deamo', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Wipeout', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Vico', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Shahin', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
+	    _participants.push({ name: 'Jesse', imageUrl: partyMachineConfig.baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
 
-        _participants.push({ name: 'Pub', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Randy', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Magnecyl', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Geggin', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Mejje', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Joel', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Fold', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Blaizer', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Deamo', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Wipeout', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Vico', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Shahin', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-        _participants.push({ name: 'Jesse', imageUrl: 'img/participant_example.png', status: "active", gameController: {} });
-
+        $.shuffle(_participants);
+	    
         participants.getAllParticipants = function () {
             return _participants;
         };
-
+	    
     };
 
     participants.getNextParticipant = function () {
-        var activeParticipants = participants.getActiveParticipants();
-
         var nextParticipant;
 
         _previousParticipant++;
@@ -55,7 +57,7 @@
             }
         }
     };
-
+	
     participants.getActiveParticipants = function () {
         var activeParticipants = [];
 

@@ -173,12 +173,7 @@
 		playNext();
 	}
 
-	mediaManager.stub = function () {
-
-	};
-
-	mediaManager.start = function (medias, partyId) {
-
+	function init(medias, partyId) {
 		_players.push(youtubePlayer);
 		_players.push(soundPlayer);
 
@@ -187,24 +182,77 @@
 			player.onFinished = playerFinished;
 			player.start();
 		}
-
+		
 		var openRequest = webkitIndexedDB.open(partyId);
-		openRequest.onsuccess = function(e)
-		{
+		openRequest.onsuccess = function (e) {
 			_db = e.target.result;
-			if (_db.version != '1')
-			{
+			if (_db.version != '1') {
 				var setVersionRequest = _db.setVersion('1');
-				setVersionRequest.onsuccess = function(e)
-				{
+				setVersionRequest.onsuccess = function (e) {
 					var store = _db.createObjectStore('playedMedia', { keyPath: 'id' });
 
-					setTimeout(function() { updateMedia(medias, playNext); }, 1000);
+					setTimeout(function () { updateMedia(medias, playNext); }, 1000);
 				};
 			}
 			else
 				updateMedia(medias, playNext);
 		};
+	}
+	
+	mediaManager.stub = function () {
+
+		var medias = [];
+
+		var createdBy = {
+			id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
+			imageUrl: "http://i.imgur.com/0ul5i.png",
+			name: "Jonas Olsson"
+		};
+		
+		var m1 = {
+			id: "1",
+			url: 'http://www.youtube.com/watch?v=UaSqFv1SKSA',
+			youtubeVideoId: 'UaSqFv1SKSA',
+			albumArtist: 'Paul Kalkbrenner',
+			artist: 'Paul Kalkbrenner',
+			album: 'Berlin Calling',
+			title: 'Paul Kalkbrenner - Plätscher',
+			createdBy: createdBy,
+		};
+
+		medias.push(m1);
+		
+		var m2 = {
+			id: "2",
+			url: 'http://www.youtube.com/watch?v=o7EE6xcMUBM',
+			youtubeVideoId: 'o7EE6xcMUBM',
+			albumArtist: 'Paul Kalkbrenner',
+			artist: 'Paul Kalkbrenner',
+			album: 'Berlin Calling',
+			title: 'Paul Kalkbrenner - Aaron',
+			createdBy: createdBy,
+		};
+
+		medias.push(m2);
+		
+		var m3 = {
+			id: "3",
+			url: 'http://www.youtube.com/watch?v=VF5-W4P4qwg',
+			youtubeVideoId: 'VF5-W4P4qwg',
+			albumArtist: 'Esem',
+			artist: 'Esem',
+			album: 'Serial Human',
+			title: 'Esem - Bleece',
+			createdBy: createdBy,
+		};
+
+		medias.push(m3);
+		
+		init(medias, "stub");
+	};
+
+	mediaManager.start = function (medias, partyId) {
+		init(medias, partyId);
 	};
 
 	mediaManager.playEvent = function (eventName) {

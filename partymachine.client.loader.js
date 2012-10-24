@@ -45,6 +45,7 @@
 		complete: function () {
 			if (isProbablyDevelopingAPlugin) {
 
+				var plugin = { };
 				var participants = [];
 
 				participants.push({ name: 'Pub', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
@@ -61,14 +62,16 @@
 				participants.push({ name: 'Shahin', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController: {} });
 				participants.push({ name: 'Jesse', imageUrl: baseUrl + 'img/participant_example.png', status: "active", gameController : {} });
 
-				partyMachinePlugin(participants);
+				plugin.participants = participants;
+				
+				partyMachinePlugin(plugin);
 				
 			} else {
 				$.receiveMessage(function (e) {
 					var data = JSON.parse(e.data);
 
 					if (data.event === 'getParticipants') {
-						partyMachinePlugin(data.participants);
+						partyMachinePlugin(data);
 					}
 				});
 

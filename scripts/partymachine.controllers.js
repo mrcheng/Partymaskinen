@@ -9,11 +9,6 @@
 	var _modulePollInterval = 50;
 	var _whenControllersReady;
 
-	controllers.stub = function () {
-
-
-	};
-
 	controllers.start = function () {
 
 	};

@@ -8,6 +8,7 @@
 
 	var _state = {
 		context: _contexts.atPluginSelection,
+		currentParticipant: null,
 		currentlySelectedPlugin: 0
 	};
 
@@ -56,14 +57,15 @@
 	function atPluginSelect(freshParticipants) {
 
 		var currentParticipant = participants.getNextParticipant();
-		var CP = currentParticipant.description;
+		_state.currentParticipant = currentParticipant;
+		var participantDescription = currentParticipant.description;
 
-		if (CP == null) {
-			CP = "Jag orkade inte skriva description =(";
+		if (participantDescription == null) {
+			participantDescription = "Jag orkade inte skriva description =(";
 		}
 
 		$("#participant-image").html('<img src="' + currentParticipant.imageUrl + '"></img>');
-		$("#participant-name").html('<p>' + currentParticipant.name + '</p>' + '<i>' + '"' + CP + '"' + '</i>');
+		$("#participant-name").html('<p>' + currentParticipant.name + '</p>' + '<i>' + '"' + participantDescription + '"' + '</i>');
 
 		$(".fittext1").fitText();
 
@@ -90,11 +92,11 @@
 				return false;
 			}
 
-			pluginRunner.startPlugin(freshParticipants, _state.currentlySelectedPlugin);
+			pluginRunner.startPlugin(_state.currentParticipant, freshParticipants, _state.currentlySelectedPlugin);
 
 		};
 
-		var gamepadPressed = function(left, up, right, down) {
+		var moved = function(left, up, right, down) {
 
 			var anyButton = left || up || right || down;
 
@@ -134,6 +136,15 @@
 
 		};
 
+		var gamepadPressed = function(left, up, right, down) {
+			moved(left, up, right, down);
+		};
+
+		var joystick = function (x, y) {
+			
+			//moved(left, up, right, down);
+		};
+
 		setTimeout(function() {
 			controllers.mapControllers(
 				gamepadPressed,
@@ -142,10 +153,9 @@
 				buttonsPressed,
 				function() {
 				},
-				function() {
-				}
+				joystick
 			);
-		}, 1000)
+		}, 1000);
 
 
 	},
@@ -221,20 +231,14 @@
 
 					var freshParties = [];
 
+					freshParties.push('<li><a href="?id=stub">A stubbed party (only for development purposes)</a></li>');
+					
 					if (data.parties && data.parties.length > 0) {
 						$.each(data.parties, function(i, item) {
 							freshParties.push('<li><a href="?id=' + item.id + '">' + item.name + '</a></li>');
 						});
 					}
-
-					if (freshParties.length <= 0) {
-
-						// stubAll();
-						//resetParticipantTimeout();
-						//resetMediaTimeout();
-						return;
-					}
-
+					
 					var docHeight = $(document).height();
 
 					$("body").append("<div id='freshPartiesOverlay'>Choose a party:</div>");
@@ -258,24 +262,31 @@
 
 				}
 			});
+			
+		}
+		else if (typeof partyParams["id"] !== "undefined" && partyParams["id"] == "stub") {
+			participants.stub();
 
-			//pluginRunner.stub();
-			//controllers.stub();
-			//participants.stub();
+			var activeParticipants = participants.getActiveParticipants();
+			
+			pluginRunner.stub();
+			
+			controllers.start(activeParticipants);
+			
+			atPluginSelect(activeParticipants);
+			
+			mediaPlayer.stub();
 
+			resetParticipantTimeout();
+			resetMediaTimeout();
 		} else {
-			// We dont have a fully working controller solution
-			controllers.stub();
-
-			// We dont have a fully working runner yet..
-			// pluginRunner.stub();
 
 			var feedUrl = partyMachineConfig.partyFeedUrl + "?jsoncallback=?" + '&id=' + partyParams["id"];
 			$.ajax({
 				url: feedUrl,
 				jsonp: true,
 				dataType: 'json',
-				success: function(data) {
+				success: function (data) {
 
 					var freshParticipants = [];
 
@@ -284,7 +295,7 @@
 
 
 					if (data.participants && data.participants.length > 0) {
-						$.each(data.participants, function(key, m) {
+						$.each(data.participants, function (key, m) {
 							m.status = "active";
 							freshParticipants.push(m);
 						});
@@ -293,35 +304,7 @@
 					$.shuffle(freshParticipants);
 
 					participants.start(feedUrl, freshParticipants);
-
-					//var unicornDeath = {
-					//	created: new Date(),
-					//	createdBy: {
-					//		id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
-					//		imageUrl: "http://i.imgur.com/0ul5i.png",
-					//		name: "Jonas Olsson"
-					//	},
-					//	id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
-					//	title: "Unicorn Death!",
-					//	url: partyMachineConfig.pluginsBaseUrl + "Unicorn%20Death/index.html"
-					//};
-
-					//data.plugins.push(unicornDeath);
 					
-					//var kingPong = {
-					//	created: new Date(),
-					//	createdBy: {
-					//		id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
-					//		imageUrl: "http://i.imgur.com/0ul5i.png",
-					//		name: "Jonas Olsson"
-					//	},
-					//	id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
-					//	title: "King Pong",
-					//	url: partyMachineConfig.pluginsBaseUrl + "King%20Pong/index.html"
-					//};
-
-					//data.plugins.push(kingPong);
-
 					pluginRunner.start(mediaPlayer, data.plugins);
 
 					controllers.start(freshParticipants);
@@ -346,7 +329,7 @@
 			if (data.event === "iframe_resize") {
 				pluginRunner.adjustPlugin(data);
 			} else if (data.event === "getParticipants") {
-				pluginRunner.sendParticipants(participants.getActiveParticipants());
+				pluginRunner.sendParticipants(_state.currentParticipant, participants.getActiveParticipants());
 			} else if (data.event === "pluginExit") {
 
 				pluginRunner.exitPlugin();
