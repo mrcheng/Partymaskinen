@@ -1,32 +1,5 @@
 ﻿(function (boomstick, partyMachineControllers, $, undefined) {
-	/**
-		Get the sign of this number as an integer (1, -1, or 0).
-
-		<code><pre>
-		(-5).sign()
-		# => -1
-
-		0.sign()
-		# => 0
-
-		5.sign()
-		# => 1
-		</pre></code>
-
-		@name sign
-		@methodOf Number#
-		@returns {Number} The sign of this number, 0 if the number is 0.
-	*/
-	Number.prototype.sign = function () {
-		if (this > 0) {
-			return 1;
-		} else if (this < 0) {
-			return -1;
-		} else {
-			return 0;
-		}
-	};
-
+	
 	(function () {
 		/**
 		Create a new point with given x and y coordinates. If no arguments are given
@@ -688,12 +661,8 @@
 		}, 1000 / 60);
 	});
 	
-	var MAX_BUFFER = 0.03;
-	var AXIS_MAX = 1 - MAX_BUFFER;
+	var AXIS_MAX = 1;
 	var DEAD_ZONE = AXIS_MAX * 0.2;
-	var TRIP_HIGH = AXIS_MAX * 0.75;
-	var TRIP_LOW = AXIS_MAX * 0.5;
-	var BUTTON_THRESHOLD = 0.5;
 	
 	var controllerModuleId = "boomstick";
 
@@ -830,7 +799,7 @@
 		boomstickplugin.setAttribute("id", "boomstickplugin");
 
 		$("body").append(boomstickplugin);
-		//boomstickplugin.maxAxes = 6;
+		
 		if (!(boomstickplugin != null && boomstickplugin.joysticksJSON)) {
 			promptElement = displayInstallPrompt("Your browser does not yet handle joysticks, please click here to install the Boomstick plugin!", "How to run: chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins", "https://github.com/STRd6/Boomstick/wiki");
 			periodicCheck = function () {
@@ -838,8 +807,6 @@
 					init();
 					return promptElement.remove();
 				} else {
-					//init();
-					//return false;
 					return setTimeout(periodicCheck, 500);
 				}
 			};
@@ -848,7 +815,6 @@
 			init();
 		}
 	}
-
 
 	function animLoop(timestamp) {
 		var delta, msPerFrame, remainder;
@@ -892,23 +858,12 @@
 
 	};
 	
-	function getAxisTrips(joystick, prevJoystick, n) {
-		if (!prevJoystick.axisTrips[n] && Math.abs(axis(joystick, n)) > TRIP_HIGH) {
-			joystick.axisTrips[n] = true;
-			return axis(joystick, n).sign();
-		}
-		if (prevJoystick.axisTrips[n] && Math.abs(axis(joystick, n)) < TRIP_LOW) {
-			joystick.axisTrips[n] = false;
-		}
-		return 0;
-	}
-
-	function axis(joystick, n) {
+	function getAxis(joystick, n) {
 		var nMapped = axisMapping[n];
-		return axes(joystick)[nMapped] || 0;
+		return getAxes(joystick)[nMapped] || 0;
 	};
 	
-	function axes(joystick) {
+	function getAxes(joystick) {
 		if (joystick) {
 			return joystick.axes;
 		} else {
@@ -916,11 +871,11 @@
 		}
 	};
 	
-	function position(joystick) {
+	function getPosition(joystick) {
 		var magnitude, p, ratio;
 		
 		if (joystick) {
-			p = Point(axis(joystick, 0), axis(joystick, 1));
+			p = Point(getAxis(joystick, 0), getAxis(joystick, 1));
 			magnitude = p.magnitude();
 			if (magnitude > AXIS_MAX) {
 				return p.norm();
@@ -992,17 +947,7 @@
 				_interpretor.buttonsPressed(pressedA, pressedB, pressedC, pressedD, controllerId);
 			}
 			
-			var axisTripsX = getAxisTrips(joystick, previousJoystickState, 0);
-			
-			var axisTripsY = getAxisTrips(joystick, previousJoystickState, 1);
-			
-			var tappedJoystick = !axisTripsX || !axisTripsY;
-
-			if (tappedJoystick) {
-				_interpretor.joystick(axisTripsX, axisTripsY, controllerId);
-			}
-
-			var joystickPositionXY = position(joystick);
+			var joystickPositionXY = getPosition(joystick);
 
 			joystick.x = joystickPositionXY.x;
 			joystick.y = joystickPositionXY.y;
