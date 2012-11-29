@@ -1,17 +1,30 @@
-Partymaskinen
+[Partymaskinen](http://partymaskinen.se)
+=========
 
-URL: http://mrcheng.github.com/Partymaskinen/
-+ party id: eg: http://mrcheng.github.com/Partymaskinen/?id=95c0c3d5-bba5-44c6-80cd-065d12438521
-eg. localhost://xxxx/?id=95c0c3d5-bba5-44c6-80cd-065d12438521
+Demos, see it in again!
+
++ [See it in action, with a test party](http://mrcheng.github.com/Partymaskinen/?id=stub "Partymaskinen") .
+
++ [See it in action, with the real parties](http://mrcheng.github.com/Partymaskinen/ "Partymaskinen").
+
+How to run/build
+=========
+
+For *Visual Studio users*, just do *File -> Open Web Site* and point it to your /Partymaskinen repository and then rightclick on the project and choose *View in browser*.
+
+
+For *Chrome users*, add the following flags for a smoother run:
+*chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins*.
 
 Plugins
-https://github.com/mrcheng/PartymaskinenPlugins
+=========
+Plugins are in the PartymaskinenPlugins repository over [here](https://github.com/mrcheng/PartymaskinenPlugins).
 
-To link a plugin at partymaskinen.se just type:
+To link a plugin at [partymaskinen.se](http://partymaskinen.se) just type:
 http://mrcheng.github.com/PartymaskinenPlugins/nameOfTheFolderContainingThePlugin
 
 Example:
 http://mrcheng.github.com/PartymaskinenPlugins/Beer%20Boy/
 
-For Chrome users, add the following flags for a smoother run:
-chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins
+  
+*www.partymaskinen.se*
