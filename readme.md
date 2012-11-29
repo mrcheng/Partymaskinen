@@ -1,20 +1,20 @@
-[Partymaskinen](http://partymaskinen.se)
+Partymaskinen
 =========
 
 Demos, see it in action!
 
-+ [See it in action, with a test party](http://mrcheng.github.com/Partymaskinen/?id=stub "Partymaskinen") .
++ [See it in action, with a test party](http://mrcheng.github.com/Partymaskinen/?id=stub "Partymaskinen").
 
 + [See it in action, with the real parties](http://mrcheng.github.com/Partymaskinen/ "Partymaskinen").
 
 How to run/build
 =========
 
-For *Visual Studio users*, just do *File -> Open Web Site* and point it to your /Partymaskinen repository and then rightclick on the project and choose *View in browser*.
+For *Visual Studio users*, just do *File -> Open Web Site* and point it to your Partymaskinen repository and then rightclick on the project and choose *View in browser*.
 
 
-For *Chrome users*, add the following flags for a smoother run:
-*chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins*.
+*Use Chrome* with the [Boomstick extension](https://chrome.google.com/webstore/detail/boomstick/ibghgpidpbpnhdgmncpbhioaohmgkigo) and add the following flags when launching:
++ *chrome.exe --always-authorize-plugins --enable-plugins --allow-outdated-plugins*
 
 Plugins
 =========
@@ -27,4 +27,6 @@ Example:
 http://mrcheng.github.com/PartymaskinenPlugins/Beer%20Boy/
 
   
-*www.partymaskinen.se*
+Web
+===
+Create and setup your party at [partymaskinen.se](http://partymaskinen.se).
