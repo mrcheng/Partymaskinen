@@ -1,7 +1,7 @@
 [Partymaskinen](http://partymaskinen.se)
 =========
 
-Demos, see it in again!
+Demos, see it in action!
 
 + [See it in action, with a test party](http://mrcheng.github.com/Partymaskinen/?id=stub "Partymaskinen") .
 
