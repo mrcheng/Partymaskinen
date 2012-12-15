@@ -5,6 +5,8 @@
 	var playerReady = false;
 	var currentVideoId;
 
+	var playerHeight = "38%";
+
 	youtube.getMediaHandler = function (media) {
 
 		if (!media.youtubeVideoId)
@@ -40,7 +42,7 @@
 		iframe.style.marginLeft = '31%';
 		iframe.style.visibility = 'hidden';
 		iframe.width = '38%';
-		iframe.height = '38%';
+		iframe.height = playerHeight;
 		iframe.src = 'http://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1';
 		document.body.appendChild(iframe);
 	};
@@ -50,18 +52,21 @@
 
 		if (playerReady) {
 			player.loadVideoById(videoId);
-			$("#youtube").show();
+			$("#youtube").height(playerHeight);
+			$("#youtube").css('visibility', 'visible');
 		}
 	};
 
 	youtube.pause = function () {
-		$("#youtube").hide();
+		$("#youtube").css('visibility', 'hidden');
+		$("#youtube").height(0);
 		player.pauseVideo();
 	};
 
 	youtube.resume = function () {
 		player.playVideo();
-		$("#youtube").show();
+		$("#youtube").height(playerHeight);
+		$("#youtube").css('visibility', 'visible');
 	};
 
 	youtube.onFinished = function () { };
@@ -77,12 +82,14 @@
 					if (currentVideoId) {
 						youtube.play(currentVideoId);
 					} else {
-						$("#youtube").hide();
+						$("#youtube").css('visibility', 'hidden');
+						$("#youtube").height(0);
 					}
 				},
 				onStateChange: function (e) {
 					if (e.data == YT.PlayerState.ENDED) {
-						$("#youtube").hide();
+						$("#youtube").css('visibility', 'hidden');
+						$("#youtube").height(0);
 						youtube.onFinished();
 					}
 				},
