@@ -15,11 +15,12 @@
 			partyMachineConfig.baseUrl + "scripts/partymachine.controllers.selector.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.controller.keyboard.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.controller.boomstick.js",
+            partyMachineConfig.baseUrl + "scripts/partymachine.coverflow.js",
   			partyMachineConfig.baseUrl + "scripts/partymachine.pluginrunner.js",
   			partyMachineConfig.baseUrl + "scripts/soundmanager2.js",
   			partyMachineConfig.baseUrl + "scripts/partymachine.media.youtube.js",
   			partyMachineConfig.baseUrl + "scripts/partymachine.media.sound.js",
-  			partyMachineConfig.baseUrl + "scripts/partymachine.media.js",
+  			partyMachineConfig.baseUrl + "scripts/partymachine.media.js",       
   			partyMachineConfig.baseUrl + "scripts/jquery.fittext.js",
   			partyMachineConfig.baseUrl + "scripts/partymachine.js"
 		],

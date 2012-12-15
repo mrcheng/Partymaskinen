@@ -2,7 +2,7 @@
 (function (partyMachineConfig, $, undefined) {
 
 	var partyAdminWebConfig = "live";
-	var partyConfig = "live";
+	var partyConfig = "dev";
 
 	if (partyAdminWebConfig === "live") {
 		partyMachineConfig.partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
@@ -18,8 +18,8 @@
 		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.com/PartymaskinenPlugins/';
 	}
 	else if (partyConfig === "dev") {
-		partyMachineConfig.baseUrl = 'http://localhost:10397/Partymaskinen/';
-		partyMachineConfig.pluginsBaseUrl = 'http://localhost:11111/PartymaskinenPlugins/';
+		partyMachineConfig.baseUrl = 'http://localhost:1621/Partymaskinen/';
+		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.com/PartymaskinenPlugins/';
 	}
 	
 } (

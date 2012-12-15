@@ -1,5 +1,5 @@
 ﻿
-(function (partyMachine, controllers, pluginRunner, participants, mediaPlayer, $, undefined) {
+(function (partyMachine, controllers, pluginRunner, participants, mediaPlayer, coverflow, $, undefined) {
 
 	var _contexts = {
 		atPluginSelection: 0,
@@ -9,7 +9,8 @@
 	var _state = {
 		context: _contexts.atPluginSelection,
 		currentParticipant: null,
-		currentlySelectedPlugin: 0
+		currentlySelectedPlugin: 0,
+        firstLoad: true
 	};
 
 	var _participantTimeoutTimer;
@@ -72,7 +73,14 @@
 		partyMachine.bindKeys(freshParticipants);
 	}
 
-	partyMachine.bindKeys = function(freshParticipants) {
+    partyMachine.bindKeys = function (freshParticipants) {
+
+        if (_state.firstLoad) {
+            var plugins = pluginRunner.getPlugins();
+            _state.currentlySelectedPlugin = Math.floor((plugins.length / 2) - 1);
+            pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
+            _state.firstLoad = false;
+        }
 
 		var buttonsPressed = function(buttonA, buttonB, buttonC, buttonD) {
 
@@ -116,15 +124,19 @@
 
 			if (right) {
 				if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
-					_state.currentlySelectedPlugin = 0;
+				    _state.currentlySelectedPlugin = 0;
+				    coverflow.moveTo(0);
 				} else {
-					_state.currentlySelectedPlugin += 1;
+				    _state.currentlySelectedPlugin += 1;
+				    coverflow.right();
 				}
 			} else if (left) {
 				if (_state.currentlySelectedPlugin <= 0) {
-					_state.currentlySelectedPlugin = plugins.length - 1;
+				    _state.currentlySelectedPlugin = plugins.length - 1;
+				    coverflow.moveTo(plugins.length - 1);
 				} else {
-					_state.currentlySelectedPlugin -= 1;
+				    _state.currentlySelectedPlugin -= 1;
+				    coverflow.left();
 				}
 			} else if (up) {
 				_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
@@ -350,6 +362,7 @@
 	window.partyMachinePluginRunner,
 	window.partyMachineParticipants,
 	window.partyMachineMedia,
+    window.partyMachineCoverflow,
 	jQuery
 	)
 );
