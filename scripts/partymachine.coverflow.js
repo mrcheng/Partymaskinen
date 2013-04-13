@@ -13,22 +13,99 @@
 
     coverflow.initialThrust = function() {
         setTimeout(function () {
-            document.getElementById("plugin1").style.webkitTransform = "translateX(-400px) rotateY(-60deg)";
-            document.getElementById("plugin2").style.webkitTransform = "translateX(-350px) rotateY(-60deg)";
-            document.getElementById("plugin3").style.webkitTransform = "translateX(-300px) rotateY(-60deg)";
-            document.getElementById("plugin4").style.webkitTransform = "translateX(-250px) rotateY(-60deg)";
-            document.getElementById("plugin5").style.webkitTransform = "translateX(-200px) rotateY(-60deg)";
-            document.getElementById("plugin6").style.webkitTransform = "translateX(-150px) rotateY(-60deg)";
-            document.getElementById("plugin7").style.webkitTransform = "translateX(-100px) rotateY(-60deg)";
-            document.getElementById("plugin8").style.webkitTransform = "translateX(0px) rotateY(0deg) translateZ(200px)";
-            document.getElementById("plugin9").style.webkitTransform = "translateX(100px) rotateY(60deg)";
-            document.getElementById("plugin10").style.webkitTransform = "translateX(150px) rotateY(60deg)";
-            document.getElementById("plugin11").style.webkitTransform = "translateX(200px) rotateY(60deg)";
-            document.getElementById("plugin12").style.webkitTransform = "translateX(250px) rotateY(60deg)";
-            document.getElementById("plugin13").style.webkitTransform = "translateX(300px) rotateY(60deg)";
-            document.getElementById("plugin14").style.webkitTransform = "translateX(350px) rotateY(60deg)";
-            document.getElementById("plugin15").style.webkitTransform = "translateX(400px) rotateY(60deg)";
-            document.getElementById("plugin16").style.webkitTransform = "translateX(450px) rotateY(60deg)";
+            var plugin1 = document.getElementById("plugin1");
+            
+            if (plugin1) {
+                plugin1.style.webkitTransform = "translateX(-400px) rotateY(-60deg)";
+            }
+            
+            var plugin2 = document.getElementById("plugin2");
+            
+            if (plugin2) {
+                plugin2.style.webkitTransform = "translateX(-350px) rotateY(-60deg)";
+            }
+            
+            var plugin3 = document.getElementById("plugin3");
+            if (plugin3) {
+                plugin3.style.webkitTransform = "translateX(-300px) rotateY(-60deg)";
+            }
+            
+            var plugin4 = document.getElementById("plugin4");
+            
+            if (plugin4) {
+                plugin4.style.webkitTransform = "translateX(-250px) rotateY(-60deg)";                    
+            }
+            
+            var plugin5 = document.getElementById("plugin5");
+            
+            if (plugin5) {            
+                plugin5.style.webkitTransform = "translateX(-200px) rotateY(-60deg)";
+            }
+            
+            var plugin6 = document.getElementById("plugin6");
+            
+            if (plugin6) {
+                plugin6.style.webkitTransform = "translateX(-150px) rotateY(-60deg)";
+            }
+            
+            var plugin7 = document.getElementById("plugin7");
+            
+            if (plugin7) {
+                plugin7.style.webkitTransform = "translateX(-100px) rotateY(-60deg)";
+            }
+            
+            var plugin8 = document.getElementById("plugin8");
+            if (plugin8) {
+                plugin8.style.webkitTransform = "translateX(0px) rotateY(0deg) translateZ(200px)";
+            }
+            
+            var plugin9 = document.getElementById("plugin9");
+            
+            if (plugin9) {
+                plugin9.style.webkitTransform = "translateX(100px) rotateY(60deg)";
+            }
+            
+            var plugin10 = document.getElementById("plugin10");
+            if (plugin10) {            
+                plugin10.style.webkitTransform = "translateX(150px) rotateY(60deg)";
+            }
+            
+            var plugin11 = document.getElementById("plugin11");
+            
+            if (plugin11) {
+                plugin11.style.webkitTransform = "translateX(200px) rotateY(60deg)";
+            }
+            
+            var plugin12 = document.getElementById("plugin12");
+            
+            if (plugin12) {
+                plugin12.style.webkitTransform = "translateX(250px) rotateY(60deg)";
+            }
+            
+            var plugin13 = document.getElementById("plugin13");
+            
+            if (plugin13) {
+                plugin13.style.webkitTransform = "translateX(300px) rotateY(60deg)";
+            }
+            
+            var plugin14 = document.getElementById("plugin14");
+            
+            if (plugin14) {            
+                plugin14.style.webkitTransform = "translateX(350px) rotateY(60deg)";
+            }
+            
+            var plugin15 = document.getElementById("plugin15");
+            
+            if (plugin15) {
+                plugin15.style.webkitTransform = "translateX(400px) rotateY(60deg)";
+            }
+            
+            var plugin16 = document.getElementById("plugin16");
+            
+            if (plugin16) {
+                plugin16.style.webkitTransform = "translateX(450px) rotateY(60deg)";
+            }
+            
         }, 500);
     }
 
