@@ -55,7 +55,7 @@
 
 	function updateMedia(medias, callback)
 	{
-		var trans = _db.transaction(['playedMedia'], webkitIDBTransaction.READ_ONLY);
+		var trans = _db.transaction(['playedMedia'], "readonly");
 		var store = trans.objectStore('playedMedia');
 
 		store.openCursor().onsuccess = function(e)
@@ -156,7 +156,7 @@
 
 		if (_currentMedia)
 		{
-			var trans = _db.transaction(['playedMedia'], webkitIDBTransaction.READ_WRITE);
+			var trans = _db.transaction(['playedMedia'], "readwrite");
 			var store = trans.objectStore('playedMedia');
 			var request = store.put(
 			{
