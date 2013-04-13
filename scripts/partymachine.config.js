@@ -2,7 +2,7 @@
 (function (partyMachineConfig, $, undefined) {
 
 	var partyAdminWebConfig = "live";
-	var partyConfig = "dev";
+	var partyConfig = "live";
 
 	if (partyAdminWebConfig === "live") {
 		partyMachineConfig.partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
