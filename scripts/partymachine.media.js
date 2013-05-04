@@ -1,4 +1,8 @@
 ﻿(function (mediaManager, youtubePlayer, soundPlayer, $, undefined) {
+	var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB;
+	var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction;
+	var dbVersion = 1.0;
+
 	var _db;
 	var _media = [];
 	var _players = [];
@@ -57,13 +61,14 @@
 	{
 		var trans = _db.transaction(['playedMedia'], "readonly");
 		var store = trans.objectStore('playedMedia');
-
+		var i = 0;
+		
 		store.openCursor().onsuccess = function(e)
 		{
 			var cursor = e.target.result;
 			if (cursor)
 			{
-				for (var i = 0; i < medias.length; i++)
+				for (i = 0; i < medias.length; i++)
 					if (medias[i] && medias[i].id == cursor.key)
 					{
 						medias[i] = null;
@@ -75,7 +80,7 @@
 			else
 			{
 				var filteredMedia = [];
-				for (var i = 0; i < medias.length; i++)
+				for (i = 0; i < medias.length; i++)
 					if (medias[i])
 						filteredMedia.push(medias[i]);
 				_media = filteredMedia;
@@ -114,37 +119,6 @@
 		else
 			_nextMedia = null;
 
-		//TODO: check for playability and add to already played list if not playable
-		/*while (playableMedia.nextMedia === null) {
-
-			if (_media.length - 1 >= currentMediaIndex + 1) {
-				nextMedia = _media[currentMediaIndex + 1];
-				currentMediaIndex++;
-			}
-			else {
-				currentMediaIndex = 0;
-				nextMedia = _media[0];
-			}
-
-			var mediaPlayer = getPlayer(nextMedia);
-
-			if (mediaPlayer !== null) {
-
-				if (!playableMedia.currentMedia) {
-					playableMedia.currentMedia = mediaPlayer;
-				}
-				else if (!playableMedia.nextMedia) {
-					playableMedia.nextMedia = mediaPlayer;
-					return playableMedia;
-				}
-
-			}
-
-			if (startMediaIndex == currentMediaIndex) {
-				return playableMedia;
-			}
-		}*/
-
 		var mediaHtml = getCurrentSongHtml(_currentMedia, _nextMedia);
 		$('.current-media-title').html(mediaHtml);
 
@@ -182,21 +156,46 @@
 			player.onFinished = playerFinished;
 			player.start();
 		}
-		
-		var openRequest = webkitIndexedDB.open(partyId);
-		openRequest.onsuccess = function (e) {
-			_db = e.target.result;
-			if (_db.version != '1') {
-				var setVersionRequest = _db.setVersion('1');
-				setVersionRequest.onsuccess = function (e) {
-					var store = _db.createObjectStore('playedMedia', { keyPath: 'id' });
 
-					setTimeout(function () { updateMedia(medias, playNext); }, 1000);
-				};
-			}
-			else
-				updateMedia(medias, playNext);
+		var request = indexedDB.open(partyId, dbVersion);
+		
+		var createObjectStore = function(db) {
+			console.log("Creating objectStore");
+			db.createObjectStore('playedMedia', { keyPath: 'id' });
 		};
+
+		request.onerror = function (event) {
+			console.log("Error creating/accessing IndexedDB database");
+		};
+
+		request.onsuccess = function(event) {
+			console.log("Success creating/accessing IndexedDB database");
+			_db = request.result;
+
+			_db.onerror = function (event) {
+				console.log("Error creating/accessing IndexedDB database");
+			};
+
+			if (_db.setVersion) {
+				if (_db.version != dbVersion) {
+					var setVersion = _db.setVersion(dbVersion);
+					setVersion.onsuccess = function() {
+						createObjectStore(_db);
+						setTimeout(function () { updateMedia(medias, playNext); }, 1000);
+					};
+				} else {
+					setTimeout(function() { updateMedia(medias, playNext); }, 1000);
+				}
+			} else {
+				setTimeout(function () { updateMedia(medias, playNext); }, 1000);
+			}
+		};
+
+		// For future use. Currently only in latest Firefox versions
+		request.onupgradeneeded = function (event) {
+			createObjectStore(event.target.result);
+		};
+		
 	}
 	
 	mediaManager.stub = function () {

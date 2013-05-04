@@ -7,7 +7,7 @@
 		load: [
 			partyMachineConfig.baseUrl + "css/partymaskinen2.css",
 			partyMachineConfig.baseUrl + "deps/json2.js", 
-			"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js",
+			partyMachineConfig.baseUrl + "deps/jquery-1.7.1.min.js",
 			partyMachineConfig.baseUrl + "deps/jquery.ba-postmessage.js",
   			partyMachineConfig.baseUrl + "scripts/jquery.shuffle.js",
 			partyMachineConfig.baseUrl + "scripts/partymachine.participants.js",
