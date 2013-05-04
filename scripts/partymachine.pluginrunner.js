@@ -309,79 +309,81 @@
 		
 		if (_plugins.length > 0) {
 
-		    for (var plugin = 0; plugin < _plugins.length; plugin++) {
-		        
-		        var angle;
-		        if (plugin < 7) {
-		            angle = 60;
-		        }
-		        else if (plugin == 7) {
-		            angle = 0;
-		        }
-		        else {
-		            angle = -60;
-		        }
+			for (var plugin = 0; plugin < _plugins.length; plugin++) {
 
-		        var cp;
-		        switch (plugin) {
-		            case 0:
-		                cp = -400;
-		                break;
-		            case 1:
-		                cp = -350;
-		                break;
-		            case 2:
-		                cp = -300;
-		                break;
-		            case 3:
-		                cp = -250;
-		                break;
-		            case 4:
-		                cp = -200;
-		                break;
-		            case 5:
-		                cp = -150;
-		                break;
-		            case 6:
-		                cp = -100;
-		                break
-                    case 7:
-		                cp = 0;
-		                break;
-		            case 8:
-		                cp = 100;
-		                break;
-		            case 9:
-		                cp = 150;
-		                break;
-		            case 10:
-		                cp = 200;
-		                break;
-		            case 11:
-		                cp = 250;
-		                break;
-		            case 12:
-		                cp = 300;
-		                break;
-		            case 13:
-		                cp = 350;
-		                break;
-		            case 14:
-		                cp = 400;
-		                break;
-		            case 15:
-		                cp = 450;
-		                break;
-		        }
+				var angle;
+				if (plugin < 7) {
+					angle = 60;
+				} else if (plugin == 7) {
+					angle = 0;
+				} else {
+					angle = -60;
+				}
+
+				var cp;
+				switch (plugin) {
+				case 0:
+					cp = -400;
+					break;
+				case 1:
+					cp = -350;
+					break;
+				case 2:
+					cp = -300;
+					break;
+				case 3:
+					cp = -250;
+					break;
+				case 4:
+					cp = -200;
+					break;
+				case 5:
+					cp = -150;
+					break;
+				case 6:
+					cp = -100;
+					break
+				case 7:
+					cp = 0;
+					break;
+				case 8:
+					cp = 100;
+					break;
+				case 9:
+					cp = 150;
+					break;
+				case 10:
+					cp = 200;
+					break;
+				case 11:
+					cp = 250;
+					break;
+				case 12:
+					cp = 300;
+					break;
+				case 13:
+					cp = 350;
+					break;
+				case 14:
+					cp = 400;
+					break;
+				case 15:
+					cp = 450;
+					break;
+				}
 
 				var displayPlugin = _plugins[plugin];
-				var pluginHtmlTemplate = '<div class="plugin" id="plugin' + (plugin+1) + '" data-cp="'+cp+'" data-a="'+angle+'">\
+				var pluginHtmlTemplate = '<div class="plugin" id="plugin' + (plugin + 1) + '" data-cp="' + cp + '" data-a="' + angle + '">\
                     <img src="' + displayPlugin.url + '/thumbnail.png"></img>\
                     <!--<div class="plugin-glare"></div><br /><p>' + displayPlugin.title + '</p></div>-->';
 				$("#partyMachine-plugins").append(pluginHtmlTemplate);
+
+				$("#plugins-container").show();
 			}
 
 			pluginRunner.highlightPlugin(0, true);
+		} else {
+			$("#plugins-container").hide();
 		}
 	}
 
