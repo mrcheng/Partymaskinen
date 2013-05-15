@@ -1,14 +1,11 @@
 ﻿(function (mediaManager, youtubePlayer, soundPlayer, $, undefined) {
-	var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB;
-	var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction;
-	var dbVersion = 1.0;
-
-	var _db;
+	
 	var _media = [];
 	var _players = [];
 
 	var _currentMedia;
 	var _nextMedia;
+	var _partyId;
 
 	function getCurrentSongHtml(currentMedia, nextMedia) {
 		var nextMediaHtml;
@@ -59,36 +56,45 @@
 
 	function updateMedia(medias, callback)
 	{
-		var trans = _db.transaction(['playedMedia'], "readonly");
-		var store = trans.objectStore('playedMedia');
-		var i = 0;
 		
-		store.openCursor().onsuccess = function(e)
-		{
-			var cursor = e.target.result;
-			if (cursor)
-			{
-				for (i = 0; i < medias.length; i++)
-					if (medias[i] && medias[i].id == cursor.key)
-					{
-						medias[i] = null;
-						break;
-					}
-
-				cursor.continue();
+		var playedMedias = [];
+		
+		if (localStorage["playedMedia-" + _partyId]) {
+			playedMedias = JSON.parse(localStorage["playedMedia-" + _partyId]);
+		}
+		
+		var mediaIndex = 0;
+		var playedMediaIndex = 0;
+		var media;
+		
+		for (playedMediaIndex = 0; playedMediaIndex < playedMedias.length; playedMediaIndex++) {
+			
+			var playedMediaId = playedMedias[playedMediaIndex];
+			
+			for (mediaIndex = 0; mediaIndex < medias.length; mediaIndex++) {
+				media = medias[mediaIndex];
+				if (media && media.id === playedMediaId) {
+					medias[mediaIndex] = null;
+				}
 			}
-			else
-			{
-				var filteredMedia = [];
-				for (i = 0; i < medias.length; i++)
-					if (medias[i])
-						filteredMedia.push(medias[i]);
-				_media = filteredMedia;
+			
+		}
 
-				if (callback)
-					callback();
+		var filteredMedia = [];
+		
+		for (mediaIndex = 0; mediaIndex < medias.length; mediaIndex++) {
+			media = medias[mediaIndex];
+			if (media) {
+				filteredMedia.push(media);
 			}
-		};
+		}
+		
+		_media = filteredMedia;
+
+		if (callback) {
+			callback();
+		}
+
 	}
 
 	function getRandom()
@@ -130,24 +136,35 @@
 
 		if (_currentMedia)
 		{
-			var trans = _db.transaction(['playedMedia'], "readwrite");
-			var store = trans.objectStore('playedMedia');
-			var request = store.put(
-			{
-				'id': _currentMedia.id
-			});
+			var playedMedias = [];
+			
+			if (localStorage["playedMedia-" + _partyId]) {
+				playedMedias = JSON.parse(localStorage["playedMedia-" + _partyId]);
+			}
+
+			playedMedias.push(_currentMedia.id);
+			
+			localStorage["playedMedia-" + _partyId] = JSON.stringify(playedMedias);
+
 		}
 
 		var filteredMedia = [];
-		for (var i = 0; i < _media.length; i++)
-			if (_media[i].id != _currentMedia.id)
-				filteredMedia.push(_media[i]);
+
+		for (var mediaIndex = 0; mediaIndex < _media.length; mediaIndex++) {
+			var media = _media[mediaIndex];
+			if (media.id != _currentMedia.id) {
+				filteredMedia.push(_media[mediaIndex]);
+			}
+		}
+		
 		_media = filteredMedia;
 
 		playNext();
 	}
 
 	function init(medias, partyId) {
+		_partyId = partyId;
+		
 		_players.push(youtubePlayer);
 		_players.push(soundPlayer);
 
@@ -157,44 +174,7 @@
 			player.start();
 		}
 
-		var request = indexedDB.open(partyId, dbVersion);
-		
-		var createObjectStore = function(db) {
-			console.log("Creating objectStore");
-			db.createObjectStore('playedMedia', { keyPath: 'id' });
-		};
-
-		request.onerror = function (event) {
-			console.log("Error creating/accessing IndexedDB database");
-		};
-
-		request.onsuccess = function(event) {
-			console.log("Success creating/accessing IndexedDB database");
-			_db = request.result;
-
-			_db.onerror = function (event) {
-				console.log("Error creating/accessing IndexedDB database");
-			};
-
-			if (_db.setVersion) {
-				if (_db.version != dbVersion) {
-					var setVersion = _db.setVersion(dbVersion);
-					setVersion.onsuccess = function() {
-						createObjectStore(_db);
-						setTimeout(function () { updateMedia(medias, playNext); }, 1000);
-					};
-				} else {
-					setTimeout(function() { updateMedia(medias, playNext); }, 1000);
-				}
-			} else {
-				setTimeout(function () { updateMedia(medias, playNext); }, 1000);
-			}
-		};
-
-		// For future use. Currently only in latest Firefox versions
-		request.onupgradeneeded = function (event) {
-			createObjectStore(event.target.result);
-		};
+		updateMedia(medias, playNext);
 		
 	}
 	
@@ -259,10 +239,11 @@
 	};
 
 	mediaManager.update = function (medias) {
-		if (_currentMedia)
+		if (_currentMedia) {
 			updateMedia(medias);
-		else
+		} else {
 			updateMedia(medias, playNext);
+		}
 	};
 } (
 	window.partyMachineMedia = window.partyMachineMedia || {},
