@@ -1,0 +1,32 @@
+/*a:link {color:#FF0000;}
+a:visited {color:#00FF00;}
+a:hover {color:#FF00FF;}
+a:active {color:#0000FF;}*/
+
+.plugins-fixed {position: fixed;left: 0;bottom: 50px;width: 100%;height: 280px;}
+#plugin-wrapper {width: 210px;height: 195px;position: relative;margin: 50px auto;-webkit-perspective: 1100;background-color: rgba(0,0,0,0.6);}
+#partyMachine-plugins {width: 100%;height: 100%;position: absolute;-webkit-transform: translateZ( -200px );-webkit-transform-style: preserve-3d;              }
+#partyMachine-plugins .plugin {display: block;position: absolute;width: 200px;height: 170px;border: 2px solid black;cursor:pointer;           
+	-webkit-transition: -webkit-transform 0.5s ease; 
+    -webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent),color-stop(0.7, transparent), to(white));
+    -webkit-box-shadow:-1px 1px 8px rgba(0, 0, 0, 0.9);
+    background-color: rgba(255,255,255,0.8);
+}
+#partyMachine-plugins .plugin img {width:100%;height:100%;}
+/*initial configuration*/
+#partyMachine-plugins .plugin:nth-child(1) {-webkit-transform:translateX(100px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(2) {-webkit-transform:translateX(150px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(3) {-webkit-transform:translateX(200px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(4) {-webkit-transform:translateX(250px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(5) {-webkit-transform:translateX(300px) rotateY(-60deg);} 
+#partyMachine-plugins .plugin:nth-child(6) {-webkit-transform:translateX(350px) rotateY(-60deg);} 
+#partyMachine-plugins .plugin:nth-child(7) {-webkit-transform:translateX(400px) rotateY(-60deg);} 
+#partyMachine-plugins .plugin:nth-child(8) {-webkit-transform:translateX(450px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(9) {-webkit-transform:translateX(500px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(10) {-webkit-transform:translateX(550px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(11) {-webkit-transform:translateX(600px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(12) {-webkit-transform:translateX(650px) rotateY(-60deg);} 
+#partyMachine-plugins .plugin:nth-child(13) {-webkit-transform:translateX(700px) rotateY(-60deg);} 
+#partyMachine-plugins .plugin:nth-child(14) {-webkit-transform:translateX(750px) rotateY(-60deg);}
+#partyMachine-plugins .plugin:nth-child(15) {-webkit-transform:translateX(800px) rotateY(-60deg);} 
+#partyMachine-plugins .plugin:nth-child(16) {-webkit-transform:translateX(850px) rotateY(-60deg);}

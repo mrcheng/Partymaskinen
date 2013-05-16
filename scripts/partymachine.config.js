@@ -2,6 +2,7 @@
 (function (partyMachineConfig, $, undefined) {
 
 	var partyAdminWebConfig = "live";
+	// Change to "dev" when developing
 	var partyConfig = "live";
 
 	if (partyAdminWebConfig === "live") {
@@ -18,6 +19,7 @@
 		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.com/PartymaskinenPlugins/';
 	}
 	else if (partyConfig === "dev") {
+		// Change to your localhost adress when developing
 		partyMachineConfig.baseUrl = 'http://localhost:1621/Partymaskinen/';
 		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.com/PartymaskinenPlugins/';
 	}

@@ -5,7 +5,9 @@
 
 	yepnope({
 		load: [
+			partyMachineConfig.baseUrl + "css/soundmanager.css",
 			partyMachineConfig.baseUrl + "css/partymaskinen2.css",
+			partyMachineConfig.baseUrl + "css/plugins.css",
 			partyMachineConfig.baseUrl + "deps/json2.js", 
 			partyMachineConfig.baseUrl + "deps/jquery-1.7.1.min.js",
 			partyMachineConfig.baseUrl + "deps/jquery.ba-postmessage.js",

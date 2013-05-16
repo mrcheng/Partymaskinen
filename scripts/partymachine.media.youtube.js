@@ -5,7 +5,7 @@
 	var playerReady = false;
 	var currentVideoId;
 
-	var playerHeight = "38%";
+	var playerHeight = "102%";
 
 	youtube.getMediaHandler = function (media) {
 
@@ -35,13 +35,13 @@
 
 		iframe = document.createElement('iframe');
 		iframe.id = 'youtube';
-		iframe.frameBorder = '0';
-		iframe.style.position = 'fixed';
-		iframe.style.marginTop = '32%';
-		//iframe.style.zIndex = '1000';
-		iframe.style.marginLeft = '31%';
-		iframe.style.visibility = 'hidden';
-		iframe.width = '38%';
+		//iframe.frameBorder = '0';
+		//iframe.style.position = 'fixed';
+		////iframe.style.marginTop = '32%';
+		////iframe.style.zIndex = '1000';
+		//iframe.style.marginLeft = '31%';
+		//iframe.style.visibility = 'hidden';
+		//iframe.width = '38%';
 		iframe.height = playerHeight;
 		iframe.src = 'http://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1';
 		document.body.appendChild(iframe);
