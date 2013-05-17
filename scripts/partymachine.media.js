@@ -10,13 +10,13 @@
 	function getCurrentSongHtml(currentMedia, nextMedia) {
 		var nextMediaHtml;
 		if (nextMedia)
-			nextMediaHtml = '<p class="next-song">Nästa: ' + nextMedia.title + '</p>';
+			nextMediaHtml = '<p>Nästa låt: ' + nextMedia.title + '</p>';
 		else
-			nextMediaHtml = '<p class="next-song">Nästa: Låtlista tom!</p>';
+			nextMediaHtml = '<p>Nästa låt: Låtlista tom!</p>';
 
 		var currentMediaHtml;
 		if (currentMedia)
-			currentMediaHtml = '<p>' + currentMedia.createdBy.name + ' spelar:</p><h2>' + currentMedia.title + '</h2>';
+			currentMediaHtml = '<p>' + currentMedia.createdBy.name + ' spelar <span>' + currentMedia.title + '</span></p>';
 		else
 			currentMediaHtml = '<p>Låtlista</p>: <h2>tom!</h2>';
 

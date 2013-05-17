@@ -5,7 +5,7 @@
 	var playerReady = false;
 	var currentVideoId;
 
-	var playerHeight = "102%";
+	var playerHeight = "100%";
 
 	youtube.getMediaHandler = function (media) {
 
