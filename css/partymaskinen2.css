@@ -24,6 +24,13 @@ body {height:100%; margin:0; padding:0;}
 #freshPartiesOverlay { overflow: auto; font-style:normal; color:#fff; font-size:150%; }
 
 /*FONTS*/
+
+/*TEXT SHADOW*/
+p, i {text-shadow:0px 0px 6px #060606;}
+/*text-shadow:0px 0px 6px #060606;
+font-size:50px;
+color: #0080ff;*/
+
 @font-face { font-family: 'ITCAvantGardeGothicStdBkCn'; src: url('../fonts/itcavantgardestd-bkcn-webfont.eot'); src: url('../fonts/itcavantgardestd-bkcn-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/itcavantgardestd-bkcn-webfont.woff') format('woff'), url('../fonts/itcavantgardestd-bkcn-webfont.ttf') format('truetype'), url('../fonts/itcavantgardestd-bkcn-webfont.svg#ITCAvantGardeGothicStdBkCn') format('svg'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'ITCAvantGardeGothicStdBdCn'; src: url('../fonts/itcavantgardestd-boldcn-webfont.eot'); src: url('../fonts/itcavantgardestd-boldcn-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/itcavantgardestd-boldcn-webfont.woff') format('woff'), url('../fonts/itcavantgardestd-boldcn-webfont.ttf') format('truetype'), url('../fonts/itcavantgardestd-boldcn-webfont.svg#ITCAvantGardeGothicStdBdCn') format('svg'); font-weight: normal; font-style: normal; }
 body,.plugin p { font-family: 'ITCAvantGardeGothicStdBkCn'; }
