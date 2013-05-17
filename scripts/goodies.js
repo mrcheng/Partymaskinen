@@ -1,65 +1,5 @@
 $(document).ready(function () {
 
-//just a test
-    // Switch CSS
-    //$("#style1").addClass("fat");
-    //	
-    //	$("#style1").click(function() {
-    //		$("link[rel=stylesheet]").attr({href : "css/partymaskinen.css"});
-    //		$("#style1").addClass("fat");
-    //		$("#style2").removeClass("fat");
-    //		$("#style3").removeClass("fat");
-    //	});
-    //	$("#style2").click(function() {
-    //		$("link[rel=stylesheet]").attr({href : "themes/media_theme/media-theme.css"});
-    //		$("#style2").addClass("fat");
-    //		$("#style1").removeClass("fat");
-    //		$("#style3").removeClass("fat");
-    //	});	
-    //	$("#style3").click(function() {
-    //		$("link[rel=stylesheet]").attr({href : "themes/christmas_theme/christmas-theme.css"});
-    //		$("#style3").addClass("fat");
-    //		$("#style1").removeClass("fat");
-    //		$("#style2").removeClass("fat");
-    //	});
-
-    //FITTEXT
-    //$(".fittext1").fitText();
-    //$(".fittext2").fitText(1.2);
-    //$("#fittext3").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
-
-    //Fades in the whole page on dom ready
-    //$('#partyMachine').animate({
-    //    opacity: 1
-    //}, 3000, function () {
-        //Fires when fade in is done
-    //});
-
-    //Slide for the partyplayer
-    //shortcut.add("p", togglePlayer);
-    //var playerVisible = false;
-    //function togglePlayer() {
-    //    if (playerVisible) {
-    //        $(".party-player-container").animate({
-    //            bottom: '-100%'
-    //        }, 500, function () { playerVisible = false; });
-    //    }
-    //    if (!playerVisible) {
-    //        $(".party-player-container").css({ visibility: "visible" }).animate({
-    //            bottom: '3%'
-    //        }, 500, function () { playerVisible = true; });
-    //    }
-    //}
-
-    //shortcut.add("esc", showSettings);
-    //Opens the settings panel using 'esc' key
-    //function showSettings() {
-    //    $('#settings').toggle({
-    //    }, 500, function () {
-    //    });
-    //}
-
-
     shortcut.add("u", showParticipants);
     function showParticipants() {
         var partydudes = window.partyMachineParticipants.getAllParticipants();
@@ -79,7 +19,7 @@ $(document).ready(function () {
 						partydudes
 					);
                 
-                //override partyMashine bindings
+                //override partyMachine bindings
                 for (var participant = 0; participant < partydudes.length; participant++) {
 
                     var p = partydudes[participant];
