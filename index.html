@@ -4,23 +4,24 @@
 	<title>Partymaskinen</title>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
-	<script src="scripts/partymachine.config.js" type="text/javascript"></script>
-	<script src="scripts/partymachine.loader.js" type="text/javascript"></script>	
-	<script type="text/javascript">
-		function partyMachineHost() {		
-			$(function() {
-				partyMachine.start();
-				$(".fittext1").fitText();
-			});
-			
-		}
-	</script>
+<script src="scripts/partymachine.config.js" type="text/javascript"></script>
+<script src="scripts/partymachine.loader.js" type="text/javascript"></script>	
+<script type="text/javascript">
+ 	function partyMachineHost() {
+ 		$(function () {
+ 			partyMachine.start();
+ 			$(".fittext1").fitText();
+ 		});
+ 	}
+</script>
 <body>
 	<div style="display: none;">
 		<object id="boomstickplugin" type="application/x-boomstickjavascriptjoysticksupport" width="0" height="0"></object>
 	</div>
+
 	<div id="partyMachinePluginContainer"></div>
 	<div id="partyMachine">
+		<img style="position:fixed;" src="img/fullscreenIcon.png" alt="headerback" width="16px" height="14px"/>	
 		<!--<div class="header fittext1" id="partyname"></div>-->
 		<div class="header-container">
 			<img class="header-container-back" src="img/header_back.png" alt="headerback" width="98%"/>		

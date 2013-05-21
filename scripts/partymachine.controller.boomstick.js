@@ -749,22 +749,7 @@
 
 	var displayInstallPrompt = function (text, msg, url) {
 
-		var cnt = $("<div/>", {
-			css: {
-				backgroundColor: "yellow",
-				boxSizing: "border-box",
-				color: "#000",
-				display: "block",
-				fontWeight: "bold",
-				left: 0,
-				padding: "1em",
-				position: "absolute",
-				textDecoration: "none",
-				top: 0,
-				width: "100%",
-				zIndex: 2000
-			}
-		});
+		var cnt = $("<div id='boomstickInstallPrompt'>");
 
 		var link = $("<a />", {
 			css: {
@@ -774,13 +759,20 @@
 			text: text
 		});
 
+		var close = $("<a id='closeBoomstickPrompt' href='#'>Who cares?! Close this box and let me party!</a>"); 
+		
+		// BEWARE!!! .live is depricated, switch to .on when updating jquery
+		$("#closeBoomstickPrompt").live("click", function() {
+			$("#boomstickInstallPrompt").fadeOut();
+		});
+
 		var msgElem = ('<p>' + msg + '<p/>');
 
+		cnt.append(close);
 		cnt.append(link).append(msgElem);
-
 		return cnt.appendTo("body");
-	};
 
+	};
 
 	if (!boomstickplugin) {
 		boomstickplugin = document.createElement("object");

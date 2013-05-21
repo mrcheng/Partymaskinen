@@ -26,10 +26,7 @@ body {height:100%; margin:0; padding:0;}
 /*FONTS*/
 
 /*TEXT SHADOW*/
-p, i {text-shadow:0px 0px 6px #060606;}
-/*text-shadow:0px 0px 6px #060606;
-font-size:50px;
-color: #0080ff;*/
+p, i, a {text-shadow:0px 0px 6px #060606;}
 
 @font-face { font-family: 'ITCAvantGardeGothicStdBkCn'; src: url('../fonts/itcavantgardestd-bkcn-webfont.eot'); src: url('../fonts/itcavantgardestd-bkcn-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/itcavantgardestd-bkcn-webfont.woff') format('woff'), url('../fonts/itcavantgardestd-bkcn-webfont.ttf') format('truetype'), url('../fonts/itcavantgardestd-bkcn-webfont.svg#ITCAvantGardeGothicStdBkCn') format('svg'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'ITCAvantGardeGothicStdBdCn'; src: url('../fonts/itcavantgardestd-boldcn-webfont.eot'); src: url('../fonts/itcavantgardestd-boldcn-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/itcavantgardestd-boldcn-webfont.woff') format('woff'), url('../fonts/itcavantgardestd-boldcn-webfont.ttf') format('truetype'), url('../fonts/itcavantgardestd-boldcn-webfont.svg#ITCAvantGardeGothicStdBdCn') format('svg'); font-weight: normal; font-style: normal; }
@@ -38,3 +35,8 @@ strong,.fat p,#participant-name p { font-family: 'ITCAvantGardeGothicStdBdCn'; }
 
 /*IFRAME*/
 iframe#youtube {top:0;border:0;position:fixed;visibility:hidden;width:100%;z-index:-1000;}
+
+/*BOOMSTICK*/
+#boomstickInstallPrompt {background-color:#ff6a00;color:#fff;display: block;left: 0px;padding:1em;position:absolute;text-decoration:none;top:43%;width:100%;z-index:2000;}
+#boomstickInstallPrompt a{color:#fff;font-size:120%;}
+#closeBoomstickPrompt {float:right;margin-right: 3%;}
