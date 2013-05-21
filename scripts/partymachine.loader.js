@@ -24,6 +24,7 @@
   			partyMachineConfig.baseUrl + "scripts/partymachine.media.sound.js",
   			partyMachineConfig.baseUrl + "scripts/partymachine.media.js",       
   			partyMachineConfig.baseUrl + "scripts/jquery.fittext.js",
+			partyMachineConfig.baseUrl + "scripts/fullscreen.js",
   			partyMachineConfig.baseUrl + "scripts/partymachine.js"
 		],
 		complete: function () {

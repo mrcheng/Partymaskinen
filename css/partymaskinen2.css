@@ -23,7 +23,8 @@ body {height:100%; margin:0; padding:0;}
 /* LIST LATEST PARTIES*/
 #freshPartiesOverlay { overflow: auto; font-style:normal; color:#fff; font-size:150%; }
 
-/*FONTS*/
+/*FULLSCREEN*/
+.fullscreen {position:fixed;}
 
 /*TEXT SHADOW*/
 p, i, a {text-shadow:0px 0px 6px #060606;}
