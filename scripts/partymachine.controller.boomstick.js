@@ -898,15 +898,15 @@
 			
 			var controllerId = "boomstick_" + j;
 
-			var pressedUp = (joystick.pov & UP) && (previousJoystickState.pov & UP !== 0);
-			var pressedLeft = (joystick.pov & LEFT) && (previousJoystickState.pov & LEFT !== 0);
-			var pressedRight = (joystick.pov & RIGHT) && (previousJoystickState.pov & RIGHT !== 0);
-			var pressedDown = (joystick.pov & DOWN) && (previousJoystickState.pov & DOWN !== 0);
+			var pressedUp = (joystick.pov & UP) && !(previousJoystickState.pov & UP);
+			var pressedLeft = (joystick.pov & LEFT) && !(previousJoystickState.pov & LEFT);
+			var pressedRight = (joystick.pov & RIGHT) && !(previousJoystickState.pov & RIGHT);
+			var pressedDown = (joystick.pov & DOWN) && !(previousJoystickState.pov & DOWN);
 
-			var releasedUp = (previousJoystickState.pov & UP) && (joystick.pov & UP !== 0);
-			var releasedLeft = (previousJoystickState.pov & LEFT) && (joystick.pov & LEFT !== 0);
-			var releasedRight = (previousJoystickState.pov & RIGHT) && (joystick.pov & RIGHT !== 0);
-			var releasedDown = (previousJoystickState.pov & DOWN) && (joystick.pov & DOWN !== 0);
+			var releasedUp = (previousJoystickState.pov & UP) && !(joystick.pov & UP);
+			var releasedLeft = (previousJoystickState.pov & LEFT) && !(joystick.pov & LEFT);
+			var releasedRight = (previousJoystickState.pov & RIGHT) && !(joystick.pov & RIGHT);
+			var releasedDown = (previousJoystickState.pov & DOWN) && !(joystick.pov & DOWN);
 
 			if (releasedUp || releasedLeft || releasedRight || releasedDown) {
 				_interpretor.gamepadReleased(releasedLeft, releasedUp, releasedRight, releasedDown, controllerId);
@@ -921,15 +921,15 @@
 			var buttonC = buttonMapping["C"];
 			var buttonD = buttonMapping["D"];
 			
-			var pressedA = (joystick.buttons & buttonA) && (previousJoystickState.buttons & buttonA !== 0);
-			var pressedB = (joystick.buttons & buttonB) && (previousJoystickState.buttons & buttonB !== 0);
-			var pressedC = (joystick.buttons & buttonC) && (previousJoystickState.buttons & buttonC !== 0);
-			var pressedD = (joystick.buttons & buttonD) && (previousJoystickState.buttons & buttonD !== 0);
+			var pressedA = (joystick.buttons & buttonA) && !(previousJoystickState.buttons & buttonA);
+			var pressedB = (joystick.buttons & buttonB) && !(previousJoystickState.buttons & buttonB);
+			var pressedC = (joystick.buttons & buttonC) && !(previousJoystickState.buttons & buttonC);
+			var pressedD = (joystick.buttons & buttonD) && !(previousJoystickState.buttons & buttonD);
 
-			var releasedA = (previousJoystickState.buttons & buttonA) && (joystick.buttons & buttonA !== 0);
-			var releasedB = (previousJoystickState.buttons & buttonB) && (joystick.buttons & buttonB !== 0);
-			var releasedC = (previousJoystickState.buttons & buttonC) && (joystick.buttons & buttonC !== 0);
-			var releasedD = (previousJoystickState.buttons & buttonD) && (joystick.buttons & buttonD !== 0);
+			var releasedA = (previousJoystickState.buttons & buttonA) && !(joystick.buttons & buttonA);
+			var releasedB = (previousJoystickState.buttons & buttonB) && !(joystick.buttons & buttonB);
+			var releasedC = (previousJoystickState.buttons & buttonC) && !(joystick.buttons & buttonC);
+			var releasedD = (previousJoystickState.buttons & buttonD) && !(joystick.buttons & buttonD);
 			
 			if (releasedA || releasedB || releasedC || releasedD) {
 				_interpretor.buttonsReleased(releasedA, releasedB, releasedC, releasedD, controllerId);
