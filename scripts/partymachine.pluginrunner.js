@@ -11,7 +11,6 @@
 	// Keep track of the iframe height.
 	var if_height;
 
-	var _pluginsExists = false;
 	
 	function getSelectedPluginUrl(url) {
 		
@@ -97,12 +96,9 @@
 		$("#partyMachine").focus();
 	};
 
-	pluginRunner.start = function (mediaPlayer, plugins) {
+	pluginRunner.start = function (mediaPlayer) {
 
-		_pluginsExists = plugins.length > 0;
 		_mediaPlayer = mediaPlayer;
-
-		showPlugins();
 
 	};
 	

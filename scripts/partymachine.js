@@ -305,7 +305,7 @@
 
 					participants.start(feedUrl, freshParticipants);
 					
-					pluginRunner.start(mediaPlayer, data.plugins);
+					pluginRunner.start(mediaPlayer);
 
 					controllers.start(freshParticipants);
 
