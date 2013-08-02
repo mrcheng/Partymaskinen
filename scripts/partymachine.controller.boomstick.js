@@ -898,15 +898,15 @@
 			
 			var controllerId = "boomstick_" + j;
 
-			var pressedUp = (joystick.pov & UP) && ((!previousJoystickState.pov & UP) === 0);
-			var pressedLeft = (joystick.pov & LEFT) && ((!previousJoystickState.pov & LEFT) === 0);
-			var pressedRight = (joystick.pov & RIGHT) && ((!previousJoystickState.pov & RIGHT) === 0);
-			var pressedDown = (joystick.pov & DOWN) && ((!previousJoystickState.pov & DOWN) === 0);
+			var pressedUp = (joystick.pov & UP) && (previousJoystickState.pov & UP != 0);
+			var pressedLeft = (joystick.pov & LEFT) && (previousJoystickState.pov & LEFT != 0);
+			var pressedRight = (joystick.pov & RIGHT) && (previousJoystickState.pov & RIGHT != 0);
+			var pressedDown = (joystick.pov & DOWN) && (previousJoystickState.pov & DOWN != 0);
 
-			var releasedUp = (previousJoystickState.pov & UP) && ((!joystick.pov & UP) === 0);
-			var releasedLeft = (previousJoystickState.pov & LEFT) && ((!joystick.pov & LEFT) === 0);
-			var releasedRight = (previousJoystickState.pov & RIGHT) && ((!joystick.pov & RIGHT) === 0);
-			var releasedDown = (previousJoystickState.pov & DOWN) && ((!joystick.pov & DOWN) === 0);
+			var releasedUp = (previousJoystickState.pov & UP) && (joystick.pov & UP != 0);
+			var releasedLeft = (previousJoystickState.pov & LEFT) && (joystick.pov & LEFT != 0);
+			var releasedRight = (previousJoystickState.pov & RIGHT) && (joystick.pov & RIGHT != 0);
+			var releasedDown = (previousJoystickState.pov & DOWN) && (joystick.pov & DOWN != 0);
 
 			if (releasedUp || releasedLeft || releasedRight || releasedDown) {
 				_interpretor.gamepadReleased(releasedLeft, releasedUp, releasedRight, releasedDown, controllerId);
