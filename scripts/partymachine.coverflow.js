@@ -42,8 +42,8 @@
 	}
 
 
-	function highlightCurrentPlugin(dontPlaySound) {
-		if (typeof _mediaPlayer !== "undefined" && !dontPlaySound) {
+	function highlightCurrentPlugin(playSound) {
+		if (typeof _mediaPlayer !== "undefined" && playSound) {
 			_mediaPlayer.playEvent("pluginHighlight");
 		}
 
