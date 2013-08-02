@@ -15,14 +15,14 @@
 	}
 	
 	if (partyConfig === "live") {
-		partyMachineConfig.baseUrl = 'http://mrcheng.github.com/Partymaskinen/';
-		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.com/PartymaskinenPlugins/';
+		partyMachineConfig.baseUrl = 'http://mrcheng.github.io/Partymaskinen/';
+		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.io/PartymaskinenPlugins/';
 	}
 	else if (partyConfig === "dev") {
 		// Change to your localhost adress when developing
 		partyMachineConfig.baseUrl = 'http://localhost:6217/';
 		//partyMachineConfig.baseUrl = 'http://localhost:6217/Partymaskinen/';
-		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.com/PartymaskinenPlugins/';
+		partyMachineConfig.pluginsBaseUrl = 'http://mrcheng.github.io/PartymaskinenPlugins/';
 	}
 	
 } (
