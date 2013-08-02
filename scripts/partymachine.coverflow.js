@@ -1,215 +1,467 @@
 ﻿(function (coverflow, $, undefined) {
 
-    var min = 1;
-    var max = 16;
-    var current = 8;
-    var currPos = 0;
-    var newPos = 0;
-    var currAngle = 0;
-    var newAngle = 0;
-    var gap = 50;
-    var clickedIndex = 0;
-    var diff = 0;
+	var min = 0;
+	var max = 14;
 
-    coverflow.initialThrust = function() {
-        setTimeout(function () {
-            var plugin1 = document.getElementById("plugin1");
-            
-            if (plugin1) {
-                plugin1.style.webkitTransform = "translateX(-400px) rotateY(-60deg)";
-            }
-            
-            var plugin2 = document.getElementById("plugin2");
-            
-            if (plugin2) {
-                plugin2.style.webkitTransform = "translateX(-350px) rotateY(-60deg)";
-            }
-            
-            var plugin3 = document.getElementById("plugin3");
-            if (plugin3) {
-                plugin3.style.webkitTransform = "translateX(-300px) rotateY(-60deg)";
-            }
-            
-            var plugin4 = document.getElementById("plugin4");
-            
-            if (plugin4) {
-                plugin4.style.webkitTransform = "translateX(-250px) rotateY(-60deg)";                    
-            }
-            
-            var plugin5 = document.getElementById("plugin5");
-            
-            if (plugin5) {            
-                plugin5.style.webkitTransform = "translateX(-200px) rotateY(-60deg)";
-            }
-            
-            var plugin6 = document.getElementById("plugin6");
-            
-            if (plugin6) {
-                plugin6.style.webkitTransform = "translateX(-150px) rotateY(-60deg)";
-            }
-            
-            var plugin7 = document.getElementById("plugin7");
-            
-            if (plugin7) {
-                plugin7.style.webkitTransform = "translateX(-100px) rotateY(-60deg)";
-            }
-            
-            var plugin8 = document.getElementById("plugin8");
-            if (plugin8) {
-                plugin8.style.webkitTransform = "translateX(0px) rotateY(0deg) translateZ(200px)";
-            }
-            
-            var plugin9 = document.getElementById("plugin9");
-            
-            if (plugin9) {
-                plugin9.style.webkitTransform = "translateX(100px) rotateY(60deg)";
-            }
-            
-            var plugin10 = document.getElementById("plugin10");
-            if (plugin10) {            
-                plugin10.style.webkitTransform = "translateX(150px) rotateY(60deg)";
-            }
-            
-            var plugin11 = document.getElementById("plugin11");
-            
-            if (plugin11) {
-                plugin11.style.webkitTransform = "translateX(200px) rotateY(60deg)";
-            }
-            
-            var plugin12 = document.getElementById("plugin12");
-            
-            if (plugin12) {
-                plugin12.style.webkitTransform = "translateX(250px) rotateY(60deg)";
-            }
-            
-            var plugin13 = document.getElementById("plugin13");
-            
-            if (plugin13) {
-                plugin13.style.webkitTransform = "translateX(300px) rotateY(60deg)";
-            }
-            
-            var plugin14 = document.getElementById("plugin14");
-            
-            if (plugin14) {            
-                plugin14.style.webkitTransform = "translateX(350px) rotateY(60deg)";
-            }
-            
-            var plugin15 = document.getElementById("plugin15");
-            
-            if (plugin15) {
-                plugin15.style.webkitTransform = "translateX(400px) rotateY(60deg)";
-            }
-            
-            var plugin16 = document.getElementById("plugin16");
-            
-            if (plugin16) {
-                plugin16.style.webkitTransform = "translateX(450px) rotateY(60deg)";
-            }
-            
-        }, 500);
-    }
+	var current = 0;
+	var currPos = 0;
+	var newPos = 0;
+	var currAngle = 0;
+	var newAngle = 0;
+	var gap = 50;
+	var clickedIndex = 0;
+	var diff = 0;
+	var _plugins = [];
 
-    coverflow.moveTo = function (index) {
-        clickedIndex = index;
 
-        if (clickedIndex > current) {
-            diff = clickedIndex - current;
-            for (var i = 1; i <= diff; i++) {
-                coverflow.right();
-            }
-        }
-        else if (clickedIndex < current) {
-            diff = (current - clickedIndex);
-            for (var i = 1; i <= diff; i++) {
-                coverflow.left();
-            }
-        }
-    }
+	var translateZ = [];
 
-    coverflow.left = function() {
-        if (current > min) {
-            current--;             
+	var rotateY = [];
 
-            for (var i = 1; i <= max; i++) {
+	var translateX = [];
 
-                var plugin = $('#plugin' + i);
-                var data = plugin.data();
-                currPos = data.cp;
-                currAngle = data.a;
+	var _mediaPlayer;
+	
+	var translateZTemplate = [0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0];
 
-                if (currPos == "-100" || currPos == "0") {
-                    newPos = parseInt(currPos) + (gap * 2) * (1);
-                    if (currPos == "0") {
-                        newAngle = -60;
-                    }
-                    else if (currPos = "-100") {
-                        newAngle = 0;
-                    }
-                    else {
-                    }
-                }
-                else {
-                    newPos = parseInt(currPos) + (gap) * (1);
-                    newAngle = parseInt(currAngle);
-                }
+	var rotateYTemplate = [-60, -60, -60, -60, -60, -60, 0, 60, 60, 60, 60, 60, 60];
 
-                if (i == current) {
-                    plugin.css('webkitTransform', "translateX(" + newPos + "px) rotateY(" + newAngle + "deg) translateZ(200px)");
-                }
-                else {
-                    plugin.css('webkitTransform', "translateX(" + newPos + "px) rotateY(" + newAngle + "deg)");
-                }
+	var translateXTemplate = [-350, -300, -250, -200, -150, -100, 0, 100, 150, 200, 250, 300, 350];
 
-                plugin.data('cp', newPos);
-                plugin.data('a', newAngle);
-            }
-        }
-    }
+	var selectablePlugins = 0;
+	
+	var _pluginsExists = false;
+	
+	function showPlugins() {
 
-    coverflow.right = function() {
-        if (current < max) {
-            current++;           
+		if (_pluginsExists) {
+			$("#plugins-container").show();
+		} else {
+			$("#plugins-container").hide();
+		}
+	}
 
-            for (var i = 1; i <= max; i++) {
 
-                var plugin = $('#plugin' + i);
-                var data = plugin.data();
-                currPos = data.cp;
-                currAngle = data.a;
+	function highlightCurrentPlugin(dontPlaySound) {
+		if (typeof _mediaPlayer !== "undefined" && !dontPlaySound) {
+			_mediaPlayer.playEvent("pluginHighlight");
+		}
 
-                if (currPos == "100" || currPos == "0") {
-                    newPos = parseInt(currPos) + (gap * 2) * (-1);
-                    if (currPos == "0") {
-                        newAngle = 60;
-                    }
-                    else if (currPos = "100") {
-                        newAngle = 0;
-                    }
-                }
-                else {
-                    newPos = parseInt(currPos) + (gap) * (-1);
-                    newAngle = parseInt(currAngle);
-                }
+		//var highlightPlugin = _plugins[pluginIndex];
 
-                if (i == current) {
-                    plugin.css('webkitTransform', "translateX(" + newPos + "px) rotateY(" + newAngle + "deg) translateZ(200px)");
-                }
-                else {
-                    plugin.css('webkitTransform', "translateX(" + newPos + "px) rotateY(" + newAngle + "deg)");
-                }
+		$("#partyMachine .plugin").removeClass("plugin-selected");
 
-                plugin.data('cp', newPos);
-                plugin.data('a', newAngle);
-            }
-        }
-    }
+		var pluginDomElem = $("#partyMachine .plugin").get(current);
 
-    $(function () {
-        coverflow.initialThrust();
+		if (pluginDomElem) {
+			$(pluginDomElem).addClass("plugin-selected");
+			//console.log("highlighting plugin: " + highlightPlugin.title);
+		}
+	}
+	
+	function setupPlugins(plugins) {
 
-        $('#partyMachine-plugins').on('click', '.plugin', function () {
-            coverflow.moveTo($(this).index());
-        });
-    });
+		if (plugins.length > 13) {
+			_plugins = plugins.splice(1, 13);
+
+		} else {
+			_plugins = plugins;
+		}
+
+		for (var plugin = 0; plugin < _plugins.length; plugin++) {
+
+			var displayPlugin = _plugins[plugin];
+
+			var pluginHtmlTemplate = '<div class="plugin" id="plugin' + (plugin) + '">\
+                    <img src="' + displayPlugin.url + '/thumbnail.png"></img>\
+                    <!--<div class="plugin-glare"></div><br /><p>' + displayPlugin.title + '</p></div>-->';
+
+			$("#partyMachine-plugins").append(pluginHtmlTemplate);
+
+		}
+
+		setSelectedPluginInitial(Math.floor((_plugins.length / 2)));
+
+		_pluginsExists = _plugins.length > 0;
+		
+		showPlugins();
+	};
+
+	coverflow.getPlugins = function() {
+		return _plugins;
+	},
+
+	coverflow.stub = function (mediaPlayer) {
+
+
+		_mediaPlayer = mediaPlayer;
+		
+		var createdBy = {
+			id: "3cef56f0-28fc-48c5-8f97-04f10d4ef26e",
+			imageUrl: "http://i.imgur.com/0ul5i.png",
+			name: "Jonas Olsson"
+		};
+
+		var freshPlugins = [];
+
+		var unicornDeath = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Unicorn Death!",
+			url: partyMachineConfig.pluginsBaseUrl + "Unicorn%20Death"
+		};
+
+		freshPlugins.push(unicornDeath);
+
+		var kingPong = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "King Pong",
+			url: partyMachineConfig.pluginsBaseUrl + "King%20Pong"
+		};
+
+		freshPlugins.push(kingPong);
+
+		var beerBong = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Beer Bong",
+			url: partyMachineConfig.pluginsBaseUrl + "Beer%20Bong"
+		};
+
+		freshPlugins.push(beerBong);
+
+		var centurion = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Centurion",
+			url: partyMachineConfig.pluginsBaseUrl + "Centurion"
+		};
+
+		freshPlugins.push(centurion);
+
+		var centurionKamelasa = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Centurion Kamelasa",
+			url: partyMachineConfig.pluginsBaseUrl + "CenturionKamelasa"
+		};
+
+		freshPlugins.push(centurionKamelasa);
+
+		var theDuel = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Centurion Kamelasa",
+			url: partyMachineConfig.pluginsBaseUrl + "The%20Duel"
+		};
+
+		freshPlugins.push(theDuel);
+
+		var pushItToTheLimit = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Push It To The Limit",
+			url: partyMachineConfig.pluginsBaseUrl + "Push%20it%20to%20the%20limit"
+		};
+
+		freshPlugins.push(pushItToTheLimit);
+
+		var randomBeer = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Random Beer",
+			url: partyMachineConfig.pluginsBaseUrl + "Random%20Beer"
+		};
+
+		freshPlugins.push(randomBeer);
+
+		var simonSays = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Simon Says",
+			url: partyMachineConfig.pluginsBaseUrl + "SimonSays"
+		};
+
+		freshPlugins.push(simonSays);
+
+		var tangera = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Tangera",
+			url: partyMachineConfig.pluginsBaseUrl + "Tangera"
+		};
+
+		freshPlugins.push(tangera);
+
+		var vemVillBliFull = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Vem Vill Bli Full?",
+			url: partyMachineConfig.pluginsBaseUrl + "Vem%20vill%20bli%20full"
+		};
+
+		freshPlugins.push(vemVillBliFull);
+
+		var whiskeyWheel = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Whiskey Wheel",
+			url: partyMachineConfig.pluginsBaseUrl + "Whiskey%20Wheel"
+		};
+
+		freshPlugins.push(whiskeyWheel);
+
+		var youAreMyBitch = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "You are my bitch",
+			url: partyMachineConfig.pluginsBaseUrl + "You%20are%20my%20bitch"
+		};
+
+		freshPlugins.push(youAreMyBitch);
+
+		var gegginsLair = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Geggin's Lair",
+			url: partyMachineConfig.pluginsBaseUrl + "Geggin's%20Lair"
+		};
+
+		freshPlugins.push(gegginsLair);
+
+
+		var ausMitDerHose = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "Aus mit der hose",
+			url: partyMachineConfig.pluginsBaseUrl + "Aus%20mit%20der%20hose"
+		};
+
+		freshPlugins.push(ausMitDerHose);
+
+		var theHumanCentipede = {
+			created: new Date(),
+			createdBy: createdBy,
+			id: "e9ef04b3-8603-4eaa-8f13-044a2746d22b",
+			title: "The Human Centipede",
+			url: partyMachineConfig.pluginsBaseUrl + "The%20Human%20Centipede"
+		};
+
+		freshPlugins.push(theHumanCentipede);
+
+		coverflow.getPlugins = function () {
+			return freshPlugins;
+		};
+		
+		setupPlugins(freshPlugins);
+	};
+
+
+	function setSelectedPluginInitial(currentSelectedPlugin) {
+		current = currentSelectedPlugin;
+
+		var leftMostIndex = 0;
+
+		var pluginIndex = 0;
+
+		var foundLeftMostIndex = false;
+		if (_plugins.length > 1) {
+
+			for (var left = currentSelectedPlugin - 1; left >= 0; left--) {
+
+				var leftIndex = currentSelectedPlugin - left - 1;
+				var leftTranslateZ = translateZTemplate[leftIndex];
+				var leftRotateY = rotateYTemplate[leftIndex];
+				var leftTranslateX = translateXTemplate[leftIndex];
+
+				var l = document.getElementById("plugin" + pluginIndex);
+				l.style.webkitTransform = "translateZ(" + leftTranslateZ + "px) translateX(" + leftTranslateX + "px) rotateY(" + leftRotateY + "deg)";
+
+				var plugin = $('#plugin' + pluginIndex);
+
+				plugin.data('cp', leftTranslateX);
+				plugin.data('a', leftRotateY);
+				plugin.data('webkitTransformIndex', left);
+
+				if (!foundLeftMostIndex) {
+					foundLeftMostIndex = true;
+					leftMostIndex = leftIndex;
+				}
+
+				pluginIndex++;
+			}
+
+		}
+
+		var centerTranslateZ = translateZTemplate[currentSelectedPlugin];
+		var centerRotateY = rotateYTemplate[currentSelectedPlugin];
+		var centerTranslateX = translateXTemplate[currentSelectedPlugin];
+
+		var center = document.getElementById("plugin" + pluginIndex);
+		center.style.webkitTransform = "translateZ(" + centerTranslateZ + "px) translateX(" + centerTranslateX + "px) rotateY(" + centerRotateY + "deg)";
+
+		var centerPlugin = $('#plugin' + pluginIndex);
+
+		current = pluginIndex;
+		
+		centerPlugin.data('cp', centerTranslateX);
+		centerPlugin.data('a', centerRotateY);
+		centerPlugin.data('webkitTransformIndex', currentSelectedPlugin);
+
+		pluginIndex++;
+
+		var rightMostIndex = 0;
+
+		if (_plugins.length > 1) {
+
+			for (var right = currentSelectedPlugin + 1; right < _plugins.length; right++) {
+
+				//var rightIndex = currentSelectedPlugin + right - 1;
+
+				var rightIndex = right;
+
+				var rightTranslateZ = translateZTemplate[rightIndex];
+				var rightRotateY = rotateYTemplate[rightIndex];
+				var rightTranslateX = translateXTemplate[rightIndex];
+
+				var r = document.getElementById("plugin" + pluginIndex);
+				r.style.webkitTransform = "translateZ(" + rightTranslateZ + "px) translateX(" + rightTranslateX + "px) rotateY(" + rightRotateY + "deg)";
+
+				var rightPlugin = $('#plugin' + pluginIndex);
+
+				rightPlugin.data('cp', rightTranslateX);
+				rightPlugin.data('a', rightRotateY);
+				rightPlugin.data('webkitTransformIndex', rightIndex);
+
+				rightMostIndex = rightIndex;
+				
+				pluginIndex++;
+
+			}
+
+		}
+
+		translateZ = translateZTemplate.splice(leftMostIndex, _plugins.length);
+		translateX = translateXTemplate.splice(leftMostIndex, _plugins.length);
+		rotateY = rotateYTemplate.splice(leftMostIndex, _plugins.length);
+
+		selectablePlugins = rotateY.length;
+
+		highlightCurrentPlugin(false);
+	}
+
+	function setSelectedPlugin(currentSelectedPlugin) {
+
+		if (_plugins.length > 1) {
+			for (var left = 0; left < currentSelectedPlugin; left++) {
+				var leftWebkitTransformIndex = left;
+
+				var leftPlugin = $('#plugin' + left);
+
+				var leftrY = rotateY[leftWebkitTransformIndex];
+
+				var lefttX = translateX[leftWebkitTransformIndex];
+
+				leftPlugin.data('webkitTransformIndex', leftWebkitTransformIndex);
+
+				leftPlugin.css('webkitTransform', "translateX(" + lefttX + "px) rotateY(" + leftrY + "deg)");
+
+			}
+		}
+
+		var centerRotateY = rotateY[currentSelectedPlugin];
+		var centerTranslateX = translateX[currentSelectedPlugin];
+
+		var center = document.getElementById("plugin" + currentSelectedPlugin);
+		center.style.webkitTransform = "translateZ(200px) translateX(" + centerTranslateX + "px) rotateY(" + centerRotateY + "deg)";
+
+		var centerPlugin = $('#plugin' + currentSelectedPlugin);
+
+		centerPlugin.data('cp', centerTranslateX);
+		centerPlugin.data('a', centerRotateY);
+		centerPlugin.data('webkitTransformIndex', currentSelectedPlugin);
+		current = currentSelectedPlugin;
+
+		if (_plugins.length > 1) {
+
+			for (var right = currentSelectedPlugin + 1; right < _plugins.length; right++) {
+
+				var rightPlugin = $('#plugin' + right);
+
+				var rightWebkitTransformIndex = right;
+
+				var rightrY = rotateY[rightWebkitTransformIndex];
+
+				var righttX = translateX[rightWebkitTransformIndex];
+
+				rightPlugin.data('webkitTransformIndex', rightWebkitTransformIndex);
+
+				rightPlugin.css('webkitTransform', "translateX(" + righttX + "px) rotateY(" + rightrY + "deg)");
+
+			}
+
+		}
+
+		highlightCurrentPlugin(true);
+	}
+
+	coverflow.left = function() {
+		var tryLeft = current - 1;
+
+		if (tryLeft >= _plugins.length) {
+			tryLeft = 0;
+		} else if (tryLeft < 0) {
+			tryLeft = _plugins.length - 1;
+		}
+
+		setSelectedPlugin(tryLeft);
+
+		return current;
+	},
+	coverflow.right = function() {
+		var tryRight = current + 1;
+
+		if (tryRight >= _plugins.length) {
+			tryRight = 0;
+		} else if (tryRight < 0) {
+			tryRight = 0;
+		}
+
+		setSelectedPlugin(tryRight);
+
+		return current;
+	},
+
+	coverflow.getSelectedPlugin = function () {
+		return _plugins[current];
+	},
+	
+	coverflow.start = function (plugins, mediaPlayer) {
+
+		_mediaPlayer = mediaPlayer;
+		setupPlugins(plugins);
+	}
+	
+
+	
+
+
+
 
 }(window.partyMachineCoverflow = window.partyMachineCoverflow || {}, jQuery));

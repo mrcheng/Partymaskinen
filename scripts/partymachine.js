@@ -74,14 +74,7 @@
 	}
 
     partyMachine.bindKeys = function (freshParticipants) {
-
-        if (_state.firstLoad) {
-            var plugins = pluginRunner.getPlugins();
-            _state.currentlySelectedPlugin = Math.floor((plugins.length / 2) - 1);
-            pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
-            _state.firstLoad = false;
-        }
-
+		
 		var buttonsPressed = function(buttonA, buttonB, buttonC, buttonD) {
 
 			var anyButton = buttonA || buttonB || buttonC || buttonD;
@@ -90,17 +83,11 @@
 				return false;
 			}
 
-			var plugins = pluginRunner.getPlugins();
-
 			if (_state.context !== _contexts.atPluginSelection) {
 				return false;
 			}
 
-			if (plugins.length === 0) {
-				return false;
-			}
-
-			pluginRunner.startPlugin(_state.currentParticipant, freshParticipants, _state.currentlySelectedPlugin);
+			pluginRunner.startPlugin(_state.currentParticipant, freshParticipants, coverflow.getSelectedPlugin());
 
 		};
 
@@ -112,39 +99,33 @@
 				return false;
 			}
 
-			var plugins = pluginRunner.getPlugins();
-
 			if (_state.context !== _contexts.atPluginSelection) {
 				return false;
 			}
 
-			if (plugins.length === 0) {
-				return false;
-			}
 
 			if (right) {
-				if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
-				    _state.currentlySelectedPlugin = 0;
-				    coverflow.moveTo(0);
-				} else {
-				    _state.currentlySelectedPlugin += 1;
-				    coverflow.right();
-				}
-			} else if (left) {
-				if (_state.currentlySelectedPlugin <= 0) {
-				    _state.currentlySelectedPlugin = plugins.length - 1;
-				    coverflow.moveTo(plugins.length - 1);
-				} else {
-				    _state.currentlySelectedPlugin -= 1;
-				    coverflow.left();
-				}
-			} else if (up) {
-				_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
-			} else if (down) {
-				_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
-			}
+				//if (_state.currentlySelectedPlugin + 1 >= plugins.length) {
+				//    _state.currentlySelectedPlugin = coverflow.moveTo(0);
+				//} else {
+				//	_state.currentlySelectedPlugin = coverflow.right(_state.currentlySelectedPlugin + 1);
+				//}
+				_state.currentlySelectedPlugin = coverflow.right();
 
-			pluginRunner.highlightPlugin(_state.currentlySelectedPlugin);
+			} else if (left) {
+				_state.currentlySelectedPlugin = coverflow.left();
+				//if (_state.currentlySelectedPlugin <= 0) {
+				//    _state.currentlySelectedPlugin = coverflow.moveTo(plugins.length - 1);
+				//} else {
+				//	_state.currentlySelectedPlugin = coverflow.moveTo(_state.currentlySelectedPlugin - 1);
+				//    _state.currentlySelectedPlugin -= 1;
+				//    coverflow.left();
+				//}
+			} else if (up) {
+				//_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
+			} else if (down) {
+				//_state.currentlySelectedPlugin = ((_state.currentlySelectedPlugin + 4) % 8);
+			}
 
 		};
 
@@ -273,6 +254,7 @@
 			
 		}
 		else if (typeof partyParams["id"] !== "undefined" && partyParams["id"] == "stub") {
+			
 			participants.stub();
 
 			var activeParticipants = participants.getActiveParticipants();
@@ -284,6 +266,16 @@
 			atPluginSelect(activeParticipants);
 			
 			mediaPlayer.stub();
+			
+			if (_state.firstLoad) {
+				
+				coverflow.stub(mediaPlayer);
+
+				_state.currentlySelectedPlugin = coverflow.getSelectedPlugin();
+
+				_state.firstLoad = false;
+			}
+
 
 			resetParticipantTimeout();
 			resetMediaTimeout();
@@ -320,6 +312,15 @@
 					atPluginSelect(freshParticipants);
 
 					mediaPlayer.start(data.media, partyParams["id"]);
+
+
+					if (_state.firstLoad) {
+						coverflow.start(data.plugins, mediaPlayer);
+
+						_state.currentlySelectedPlugin = coverflow.getSelectedPlugin();
+
+						_state.firstLoad = false;
+					}
 
 					resetParticipantTimeout();
 					resetMediaTimeout();
