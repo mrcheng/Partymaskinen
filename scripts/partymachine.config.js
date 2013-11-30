@@ -1,9 +1,9 @@
 ﻿
 (function (partyMachineConfig, $, undefined) {
 
-	var partyAdminWebConfig = "dev";
+	var partyAdminWebConfig = "live";
 	// Change to "dev" when developing
-	var partyConfig = "dev";
+	var partyConfig = "live";
 
 	if (partyAdminWebConfig === "live") {
 	    partyMachineConfig.partyFeedUrl = 'http://partymaskinen.azurewebsites.net/Party/JsonP';
