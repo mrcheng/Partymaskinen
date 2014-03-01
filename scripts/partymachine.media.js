@@ -97,9 +97,9 @@
 
 	}
 
-	function getRandom()
+	function getNextMedia()
 	{
-		return _media[parseInt(Math.random() * _media.length)];
+		return _media[0];
 	}
 
 	function playNext()
@@ -107,14 +107,14 @@
 		if (_nextMedia)
 			_currentMedia = _nextMedia;
 		else if (_media.length > 0)
-			_currentMedia = getPlayer(getRandom());
+			_currentMedia = getPlayer(getNextMedia());
 		else
 			_currentMedia = null;
 
 		if (_media.length > 1)
 			for (;;)
 			{
-				_nextMedia = getRandom();
+				_nextMedia = getNextMedia();
 				if (_nextMedia.id != _currentMedia.id)
 				{
 					_nextMedia = getPlayer(_nextMedia);
