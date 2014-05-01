@@ -35,9 +35,9 @@
 	function showPlugins() {
 
 		if (_pluginsExists) {
-			$("#partyMachine-plugins").show();
+		    $("#plugin-wrapper").show();
 		} else {
-		    $("#partyMachine-plugins").hide();
+		    $("#plugin-wrapper").hide();
 		}
 	}
 
