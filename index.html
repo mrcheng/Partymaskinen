@@ -1,49 +1,54 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>Partymaskinen</title>
-	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <title>Partymaskinen</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
 <script src="scripts/partymachine.config.js" type="text/javascript"></script>
-<script src="scripts/partymachine.loader.js" type="text/javascript"></script>	
+<script src="scripts/partymachine.loader.js" type="text/javascript"></script>
 <script type="text/javascript">
- 	function partyMachineHost() {
- 		$(function () {
- 			partyMachine.start();
- 			$(".fittext1").fitText();
- 		});
- 	}
+    function partyMachineHost() {
+        $(function () {
+            partyMachine.start();
+            $(".fittext1").fitText();
+        });
+    }
 </script>
 <body>
-	<div style="display: none;">
-		<object id="boomstickplugin" type="application/x-boomstickjavascriptjoysticksupport" width="0" height="0"></object>
-	</div>
+    <div style="display: none;">
+        <object id="boomstickplugin" type="application/x-boomstickjavascriptjoysticksupport" width="0" height="0"></object>
+    </div>
 
-	<div id="partyMachinePluginContainer"></div>
-	<div id="partyMachine">
-		<img class="fullscreen" onclick="toggleFullScreen()" src="img/fullscreenIcon.png" alt="headerback" width="16px" height="14px"/>	
-		<!--<div class="header fittext1" id="partyname"></div>-->
-		<div class="header-container">
-			<img class="header-container-back" src="img/header_back.png" alt="headerback" width="98%"/>		
-			<div class="participant-name-container">
-				<div class="fittext1" id="participant-name"></div>
-			</div>		
-			<div class="logo-container">
-				<img src="img/logoWhite.png" alt="logo"/>
-			</div>
-			<div class="timer-container">
-				<div class="fittext1" id="participant-timer"></div>
-			</div>
-			<img class="divider" src="img/divider.png" alt="divider" width="96%"/>
-			<div class="media-info-container fittext1">
-				<div class="current-media-title"></div>
-			</div>
-		</div>
-		<div class="plugins-fixed" id="plugins-container">
-			<div id="plugin-wrapper">
-				<div id="partyMachine-plugins"></div>
-			</div>
-		</div>
-	</div>
+    <div id="partyMachinePluginContainer"></div>
+    <div id="partyMachine">
+        <img class="fullscreen" onclick="toggleFullScreen()" src="img/fullscreenIcon.png" alt="headerback" width="16px" height="14px" />
+        <!--<div class="header fittext1" id="partyname"></div>-->
+        <div class="header-container" id="partyMachine-header-has-plugins">
+            <img class="header-container-back" src="img/header_back.png" alt="headerback" width="98%" />
+            <div class="participant-name-container">
+                <div class="fittext1" id="participant-name"></div>
+            </div>
+            <div class="logo-container">
+                <img src="img/logoWhite.png" alt="logo" />
+            </div>
+            <div class="timer-container">
+                <div class="fittext1" id="participant-timer"></div>
+            </div>
+            <img class="divider" src="img/divider.png" alt="divider" width="96%" />
+            <div class="media-info-container fittext1">
+                <div class="current-media-title"></div>
+            </div>
+        </div>
+
+        <div class="header-container" id="partyMachine-header-no-plugins">
+            <img class="header-container-back" src="img/header_back.png" alt="headerback" width="98%" />
+        </div>
+        
+        <div class="plugins-fixed" id="plugins-container">
+            <div id="plugin-wrapper">
+                <div id="partyMachine-plugins"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

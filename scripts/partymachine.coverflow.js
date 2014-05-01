@@ -36,8 +36,12 @@
 
 		if (_pluginsExists) {
 		    $("#plugin-wrapper").show();
+		    $("#partyMachine-header-no-plugins").hide();
+		    $("#partyMachine-header-has-plugins").show();
 		} else {
 		    $("#plugin-wrapper").hide();
+            $("#partyMachine-header-has-plugins").hide();
+		    $("#partyMachine-header-no-plugins").show();
 		}
 	}
 
