@@ -80,11 +80,14 @@
 
 		}
 
-		setSelectedPluginInitial(Math.floor((_plugins.length / 2)));
-
-		_pluginsExists = _plugins.length > 0;
 		
-		showPlugins();
+		_pluginsExists = _plugins.length > 0;
+
+	    if (_pluginsExists) {
+	        setSelectedPluginInitial(Math.floor((_plugins.length / 2)));
+	    }
+
+	    showPlugins();
 	};
 
 	coverflow.getPlugins = function() {
