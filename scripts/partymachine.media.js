@@ -111,21 +111,26 @@
 		else
 			_currentMedia = null;
 
-		if (_media.length > 1)
-			for (;;)
-			{
-				_nextMedia = getNextMedia();
-				if (_nextMedia.id != _currentMedia.id)
-				{
-					_nextMedia = getPlayer(_nextMedia);
-					break;
-				}
-				console.log('randomly selected same song, retrying');
-			}
-		else
-			_nextMedia = null;
+		//if (_media.length > 1)
+		//	for (;;)
+		//	{
+		//		_nextMedia = getNextMedia();
 
-		var mediaHtml = getCurrentSongHtml(_currentMedia, _nextMedia);
+		//		if (_nextMedia.id != _currentMedia.id) {
+		//		    debugger;
+		//			_nextMedia = getPlayer(_nextMedia);
+		//			break;
+		//		}
+
+		//		console.log('randomly selected same song, retrying');
+		//	}
+		//else
+
+	    if (_media.length === 0) {
+	        _nextMedia = null;
+	    }
+
+	    var mediaHtml = getCurrentSongHtml(_currentMedia, _nextMedia);
 		$('.current-media-title').html(mediaHtml);
 
 		if (_currentMedia)
