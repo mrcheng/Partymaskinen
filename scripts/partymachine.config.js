@@ -6,8 +6,8 @@
 	var partyConfig = "live";
 
 	if (partyAdminWebConfig === "live") {
-	    partyMachineConfig.partyFeedUrl = 'http://partymaskinen.azurewebsites.net/Party/JsonP';
-	    partyMachineConfig.latestPartiesFeedUrl = 'http://partymaskinen.azurewebsites.net/party/listlatest';
+	    partyMachineConfig.partyFeedUrl = 'http://partymaskinen.se/Party/JsonP';
+	    partyMachineConfig.latestPartiesFeedUrl = 'http://partymaskinen.se/party/listlatest';
 	}
 	else if (partyAdminWebConfig === "dev") {
 		partyMachineConfig.partyFeedUrl = 'http://localhost:36466/Party/JsonP';
