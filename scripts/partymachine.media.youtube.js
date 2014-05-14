@@ -29,7 +29,7 @@
 
 	youtube.start = function () {
 		var tag = document.createElement('script');
-		tag.src = 'https://www.youtube.com/player_api';
+		tag.src = 'https://www.youtube.com/iframe_api';
 		var firstScriptTag = document.getElementsByTagName('script')[0];
 		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -43,7 +43,7 @@
 		//iframe.style.visibility = 'hidden';
 		//iframe.width = '38%';
 		iframe.height = playerHeight;
-		iframe.src = 'https://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1';
+		iframe.src = 'https://www.youtube.com/embed?controls=0&amp;enablejsapi=1&amp;showinfo=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;disablekb=1&amp;rel=0';
 		document.body.appendChild(iframe);
 	};
 
