@@ -80,8 +80,9 @@
 					event.target.setVolume(100);
 					playerReady = true;
 					if (currentVideoId) {
-						youtube.play(currentVideoId);
-					} else {
+					    player.cueVideoById(currentVideoId);
+					    $("#youtube").css('visibility', 'visible');
+                    } else {
 						$("#youtube").css('visibility', 'hidden');
 						$("#youtube").height(0);
 					}
