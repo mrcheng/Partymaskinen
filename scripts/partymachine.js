@@ -355,6 +355,23 @@
 			}
 		});
 
+		var $pauseTrack = $('#pauseTrack');
+		var $playTrack = $('#playTrack');
+		var $skipTrack = $('#skipTrack');
+
+		$pauseTrack.on('click', function (e) {
+		    $pauseTrack.hide();
+		    $playTrack.show();
+		    mediaPlayer.pause();
+		});
+		$playTrack.on('click', function (e) {
+		    $playTrack.hide();
+		    $pauseTrack.show();
+		    mediaPlayer.resume();
+		});
+		$skipTrack.on('click', function (e) {
+		    mediaPlayer.skip();
+		});
 	};
 
 } (

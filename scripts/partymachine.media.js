@@ -54,6 +54,10 @@
 			_currentMedia.resume();
 	};
 
+	mediaManager.skip = function () {
+	    playerFinished();
+	};
+
 	function updateMedia(medias, callback)
 	{
 		
