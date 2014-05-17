@@ -41,3 +41,21 @@ iframe#youtube {top:0;border:0;position:fixed;visibility:hidden;width:100%;z-ind
 #boomstickInstallPrompt {background-color:#ff6a00;color:#fff;display: block;left: 0px;padding:1em;position:absolute;text-decoration:none;top:43%;width:100%;z-index:2000;}
 #boomstickInstallPrompt a{color:#fff;font-size:120%;}
 #closeBoomstickPrompt {float:right;margin-right: 3%;}
+
+/*BUTTONS*/
+.btn-play,.btn-pause,.btn-skip {
+  position:fixed;
+  width:50px; height:50px;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  padding:20px;
+}
+.btn-play span, .btn-pause span, .btn-skip span {
+    display:block;
+    color:#eee;
+    margin-left:5px;
+    margin-top:10px;
+}
+
+.btn-play:hover,.btn-pause:hover,.btn-skip:hover{cursor:pointer}
+.btn-pause,.btn-play{top:0;right:91px;}
+.btn-skip{top:0px;right:0px;}
