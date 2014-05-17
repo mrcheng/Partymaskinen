@@ -45,17 +45,18 @@ iframe#youtube {top:0;border:0;position:fixed;visibility:hidden;width:100%;z-ind
 /*BUTTONS*/
 .btn-play,.btn-pause,.btn-skip {
   position:fixed;
-  width:50px; height:50px;
+  width:100px; height:100px;
   background-color: rgba(0, 0, 0, 0.4) !important;
   padding:20px;
 }
 .btn-play span, .btn-pause span, .btn-skip span {
     display:block;
     color:#eee;
-    margin-left:5px;
-    margin-top:10px;
+    margin-left:20px;
+    margin-top:30px;
+    font-size:26px;
 }
 
 .btn-play:hover,.btn-pause:hover,.btn-skip:hover{cursor:pointer}
-.btn-pause,.btn-play{top:0;right:91px;}
+.btn-pause,.btn-play{top:0;right:141px;}
 .btn-skip{top:0px;right:0px;}
