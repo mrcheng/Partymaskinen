@@ -370,6 +370,8 @@
 		    mediaPlayer.resume();
 		});
 		$skipTrack.on('click', function (e) {
+		    $playTrack.hide();
+		    $pauseTrack.show();
 		    mediaPlayer.skip();
 		});
 	};
